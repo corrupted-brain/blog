@@ -1,0 +1,225 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>GraphQL IDOR in Facebook streamer dashboard. &#8211; Kailash</title>
+<meta name="description" content="While viewing our stream dashboard data from creator studio, there is an endpoint from where we can see our dashboard status. There is parameter called profile_id which can be misused to access data of other pages by using facebook page_id.">
+<meta name="keywords" content="facebook, bug-bounty, graphql, burpsuite">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="GraphQL IDOR in Facebook streamer dashboard.">
+<meta name="twitter:description" content="While viewing our stream dashboard data from creator studio, there is an endpoint from where we can see our dashboard status. There is parameter called profile_id which can be misused to access data of other pages by using facebook page_id.">
+<meta name="twitter:site" content="@corrupted_brain">
+<meta name="twitter:creator" content="@corrupted_brain">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/posts/docker.png">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GraphQL IDOR in Facebook streamer dashboard.">
+<meta property="og:description" content="While viewing our stream dashboard data from creator studio, there is an endpoint from where we can see our dashboard status. There is parameter called profile_id which can be misused to access data of other pages by using facebook page_id.">
+<meta property="og:url" content="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/">
+<meta property="og:site_name" content="Kailash">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Kailash Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js" defer></script>
+	<script src="http://localhost:4000/assets/js/vendor/respond.min.js" defer></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js" defer></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<link rel="apple-touch-icon" sizes="57x57" href="http://localhost:4000/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="http://localhost:4000/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://localhost:4000/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://localhost:4000/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://localhost:4000/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="http://localhost:4000/images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="http://localhost:4000/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/images/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="http://localhost:4000/images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="post">
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="http://localhost:4000/">Kailash</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				    <li><a href="https://kailashbohara.com.np" target="_blank" rel="noreferrer">Home</a></li>
+				
+				    
+				    <li><a href="http://localhost:4000/website/about/" >About</a></li>
+				
+				    
+				    <li><a href="https://github.com/corrupted-brain" target="_blank" rel="noreferrer">Github</a></li>
+				
+				    
+				    <li><a href="https://linkedin.com/in/kailash0x01" target="_blank" rel="noreferrer">LinkedIn</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="http://localhost:4000/images/author/avatar.png" class="bio-photo" alt="Kailash bio photo">
+
+
+  <h3 itemprop="name">Kailash</h3>
+  <p>Information security Practitioner</p>
+  
+  <a href="http://twitter.com/corrupted_brain" class="author-social" target="_blank" rel="noreferrer"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  
+  
+  <a href="http://linkedin.com/in/kailash0x01" class="author-social" target="_blank" rel="noreferrer"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
+  
+  
+  
+  <a href="http://github.com/corrupted-brain" class="author-social" target="_blank" rel="noreferrer"><i class="fa fa-fw fa-github"></i> Github</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" rel="bookmark" title="GraphQL IDOR in Facebook streamer dashboard.">GraphQL IDOR in Facebook streamer dashboard.</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <h4 id="description">Description:</h4>
+<p>While viewing our stream dashboard data from creator studio, there is an endpoint from where we can see our dashboard status. There is parameter called <em>profile_id</em> in GraphQl request which can be misused to access data of other pages by using facebook page_id.</p>
+
+<h4 id="steps-to-reproduce">Steps to Reproduce:</h4>
+<ol>
+  <li>Start burpsuite and intercept the request.</li>
+  <li>Go to https://www.facebook.com/gaming/streamer and you will be redirected to creator studio.</li>
+  <li>We will forward all the intercepted request since it’s difficult to spot the correct request which has vulnerable parameters in multiple requests.</li>
+  <li>Meanwhile we will use find feature in burpsuite. we’ll search for <em>“GamesVideoStreamerDashboardProfileQuery”.</em>
+<img src="/images/posts/graphql-request.png" alt="graphql-request" /></li>
+  <li>Once our search query matches we will forward that particular request to repeator and replace <em>profileID</em> with desired game steaming pageID to see their stream stats. The response of the above request looks like as shown below.
+<img src="/images/posts/graphql-response.png" alt="graphql-response" />
+According to facebook only highlighted information i.e. <em>“l30_live_earnings”</em> and <em>“supporter_count”</em> are sensitive which should not be disclosed to a user which does not have any role in the page.</li>
+</ol>
+
+<h4 id="conclusion">Conclusion:</h4>
+<p>After reviewing this issue, Facebook decided to award a bounty of $2000 and they fixed the issue by not displaying those information in the response to a users which does not have any role in page.
+<img src="/images/posts/facebook-reply.png" alt="facebook-reply" /></p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=GraphQL IDOR in Facebook streamer dashboard. http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/&title=GraphQL IDOR in Facebook streamer dashboard.&summary=While viewing our stream dashboard data from creator studio, there is an endpoint from where we can see our dashboard status. There is parameter called profile_id which can be misused to access data of other pages by using facebook page_id.&source=http://localhost:4000" class="linkedin" title="Share on LinkedIn"><i class="fa fa-linkedin"></i><span> LinkedIn</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>GraphQL IDOR in Facebook streamer dashboard.</strong> was published on <time datetime="2020-11-18T00:00:00+05:45">November 18, 2020</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://localhost:4000/posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" title="Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)">Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)</a></li>
+    
+      <li><a href="http://localhost:4000/blog/2020/05/29/CVE-2020-10596/" title="CVE-2020-10596">CVE-2020-10596</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  <footer>
+    
+
+<span>&copy; 2020 Kailash. This website was built using the Jekyll.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js" defer></script>
+
+
+  
+-->
+
+</body>
+</html>

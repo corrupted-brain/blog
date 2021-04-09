@@ -1,0 +1,19 @@
+# Authors
+
+kailash:
+  name: Kailash Bohara
+  web: http://xyz.com
+  email: test@test.com
+  bio: "something something."
+  avatar: bio-photo-2.jpg
+  twitter: xyz
+  google:
+    plus: xyz
+xyz:
+  name: xyz
+  web: test.com
+  email: test@test.com
+  bio: "something something."
+  avatar: bio-photo-2.jpg
+  twitter: xyz
+  google: test

@@ -1,0 +1,20 @@
+# Site navigation links
+
+- title: Home
+  url: https://kailashbohara.com.np
+
+- title: All posts
+  url: /posts/
+
+  #title: CV
+  #url: /website/resume/
+
+  title: About
+  url: /website/about/
+
+- title: Github
+  url: https://github.com/corrupted-brain
+
+- title: LinkedIn
+  url: https://linkedin.com/in/kailash0x01
+

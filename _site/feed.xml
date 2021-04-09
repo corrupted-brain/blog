@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Kailash</title>
+<generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
+<link rel="alternate" type="text/html" href="http://localhost:4000" />
+<updated>2020-11-20T21:52:05+05:45</updated>
+<id>http://localhost:4000/</id>
+<author>
+  <name>Kailash</name>
+  <uri>http://localhost:4000/</uri>
+  
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[GraphQL IDOR in Facebook streamer dashboard.]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" />
+  <id>http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard</id>
+  <published>2020-11-18T00:00:00+05:45</published>
+  <updated>2020-11-18T00:00:00+05:45</updated>
+  <author>
+    <name>Kailash</name>
+    <uri>http://localhost:4000</uri>
+    
+  </author>
+  <content type="html">
+    &lt;h4 id=&quot;description&quot;&gt;Description:&lt;/h4&gt;
+&lt;p&gt;While viewing our stream dashboard data from creator studio, there is an endpoint from where we can see our dashboard status. There is parameter called &lt;em&gt;profile_id&lt;/em&gt; in GraphQl request which can be misused to access data of other pages by using facebook page_id.&lt;/p&gt;
+
+&lt;h4 id=&quot;steps-to-reproduce&quot;&gt;Steps to Reproduce:&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Start burpsuite and intercept the request.&lt;/li&gt;
+  &lt;li&gt;Go to https://www.facebook.com/gaming/streamer and you will be redirected to creator studio.&lt;/li&gt;
+  &lt;li&gt;We will forward all the intercepted request since it’s difficult to spot the correct request which has vulnerable parameters in multiple requests.&lt;/li&gt;
+  &lt;li&gt;Meanwhile we will use find feature in burpsuite. we’ll search for &lt;em&gt;“GamesVideoStreamerDashboardProfileQuery”.&lt;/em&gt;
+&lt;img src=&quot;/images/posts/graphql-request.png&quot; alt=&quot;graphql-request&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Once our search query matches we will forward that particular request to repeator and replace &lt;em&gt;profileID&lt;/em&gt; with desired game steaming pageID to see their stream stats. The response of the above request looks like as shown below.
+&lt;img src=&quot;/images/posts/graphql-response.png&quot; alt=&quot;graphql-response&quot; /&gt;
+According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_earnings”&lt;/em&gt; and &lt;em&gt;“supporter_count”&lt;/em&gt; are sensitive which should not be disclosed to a user which does not have any role in the page.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;conclusion&quot;&gt;Conclusion:&lt;/h4&gt;
+&lt;p&gt;After reviewing this issue, Facebook decided to award a bounty of $2000 and they fixed the issue by not displaying those information in the response to a users which does not have any role in page.
+&lt;img src=&quot;/images/posts/facebook-reply.png&quot; alt=&quot;facebook-reply&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/&quot;&gt;GraphQL IDOR in Facebook streamer dashboard.&lt;/a&gt; was originally published by Kailash at &lt;a href=&quot;http://localhost:4000&quot;&gt;Kailash&lt;/a&gt; on November 18, 2020.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" />
+  <id>http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss</id>
+  <published>2020-07-15T00:00:00+05:45</published>
+  <updated>2020-07-15T00:00:00+05:45</updated>
+  <author>
+    <name>Kailash</name>
+    <uri>http://localhost:4000</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;Two different cross site scripting vulnerabilities were found on version below 20.0.1 and reported to Mdaemon team. As per the reposne from their side both issues were addressed on &lt;a href=&quot;http://files.altn.com/MDaemon/Release/relnotes_en.html&quot;&gt;latest version 20.0.1 released&lt;/a&gt; on 18th August 2020.&lt;/p&gt;
+
+&lt;h4 id=&quot;case-one&quot;&gt;Case One:&lt;/h4&gt;
+
+&lt;p&gt;E-mail attachment field is vulnerable to XSS. A attachemnt with XSS payload as a file name can be uploaded to trigger execution of code. To do tha follow steps below:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Rename a file and set it’s name as &lt;code&gt;&amp;lt;img src=x onerror=alert(1)&amp;gt;.jpg &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Go to New mail, select recipient and the select attachment. Code gets executed as right after upload so it becomes self XSS.
+ &lt;img src=&quot;/images/posts/mdaemon-xss-popup.png&quot; alt=&quot;XSS Popup1&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Let’s send the mail to recipient and open from his/her side. Opening just a mail doesn’t executes the code but when the victim clicks on forward button, XSS pop-up is shown.&lt;br /&gt;
+ &lt;img src=&quot;/images/posts/mdaemon-xss-popup-2.png&quot; alt=&quot;XSS Popup 2&quot; /&gt;
+ Like this a stored self XSS can also becomes perfect XSS for victim users.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;case-two&quot;&gt;Case Two:&lt;/h4&gt;
+
+&lt;p&gt;So the next vulnerable endpoint is Distribution list. A distribution list holds name and email address of persons. We can also refer it as a address book. Following steps can be followed to execute the vulnerability.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Go to contact section and distribution list menu. Create a new distribution list.&lt;/li&gt;
+  &lt;li&gt;Contact name field is vulnerabile to XSS. Use the payload &lt;code&gt;&amp;lt;img src=x onerror=alert(1)&amp;gt;&lt;/code&gt; 
+&lt;img src=&quot;/images/posts/mdaemon-xss-distribution1.png&quot; alt=&quot;Mdaemon XSS&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;We can see execution code and after saving it, each time we visits the distribution list section the XSS pop-up is seen.
+&lt;img src=&quot;/images/posts/mdaemon-xss-distribution2.png&quot; alt=&quot;Mdaemon XSS&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/&quot;&gt;Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)&lt;/a&gt; was originally published by Kailash at &lt;a href=&quot;http://localhost:4000&quot;&gt;Kailash&lt;/a&gt; on July 15, 2020.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[CVE-2020-10596]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2020/05/29/CVE-2020-10596/" />
+  <id>http://localhost:4000/blog/2020/05/29/CVE-2020-10596</id>
+  <updated>2020-05-29T00:00:00-00:00</updated>
+  <published>2020-05-29T00:00:00+05:45</published>
+  
+  <author>
+    <name>Kailash</name>
+    <uri>http://localhost:4000</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p style=&quot;text-align: justify;&quot;&gt; Cross-site scripting attacks (XSS),is a type of attack in which malicious scripts are injected into websites and web applications and run on an end user’s platform. Vulnerable endpoints are found and JS code is injected to execute it for malicious purpose. Such endpoints can be search fields, profile information fields , file upload functions and many more. &lt;/p&gt;
+
+&lt;p&gt;In authenticated attack refers to the conditions where an attacker must be logged in order to exploit the vulnerabilitiy. In &lt;a href=&quot;https://www.opencart.com&quot;&gt;OpenCart&lt;/a&gt; 3.0.3.2 it is possible to execute cross site scripting attack since the profile image upload feature in admin panel is not escaping user inputs.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;To execute the steps follow the below steps.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Login to admin panel, navigate to system &amp;gt; users &amp;gt; edit existing user.&lt;/li&gt;
+  &lt;li&gt;Go to Image change section and select a file with the XSS payload as &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;lt;svg onload=alert(&quot;XSS&quot;)&amp;gt;&lt;/code&gt; and save it.&lt;/li&gt;
+  &lt;li&gt;Thats it.
+ &lt;img src=&quot;/images/posts/xss-popup.png&quot; alt=&quot;XSS Popup&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;What’s the solution ???&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style=&quot;text-align: justify;&quot;&gt; Same payload gets executes for directory name too. So, I suggested a regex which replaces special characters in filename/directory name with whitespaces and removes white spaces too. &lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Sanitize the filename&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;basename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;html_entity_decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ENT_QUOTES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'UTF-8'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Using regex to filter filename&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;preg_replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/[^A-Za-z0-9\-\.]/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Validate the filename length&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;utf8_strlen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;utf8_strlen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'error'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'error_filename'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GO_Example_Model_Thing&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;GO_Base_Db_ActiveRecord&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Outcome:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/xss-filtered.png&quot; alt=&quot;XSS Filter&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But this won’t work if the file containing payload is uploaded using FTP service. So one of the solution on issue I have opened on github was &lt;code class=&quot;highlighter-rouge&quot;&gt;preg_replace('/[^a-zA-Z0-9\_\.\?]/', '', basename(html_entity_decode($this-&amp;gt;request-&amp;gt;post['x'], ENT_QUOTES, 'UTF-8')));&lt;/code&gt; by &lt;strong&gt;&lt;em&gt;straightlight&lt;/em&gt;&lt;/strong&gt;. Let’s see how they add fix in the main code of the opencart in next release.&lt;/p&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/2020/05/29/CVE-2020-10596/&quot;&gt;CVE-2020-10596&lt;/a&gt; was originally published by Kailash at &lt;a href=&quot;http://localhost:4000&quot;&gt;Kailash&lt;/a&gt; on May 29, 2020.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>

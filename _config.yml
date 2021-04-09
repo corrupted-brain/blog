@@ -1,0 +1,45 @@
+# Site wide configuration
+
+title:            Kailash
+locale:           en_US
+url:              //corrupted-brain.github.io/blog
+
+# Jekyll configuration
+
+permalink: /blog/:year/:month/:day/:title/
+markdown:    kramdown
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+
+comments: false
+
+highlighter: rouge
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  enable_coderay: false
+  syntax_highlighter: rouge
+
+# Site owner
+owner:
+  name: Kailash
+  avatar: author/avatar.png
+  bio: "Information security Practitioner"
+  google:
+    analytics: 
+    verify: 
+    ad-client: 
+    ad-slot: 
+  bing-verify: 
+  twitter: corrupted_brain
+  github: corrupted-brain
+  linkedin: kailash0x01
+
+include: [".htaccess"]
+exclude: ["cache", "lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
