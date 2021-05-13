@@ -4,13 +4,44 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
 <link rel="alternate" type="text/html" href="http://localhost:4000" />
-<updated>2020-11-20T21:52:05+05:45</updated>
+<updated>2021-05-13T20:02:50+05:45</updated>
 <id>http://localhost:4000/</id>
 <author>
   <name>Kailash</name>
   <uri>http://localhost:4000/</uri>
   
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Blind XSS on Google Internal System ]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" />
+  <id>http://localhost:4000/blog/2021/05/13/Google-blind-XSS</id>
+  <published>2021-05-13T00:00:00+05:45</published>
+  <updated>2021-05-13T00:00:00+05:45</updated>
+  <author>
+    <name>Kailash</name>
+    <uri>http://localhost:4000</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/blind-cross-site-scripting/&quot;&gt;Blind cross-site scripting&lt;/a&gt; (XSS) refers to a type of code injection where an attacker inserts XSS payload in user input fields and they are going to be stored somewhere and executes in an application that is not in control of an attacker.&lt;/p&gt;
+
+&lt;p&gt;I ended up finding blind XSS in one of the Google’s internal system (GUTS ticketing system). I used blind XSS payload from &lt;a href=&quot;https://xsshunter.com&quot;&gt;xsshunter&lt;/a&gt; and filled up randomly input fields on the form from Google supplier portal. The forms from the supplier portal must be tracked from GUTS, that’s what I assume and my payload gets executed.&lt;/p&gt;
+
+&lt;h4 id=&quot;what-happened-&quot;&gt;What happened ?&lt;/h4&gt;
+
+&lt;p&gt;I get a response in my xsshunter after a very long time and at the moment I was unknown which parameter I tested for.&lt;img src=&quot;/images/posts/google_reply-1.png&quot; alt=&quot;Google reply&quot; /&gt; I tried to read the &lt;a href=&quot;https://www.w3schools.com/js/js_htmldom.asp&quot;&gt;DOM&lt;/a&gt; so that we may know the possible parameter. Unfortunately, XSS hunter keeps loading and the browser gets
+frozen. Only Referer and Cookies are known. I passed the information that I have to the Google team and they finally managed to know the actual cause and rewards me. &lt;img src=&quot;/images/posts/google_reward_xss.png&quot; alt=&quot;Reward message&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I requested to disclose a vulnerable endpoint as seen above but ended up with the following message.&lt;img src=&quot;/images/posts/google_final_reply.png&quot; alt=&quot;Reply&quot; /&gt; As part of Google’s Vulnerability Reward Program, the panel has decided to issue a reward of $5000 for this issue as it affects the sensitive application.&lt;/p&gt;
+
+&lt;h4 id=&quot;giveaway-&quot;&gt;Giveaway ?&lt;/h4&gt;
+&lt;p&gt;Always take a log where we tested for XSS. We don’t know when our luck hits in bug bounty.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/2021/05/13/Google-blind-XSS/&quot;&gt;Blind XSS on Google Internal System &lt;/a&gt; was originally published by Kailash at &lt;a href=&quot;http://localhost:4000&quot;&gt;Kailash&lt;/a&gt; on May 13, 2021.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>

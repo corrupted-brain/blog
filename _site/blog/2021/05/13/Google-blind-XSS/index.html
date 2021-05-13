@@ -5,14 +5,14 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Page Not Found &#8211; Kailash</title>
-<meta name="description" content="Page not found">
-<meta name="keywords" content="">
+<title>Blind XSS on Google Internal System  &#8211; Kailash</title>
+<meta name="description" content="Blind cross-site scripting (XSS) refers to a type of code injection where an attacker inserts XSS payload in user input fields and...">
+<meta name="keywords" content="cross site script, xss, google xss">
 
 
 <!-- Twitter Cards -->
-<meta name="twitter:title" content="Page Not Found">
-<meta name="twitter:description" content="Page not found">
+<meta name="twitter:title" content="Blind XSS on Google Internal System ">
+<meta name="twitter:description" content="Blind cross-site scripting (XSS) refers to a type of code injection where an attacker inserts XSS payload in user input fields and...">
 <meta name="twitter:site" content="@corrupted_brain">
 <meta name="twitter:creator" content="@corrupted_brain">
 
@@ -24,16 +24,16 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:description" content="Page not found">
-<meta property="og:url" content="http://localhost:4000/404.html">
+<meta property="og:title" content="Blind XSS on Google Internal System ">
+<meta property="og:description" content="Blind cross-site scripting (XSS) refers to a type of code injection where an attacker inserts XSS payload in user input fields and...">
+<meta property="og:url" content="http://localhost:4000/blog/2021/05/13/Google-blind-XSS/">
 <meta property="og:site_name" content="Kailash">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/404.html">
+<link rel="canonical" href="http://localhost:4000/blog/2021/05/13/Google-blind-XSS/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Kailash Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -78,7 +78,7 @@
 
 </head>
 
-<body class="page">
+<body class="post">
 
 <!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
 
@@ -141,40 +141,67 @@
 </div>
 
   </div>
-  <article class="page">
-    <h1>Page Not Found</h1>
-    <div class="article-wrap">
-      <p><img src="/images/404.jpg" alt="Error 404" /></p>
-
-<h4 id="i-dont-know-who-you-are-one-day-i-will-find-you-and-give-you-correct-page-that-you-are-looking-for">I don’t know who you are. One day I will find you and give you correct page that you are looking for.</h4>
-
-
+  <article class="post">
+    <div class="headline-wrap">
       
-        <hr />
+        <h1><a href="http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" rel="bookmark" title="Blind XSS on Google Internal System ">Blind XSS on Google Internal System </a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p><a href="https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/blind-cross-site-scripting/">Blind cross-site scripting</a> (XSS) refers to a type of code injection where an attacker inserts XSS payload in user input fields and they are going to be stored somewhere and executes in an application that is not in control of an attacker.</p>
+
+<p>I ended up finding blind XSS in one of the Google’s internal system (GUTS ticketing system). I used blind XSS payload from <a href="https://xsshunter.com">xsshunter</a> and filled up randomly input fields on the form from Google supplier portal. The forms from the supplier portal must be tracked from GUTS, that’s what I assume and my payload gets executed.</p>
+
+<h4 id="what-happened-">What happened ?</h4>
+
+<p>I get a response in my xsshunter after a very long time and at the moment I was unknown which parameter I tested for.<img src="/images/posts/google_reply-1.png" alt="Google reply" /> I tried to read the <a href="https://www.w3schools.com/js/js_htmldom.asp">DOM</a> so that we may know the possible parameter. Unfortunately, XSS hunter keeps loading and the browser gets
+frozen. Only Referer and Cookies are known. I passed the information that I have to the Google team and they finally managed to know the actual cause and rewards me. <img src="/images/posts/google_reward_xss.png" alt="Reward message" /></p>
+
+<p>I requested to disclose a vulnerable endpoint as seen above but ended up with the following message.<img src="/images/posts/google_final_reply.png" alt="Reply" /> As part of Google’s Vulnerability Reward Program, the panel has decided to issue a reward of $5000 for this issue as it affects the sensitive application.</p>
+
+<h4 id="giveaway-">Giveaway ?</h4>
+<p>Always take a log where we tested for XSS. We don’t know when our luck hits in bug bounty.</p>
+
+      <hr />
+      <footer role="contentinfo">
         <div class="social-share">
   <h4>Share on</h4>
   <ul>
     <li>
-      <a href="https://twitter.com/intent/tweet?text=Page Not Found http://localhost:4000/404.html" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+      <a href="https://twitter.com/intent/tweet?text=Blind XSS on Google Internal System  http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
     </li>
     <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/404.html" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
     </li>
     <li>
-      <a href="https://plus.google.com/share?url=http://localhost:4000/404.html" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
     </li>
     <li>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/404.html&title=Page Not Found&summary=Page not found&source=http://localhost:4000" class="linkedin" title="Share on LinkedIn"><i class="fa fa-linkedin"></i><span> LinkedIn</span></a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/2021/05/13/Google-blind-XSS/&title=Blind XSS on Google Internal System &summary=Blind cross-site scripting (XSS) refers to a type of code injection where an attacker inserts XSS payload in user input fields and...&source=http://localhost:4000" class="linkedin" title="Share on LinkedIn"><i class="fa fa-linkedin"></i><span> LinkedIn</span></a>
     </li>
   </ul>
 </div><!-- /.social-share -->
-      
+        <p class="byline"><strong>Blind XSS on Google Internal System </strong> was published on <time datetime="2021-05-13T00:00:00+05:45">May 13, 2021</time>.</p>
+      </footer>
     </div><!-- /.article-wrap -->
-     -->
+  
   </article>
-</div><!-- /#index -->
+</div><!-- /#main -->
 
 <div class="footer-wrap">
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://localhost:4000/posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" title="GraphQL IDOR in Facebook streamer dashboard.">GraphQL IDOR in Facebook streamer dashboard.</a></li>
+    
+      <li><a href="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" title="Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)">Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)</a></li>
+    
+      <li><a href="http://localhost:4000/blog/2020/05/29/CVE-2020-10596/" title="CVE-2020-10596">CVE-2020-10596</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
   <footer>
     
 
@@ -183,11 +210,11 @@
   </footer>
 </div><!-- /.footer-wrap -->
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js" defer></script>
 
-          
+-->
 
 </body>
 </html>

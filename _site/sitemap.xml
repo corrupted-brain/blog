@@ -13,13 +13,13 @@
 <lastmod>2020-11-18T00:00:00+05:45</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/blog/2021/05/13/Google-blind-XSS/</loc>
+<lastmod>2021-05-13T00:00:00+05:45</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/posts/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/bohara.html</loc>
-<lastmod>2020-11-20T21:52:05+05:45</lastmod>
 </url>
 </urlset>
