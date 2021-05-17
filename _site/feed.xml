@@ -4,13 +4,53 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
 <link rel="alternate" type="text/html" href="http://localhost:4000" />
-<updated>2021-05-13T21:49:26+05:45</updated>
+<updated>2021-05-17T22:40:01+05:45</updated>
 <id>http://localhost:4000/</id>
 <author>
   <name>Kailash</name>
   <uri>http://localhost:4000/</uri>
   
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[MSSQL Injection In JSON Request]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" />
+  <id>http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request</id>
+  <published>2021-05-16T00:00:00+05:45</published>
+  <updated>2021-05-16T00:00:00+05:45</updated>
+  <author>
+    <name>Kailash</name>
+    <uri>http://localhost:4000</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;https://portswigger.net/web-security/sql-injection&quot;&gt;SQL injection&lt;/a&gt; is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to retrieve. The impact of the SQL Injection can be extracting data from the database, dropping data, gaining OS or SQL shell access etc.&lt;/p&gt;
+
+&lt;p&gt;As it was private scope, I do not want to disclose the application name. So, I was testing the android application of it. I had to bypass &lt;a href=&quot;https://developer.android.com/training/articles/security-ssl&quot;&gt;SSL pinning&lt;/a&gt; to intercept the application requests. Finally, I was able to do it. The first page was the registration page while opening an app, I filled in all the necessary details. An OTP code was sent to our provided phone number. I used a random six-digit code and intercepted the OTP validation request as shown below.
+&lt;img src=&quot;/images/posts/app_registration.png&quot; alt=&quot;Registration request&quot; /&gt;
+Then I sent the above request to Repeater tab in Burp suite and added a single quote on &lt;em&gt;DeviceId&lt;/em&gt; parameter. Modified requests look like &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;DeviceId&quot;:&quot;lol'&quot;&lt;/code&gt;
+&lt;img src=&quot;/images/posts/app_registration_sqli_req.png&quot; alt=&quot;SQL Injection Request&quot; /&gt;
+And the response was like: 
+&lt;img src=&quot;/images/posts/app_registration_sqli_resp.png&quot; alt=&quot;SQL Injection Response&quot; /&gt;
+This confirms the existence of the vulnerability. To be assured I used the time delay command for few databases as
+&lt;code class=&quot;highlighter-rouge&quot;&gt;SLEEP(10)&lt;/code&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;WAITFOR DELAY '0:0:10'&lt;/code&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;SELECT pg_sleep(10)&lt;/code&gt; and second one worked as shown below.  &lt;img src=&quot;/images/posts/app_registration_sqli_sleep.png&quot; alt=&quot;SQL Injection Requets&quot; /&gt; &lt;br /&gt;
+Then in the response time, we can see 10ms delays. It confirms MSSQL Injection.
+&lt;img src=&quot;/images/posts/app_registration_sqli_sleepres.png&quot; alt=&quot;SQL Injection Response&quot; /&gt;
+To make proof of concept I decided to create a database object using the query &lt;code class=&quot;highlighter-rouge&quot;&gt;'CREATE TABLE kailash (line varchar(8000));--'&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/app_registration_sqli_tblc.png&quot; alt=&quot;SQL Injection Response&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After discussion with the development team, it was confirmed that the above query executed successfully. &lt;br /&gt;
+&lt;img src=&quot;/images/posts/app_registration_sqli_tbl.jpg&quot; alt=&quot;SQL Injection Response&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Note&lt;/em&gt;&lt;/strong&gt;: &lt;em&gt;I used different devices during the assessment so you may find difference in parameter values in used screenshots.&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/&quot;&gt;MSSQL Injection In JSON Request&lt;/a&gt; was originally published by Kailash at &lt;a href=&quot;http://localhost:4000&quot;&gt;Kailash&lt;/a&gt; on May 16, 2021.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -140,7 +180,7 @@ According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_ea
 
 &lt;p&gt;In authenticated attack refers to the conditions where an attacker must be logged in order to exploit the vulnerabilitiy. In &lt;a href=&quot;https://www.opencart.com&quot;&gt;OpenCart&lt;/a&gt; 3.0.3.2 it is possible to execute cross site scripting attack since the profile image upload feature in admin panel is not escaping user inputs.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;To execute the steps follow the below steps.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To execute follow the steps below.&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Login to admin panel, navigate to system &amp;gt; users &amp;gt; edit existing user.&lt;/li&gt;
   &lt;li&gt;Go to Image change section and select a file with the XSS payload as &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;gt;&amp;lt;svg onload=alert(&quot;XSS&quot;)&amp;gt;&lt;/code&gt; and save it.&lt;/li&gt;

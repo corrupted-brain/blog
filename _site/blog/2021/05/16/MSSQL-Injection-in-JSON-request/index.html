@@ -5,14 +5,14 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Stored Cross Site Scripting on Mdaemon Webmail (20.0.0) &#8211; Kailash</title>
-<meta name="description" content="XSS on Mdaemon webmail affecting versions < 20.0.0">
-<meta name="keywords" content="XSS, Mdaemon">
+<title>MSSQL Injection In JSON Request &#8211; Kailash</title>
+<meta name="description" content="MSSQL Injection in android application from JSON Request.">
+<meta name="keywords" content="SQL-Injection, JSON, MSSQL">
 
 
 <!-- Twitter Cards -->
-<meta name="twitter:title" content="Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)">
-<meta name="twitter:description" content="XSS on Mdaemon webmail affecting versions < 20.0.0">
+<meta name="twitter:title" content="MSSQL Injection In JSON Request">
+<meta name="twitter:description" content="MSSQL Injection in android application from JSON Request.">
 <meta name="twitter:site" content="@corrupted_brain">
 <meta name="twitter:creator" content="@corrupted_brain">
 
@@ -24,16 +24,16 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)">
-<meta property="og:description" content="XSS on Mdaemon webmail affecting versions < 20.0.0">
-<meta property="og:url" content="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/">
+<meta property="og:title" content="MSSQL Injection In JSON Request">
+<meta property="og:description" content="MSSQL Injection in android application from JSON Request.">
+<meta property="og:url" content="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/">
 <meta property="og:site_name" content="Kailash">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/">
+<link rel="canonical" href="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Kailash Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -144,35 +144,32 @@
   <article class="post">
     <div class="headline-wrap">
       
-        <h1><a href="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" rel="bookmark" title="Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)">Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)</a></h1>
+        <h1><a href="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" rel="bookmark" title="MSSQL Injection In JSON Request">MSSQL Injection In JSON Request</a></h1>
       
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
-      <p>Two different cross site scripting vulnerabilities were found on version below 20.0.1 and reported to Mdaemon team. As per the reposne from their side both issues were addressed on <a href="http://files.altn.com/MDaemon/Release/relnotes_en.html">latest version 20.0.1 released</a> on 18th August 2020.</p>
+      <p><a href="https://portswigger.net/web-security/sql-injection">SQL injection</a> is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to retrieve. The impact of the SQL Injection can be extracting data from the database, dropping data, gaining OS or SQL shell access etc.</p>
 
-<h4 id="case-one">Case One:</h4>
+<p>As it was private scope, I do not want to disclose the application name. So, I was testing the android application of it. I had to bypass <a href="https://developer.android.com/training/articles/security-ssl">SSL pinning</a> to intercept the application requests. Finally, I was able to do it. The first page was the registration page while opening an app, I filled in all the necessary details. An OTP code was sent to our provided phone number. I used a random six-digit code and intercepted the OTP validation request as shown below.
+<img src="/images/posts/app_registration.png" alt="Registration request" />
+Then I sent the above request to Repeater tab in Burp suite and added a single quote on <em>DeviceId</em> parameter. Modified requests look like <code class="highlighter-rouge">"DeviceId":"lol'"</code>
+<img src="/images/posts/app_registration_sqli_req.png" alt="SQL Injection Request" />
+And the response was like: 
+<img src="/images/posts/app_registration_sqli_resp.png" alt="SQL Injection Response" />
+This confirms the existence of the vulnerability. To be assured I used the time delay command for few databases as
+<code class="highlighter-rouge">SLEEP(10)</code>
+<code class="highlighter-rouge">WAITFOR DELAY '0:0:10'</code>
+<code class="highlighter-rouge">SELECT pg_sleep(10)</code> and second one worked as shown below.  <img src="/images/posts/app_registration_sqli_sleep.png" alt="SQL Injection Requets" /> <br />
+Then in the response time, we can see 10ms delays. It confirms MSSQL Injection.
+<img src="/images/posts/app_registration_sqli_sleepres.png" alt="SQL Injection Response" />
+To make proof of concept I decided to create a database object using the query <code class="highlighter-rouge">'CREATE TABLE kailash (line varchar(8000));--'</code></p>
 
-<p>E-mail attachment field is vulnerable to XSS. A attachemnt with XSS payload as a file name can be uploaded to trigger execution of code. To do tha follow steps below:</p>
+<p><img src="/images/posts/app_registration_sqli_tblc.png" alt="SQL Injection Response" /></p>
 
-<ol>
-  <li>Rename a file and set it’s name as <code>&lt;img src=x onerror=alert(1)&gt;.jpg </code></li>
-  <li>Go to New mail, select recipient and the select attachment. Code gets executed as right after upload so it becomes self XSS.
- <img src="/images/posts/mdaemon-xss-popup.png" alt="XSS Popup1" /></li>
-  <li>Let’s send the mail to recipient and open from his/her side. Opening just a mail doesn’t executes the code but when the victim clicks on forward button, XSS pop-up is shown.<br />
- <img src="/images/posts/mdaemon-xss-popup-2.png" alt="XSS Popup 2" />
- Like this a stored self XSS can also becomes perfect XSS for victim users.</li>
-</ol>
+<p>After discussion with the development team, it was confirmed that the above query executed successfully. <br />
+<img src="/images/posts/app_registration_sqli_tbl.jpg" alt="SQL Injection Response" /></p>
 
-<h4 id="case-two">Case Two:</h4>
-
-<p>So the next vulnerable endpoint is Distribution list. A distribution list holds name and email address of persons. We can also refer it as a address book. Following steps can be followed to execute the vulnerability.</p>
-<ol>
-  <li>Go to contact section and distribution list menu. Create a new distribution list.</li>
-  <li>Contact name field is vulnerabile to XSS. Use the payload <code>&lt;img src=x onerror=alert(1)&gt;</code> 
-<img src="/images/posts/mdaemon-xss-distribution1.png" alt="Mdaemon XSS" /></li>
-  <li>We can see execution code and after saving it, each time we visits the distribution list section the XSS pop-up is seen.
-<img src="/images/posts/mdaemon-xss-distribution2.png" alt="Mdaemon XSS" /></li>
-</ol>
+<p><strong><em>Note</em></strong>: <em>I used different devices during the assessment so you may find difference in parameter values in used screenshots.</em></p>
 
       <hr />
       <footer role="contentinfo">
@@ -180,20 +177,20 @@
   <h4>Share on</h4>
   <ul>
     <li>
-      <a href="https://twitter.com/intent/tweet?text=Stored Cross Site Scripting on Mdaemon Webmail (20.0.0) http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+      <a href="https://twitter.com/intent/tweet?text=MSSQL Injection In JSON Request http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
     </li>
     <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
     </li>
     <li>
-      <a href="https://plus.google.com/share?url=http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
     </li>
     <li>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/&title=Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)&summary=XSS on Mdaemon webmail affecting versions < 20.0.0&source=http://localhost:4000" class="linkedin" title="Share on LinkedIn"><i class="fa fa-linkedin"></i><span> LinkedIn</span></a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/&title=MSSQL Injection In JSON Request&summary=MSSQL Injection in android application from JSON Request.&source=http://localhost:4000" class="linkedin" title="Share on LinkedIn"><i class="fa fa-linkedin"></i><span> LinkedIn</span></a>
     </li>
   </ul>
 </div><!-- /.social-share -->
-        <p class="byline"><strong>Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)</strong> was published on <time datetime="2020-07-15T00:00:00+05:45">July 15, 2020</time>.</p>
+        <p class="byline"><strong>MSSQL Injection In JSON Request</strong> was published on <time datetime="2021-05-16T00:00:00+05:45">May 16, 2021</time>.</p>
       </footer>
     </div><!-- /.article-wrap -->
   
@@ -205,11 +202,11 @@
   <h4>You might also enjoy <small class="pull-right">(<a href="http://localhost:4000/posts/">View all posts</a>)</small></h4>
     <ul>
     
-      <li><a href="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" title="MSSQL Injection In JSON Request">MSSQL Injection In JSON Request</a></li>
-    
       <li><a href="http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" title="Blind XSS on Google Internal System ">Blind XSS on Google Internal System </a></li>
     
       <li><a href="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" title="GraphQL IDOR in Facebook streamer dashboard.">GraphQL IDOR in Facebook streamer dashboard.</a></li>
+    
+      <li><a href="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" title="Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)">Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)</a></li>
     
     </ul>
     <hr />
@@ -226,8 +223,6 @@
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js" defer></script>
 
-
-  
 -->
 
 </body>
