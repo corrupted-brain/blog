@@ -6,7 +6,7 @@ tags: [XSS, Mdaemon]
 comments: true
 ---
 
-Two different cross site scripting vulnerabilities were found on version below 20.0.1 and reported to Mdaemon team. As per the reposne from their side both issues were addressed on [latest version 20.0.1 released](http://files.altn.com/MDaemon/Release/relnotes_en.html) on 18th August 2020.
+Two different cross site scripting vulnerabilities were found on version below 20.0.1 and reported to Mdaemon team. As per the resposne from their side both issues were addressed on [latest version 20.0.1 released](http://files.altn.com/MDaemon/Release/relnotes_en.html) on 18th August 2020.
 
 #### Case One:
 
