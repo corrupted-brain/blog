@@ -8,14 +8,14 @@
 <id>http://localhost:4000/</id>
 <author>
   <name>Kailash</name>
-  <uri>http://localhost:4000/</uri>
+  <uri>https://localhost:4000/</uri>
   
 </author>
 
 
 <entry>
   <title type="html"><![CDATA[MSSQL Injection In JSON Request]]></title>
-  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" />
+  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" />
   <id>http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request</id>
   <published>2021-05-16T00:00:00+05:45</published>
   <updated>2021-05-16T00:00:00+05:45</updated>
@@ -55,7 +55,7 @@ To make proof of concept I decided to create a database object using the query &
 
 <entry>
   <title type="html"><![CDATA[Blind XSS on Google Internal System ]]></title>
-  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" />
+  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2021/05/13/Google-blind-XSS/" />
   <id>http://localhost:4000/blog/2021/05/13/Google-blind-XSS</id>
   <published>2021-05-13T00:00:00+05:45</published>
   <updated>2021-05-13T00:00:00+05:45</updated>
@@ -86,7 +86,7 @@ frozen. Only Referer and Cookies are known. I passed the information that I have
 
 <entry>
   <title type="html"><![CDATA[GraphQL IDOR in Facebook streamer dashboard.]]></title>
-  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" />
+  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" />
   <id>http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard</id>
   <published>2020-11-18T00:00:00+05:45</published>
   <updated>2020-11-18T00:00:00+05:45</updated>
@@ -122,7 +122,7 @@ According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_ea
 
 <entry>
   <title type="html"><![CDATA[Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)]]></title>
-  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" />
+  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" />
   <id>http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss</id>
   <published>2020-07-15T00:00:00+05:45</published>
   <updated>2020-07-15T00:00:00+05:45</updated>
