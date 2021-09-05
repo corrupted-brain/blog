@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)"
-excerpt: "XSS on Mdaemon webmail affecting versions < 20.0.0"
+excerpt: "XSS on Mdaemon webmail affecting versions < 20.0.0. Assigned CVE-2020-18723 and CVE-2020-18724"
 tags: [XSS, Mdaemon]
 comments: true
 ---
