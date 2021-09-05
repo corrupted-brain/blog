@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: kailashbohara.com.np
+Token: 9ca65839b24c7f22db5c384e59453c54c8602a9dba1a3a40d5aa54ef6b1e03a1
