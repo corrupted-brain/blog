@@ -4,18 +4,58 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
 <link rel="alternate" type="text/html" href="http://localhost:4000" />
-<updated>2021-05-17T22:40:01+05:45</updated>
+<updated>2022-02-25T18:54:16+05:45</updated>
 <id>http://localhost:4000/</id>
 <author>
   <name>Kailash</name>
-  <uri>https://localhost:4000/</uri>
+  <uri>http://localhost:4000/</uri>
   
 </author>
 
 
 <entry>
+  <title type="html"><![CDATA[How I bypassed PHP functions to read sensitive files on server]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/" />
+  <id>http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file</id>
+  <published>2022-02-04T00:00:00+05:45</published>
+  <updated>2022-02-04T00:00:00+05:45</updated>
+  <author>
+    <name>Kailash</name>
+    <uri>http://localhost:4000</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;During the penetration testing of a target, the &lt;a href=&quot;https://github.com/projectdiscovery/nuclei&quot;&gt;nuclei&lt;/a&gt; results show that the website of an organization is vulnerable to code execution vulnerability i.e &lt;a href=&quot;https://blog.ovhcloud.com/cve-2017-9841-what-is-it-and-how-do-we-protect-our-customers/&quot;&gt;CVE-2017-9841&lt;/a&gt;. The CVE-2017-9841 vulnerability lets a user run PHP code on vulnerable websites remotely, by exploiting a breach in PHPUnit lets us run desirable PHP codes and read sensitive files.&lt;/p&gt;
+
+&lt;p&gt;After checking all the things, I verified the existence of vulnerability making the proper request in Burp suite, and confirmed by running of the PHP function,  &lt;code class=&quot;highlighter-rouge&quot;&gt;getcwd()&lt;/code&gt; that returns the current working directory.&lt;img src=&quot;/images/posts/rce1.png&quot; alt=&quot;php getcwd() function&quot; /&gt;
+Now there won’t be any problem running system commands by using the &lt;code class=&quot;highlighter-rouge&quot;&gt;shell_exec()&lt;/code&gt; function in PHP. This function executes user-supplied commands and returns output as a string. I did this by simply listing all the home directories/files of the current user.&lt;img src=&quot;/images/posts/rce2.png&quot; alt=&quot;&quot; /&gt; Finally, reading the config file was just easy as reading this post. &lt;img src=&quot;/images/posts/rce3.png&quot; alt=&quot;&quot; /&gt; I stopped over here and thought of reporting this issue to the organization but because of the tight schedule of my daily life I was unable to report the issue for 4-5 days. After a few days I thought of reporting the issue but wanted to confirm whether the vulnerability still exists or not. &lt;strong&gt;But to my surprise 😕 It wasn’t working as before&lt;/strong&gt; 😂. &lt;img src=&quot;/images/posts/rce4.png&quot; alt=&quot;&quot; /&gt;
+As per my guess within 4-5 days, the administrator might have checked the logs or might be aware of the exploit that I tried and made fixation to it. Hence, the execution of &lt;code class=&quot;highlighter-rouge&quot;&gt;shell_exec()&lt;/code&gt; function was forbidden. However, few other functions could still be executed except shell_exec(). From the image below I confirmed that the execution was forbidden by applying some filter in the phpinfo file.&lt;img src=&quot;/images/posts/rce5.png&quot; alt=&quot;&quot; /&gt; Along with shell_exec(), other functions like &lt;code class=&quot;highlighter-rouge&quot;&gt;show_source()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;system()&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;shell_exec()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;exec()&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;popen()&lt;/code&gt; and  &lt;code class=&quot;highlighter-rouge&quot;&gt;proc_open()&lt;/code&gt; which can be used to read/write files were also disabled.
+After this I started looking for other possible ways to read the files again, and found we can use the &lt;a href=&quot;https://www.php.net/manual/en/function.glob.php&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;glob()&lt;/code&gt;&lt;/a&gt; method to return an array of filenames and directories. I used following snippet of code locally and confirmed it returns the array of files and directories.&lt;/p&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;print_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;glob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Eventually, I was able to  list the files again as shown below, and now all that’s left is to find a way to read those listed files.&lt;img src=&quot;/images/posts/rce6.png&quot; alt=&quot;&quot; /&gt;  At the end, I figured out that I had to combine multiple functions together to read files.&lt;/p&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'../../../../../../../public_html/application/config/database.php'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;explode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file_get_contents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;print_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In the above code,&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$a variable is used to set target file which we are going to read. The target file was found using &lt;em&gt;print_r(glob())&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;In the $b variable, we used explode function to return array of strings. &lt;em&gt;file_get_contents()&lt;/em&gt; reads contents of database.php from public_html/application/config/database.php and contents array is returned.&lt;/li&gt;
+  &lt;li&gt;Finally, printed contents of $b variable using &lt;em&gt;print_r()&lt;/em&gt; or &lt;em&gt;var_dump()&lt;/em&gt; can also be used. 
+&lt;img src=&quot;/images/posts/rce7.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/&quot;&gt;How I bypassed PHP functions to read sensitive files on server&lt;/a&gt; was originally published by Kailash at &lt;a href=&quot;http://localhost:4000&quot;&gt;Kailash&lt;/a&gt; on February 04, 2022.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[MSSQL Injection In JSON Request]]></title>
-  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" />
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" />
   <id>http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request</id>
   <published>2021-05-16T00:00:00+05:45</published>
   <updated>2021-05-16T00:00:00+05:45</updated>
@@ -55,7 +95,7 @@ To make proof of concept I decided to create a database object using the query &
 
 <entry>
   <title type="html"><![CDATA[Blind XSS on Google Internal System ]]></title>
-  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2021/05/13/Google-blind-XSS/" />
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" />
   <id>http://localhost:4000/blog/2021/05/13/Google-blind-XSS</id>
   <published>2021-05-13T00:00:00+05:45</published>
   <updated>2021-05-13T00:00:00+05:45</updated>
@@ -86,7 +126,7 @@ frozen. Only Referer and Cookies are known. I passed the information that I have
 
 <entry>
   <title type="html"><![CDATA[GraphQL IDOR in Facebook streamer dashboard.]]></title>
-  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" />
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" />
   <id>http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard</id>
   <published>2020-11-18T00:00:00+05:45</published>
   <updated>2020-11-18T00:00:00+05:45</updated>
@@ -122,7 +162,7 @@ According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_ea
 
 <entry>
   <title type="html"><![CDATA[Stored Cross Site Scripting on Mdaemon Webmail (20.0.0)]]></title>
-  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" />
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss/" />
   <id>http://localhost:4000/blog/2020/07/15/mdaemon-stored-xss</id>
   <published>2020-07-15T00:00:00+05:45</published>
   <updated>2020-07-15T00:00:00+05:45</updated>
@@ -132,11 +172,11 @@ According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_ea
     
   </author>
   <content type="html">
-    &lt;p&gt;Two different cross site scripting vulnerabilities were found on version below 20.0.1 and reported to Mdaemon team. As per the reposne from their side both issues were addressed on &lt;a href=&quot;http://files.altn.com/MDaemon/Release/relnotes_en.html&quot;&gt;latest version 20.0.1 released&lt;/a&gt; on 18th August 2020.&lt;/p&gt;
+    &lt;p&gt;Two different cross site scripting vulnerabilities were found on version below 20.0.1 and reported to Mdaemon team. As per the resposne from their side both issues were addressed on &lt;a href=&quot;http://files.altn.com/MDaemon/Release/relnotes_en.html&quot;&gt;latest version 20.0.1 released&lt;/a&gt; on 18th August 2020.&lt;/p&gt;
 
 &lt;h4 id=&quot;case-one&quot;&gt;Case One:&lt;/h4&gt;
 
-&lt;p&gt;E-mail attachment field is vulnerable to XSS. A attachemnt with XSS payload as a file name can be uploaded to trigger execution of code. To do tha follow steps below:&lt;/p&gt;
+&lt;p&gt;E-mail attachment field is vulnerable to XSS. A attachment with XSS payload as a file name can be uploaded to trigger execution of code. To do that follow steps below:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Rename a file and set it’s name as &lt;code&gt;&amp;lt;img src=x onerror=alert(1)&amp;gt;.jpg &lt;/code&gt;&lt;/li&gt;
@@ -152,7 +192,7 @@ According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_ea
 &lt;p&gt;So the next vulnerable endpoint is Distribution list. A distribution list holds name and email address of persons. We can also refer it as a address book. Following steps can be followed to execute the vulnerability.&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;Go to contact section and distribution list menu. Create a new distribution list.&lt;/li&gt;
-  &lt;li&gt;Contact name field is vulnerabile to XSS. Use the payload &lt;code&gt;&amp;lt;img src=x onerror=alert(1)&amp;gt;&lt;/code&gt; 
+  &lt;li&gt;Contact name field was vulnerable to XSS. Use the payload &lt;code&gt;&amp;lt;img src=x onerror=alert(1)&amp;gt;&lt;/code&gt; 
 &lt;img src=&quot;/images/posts/mdaemon-xss-distribution1.png&quot; alt=&quot;Mdaemon XSS&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;We can see execution code and after saving it, each time we visits the distribution list section the XSS pop-up is seen.
 &lt;img src=&quot;/images/posts/mdaemon-xss-distribution2.png&quot; alt=&quot;Mdaemon XSS&quot; /&gt;&lt;/li&gt;
@@ -164,7 +204,7 @@ According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_ea
 
 
 <entry>
-  <title type="html"><![CDATA[CVE-2020-10596]]></title>
+  <title type="html"><![CDATA[CVE-2020-10596 in OpenCart]]></title>
   <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2020/05/29/CVE-2020-10596/" />
   <id>http://localhost:4000/blog/2020/05/29/CVE-2020-10596</id>
   <updated>2020-05-29T00:00:00-00:00</updated>
@@ -211,7 +251,7 @@ According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_ea
 &lt;p&gt;But this won’t work if the file containing payload is uploaded using FTP service. So one of the solution on issue I have opened on github was &lt;code class=&quot;highlighter-rouge&quot;&gt;preg_replace('/[^a-zA-Z0-9\_\.\?]/', '', basename(html_entity_decode($this-&amp;gt;request-&amp;gt;post['x'], ENT_QUOTES, 'UTF-8')));&lt;/code&gt; by &lt;strong&gt;&lt;em&gt;straightlight&lt;/em&gt;&lt;/strong&gt;. Let’s see how they add fix in the main code of the opencart in next release.&lt;/p&gt;
 
 
-    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/2020/05/29/CVE-2020-10596/&quot;&gt;CVE-2020-10596&lt;/a&gt; was originally published by Kailash at &lt;a href=&quot;http://localhost:4000&quot;&gt;Kailash&lt;/a&gt; on May 29, 2020.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/2020/05/29/CVE-2020-10596/&quot;&gt;CVE-2020-10596 in OpenCart&lt;/a&gt; was originally published by Kailash at &lt;a href=&quot;http://localhost:4000&quot;&gt;Kailash&lt;/a&gt; on May 29, 2020.&lt;/p&gt;
   </content>
 </entry>
 

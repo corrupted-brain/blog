@@ -1,0 +1,230 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>How I bypassed PHP functions to read sensitive files on server &#8211; Kailash</title>
+<meta name="description" content="Bypassing file read restriction on an application to achieve Remote Code Execution.">
+<meta name="keywords" content="CVE-2017-9841, PHP, RCE">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="How I bypassed PHP functions to read sensitive files on server">
+<meta name="twitter:description" content="Bypassing file read restriction on an application to achieve Remote Code Execution.">
+<meta name="twitter:site" content="@corrupted_brain">
+<meta name="twitter:creator" content="@corrupted_brain">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/author/avatar.png">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How I bypassed PHP functions to read sensitive files on server">
+<meta property="og:description" content="Bypassing file read restriction on an application to achieve Remote Code Execution.">
+<meta property="og:url" content="http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/">
+<meta property="og:site_name" content="Kailash">
+
+<!-- Webmaster Tools verfication -->
+<meta name="google-site-verification" content="whSVVZFKmePd_qQsoMiwdrj3NxSmTGw_jsc-70L6TdA">
+
+
+
+<link rel="canonical" href="http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Kailash Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js" defer></script>
+	<script src="http://localhost:4000/assets/js/vendor/respond.min.js" defer></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js" defer></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<link rel="apple-touch-icon" sizes="57x57" href="http://localhost:4000/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="http://localhost:4000/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://localhost:4000/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://localhost:4000/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://localhost:4000/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="http://localhost:4000/images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="http://localhost:4000/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/images/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="http://localhost:4000/images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="post">
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="http://localhost:4000/">Kailash</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				    <li><a href="https://kailashbohara.com.np" target="_blank" rel="noreferrer">Home</a></li>
+				
+				    
+				    <li><a href="http://localhost:4000/website/about/" >About</a></li>
+				
+				    
+				    <li><a href="https://github.com/corrupted-brain" target="_blank" rel="noreferrer">Github</a></li>
+				
+				    
+				    <li><a href="https://linkedin.com/in/kailash0x01" target="_blank" rel="noreferrer">LinkedIn</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="http://localhost:4000/images/author/avatar.png" class="bio-photo" alt="Kailash bio photo">
+
+
+  <h3 itemprop="name">Kailash</h3>
+  <p>Information security Practitioner</p>
+  
+  <a href="http://twitter.com/corrupted_brain" class="author-social" target="_blank" rel="noreferrer"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  
+  
+  <a href="http://linkedin.com/in/kailash0x01" class="author-social" target="_blank" rel="noreferrer"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
+  
+  
+  
+  <a href="http://github.com/corrupted-brain" class="author-social" target="_blank" rel="noreferrer"><i class="fa fa-fw fa-github"></i> Github</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/" rel="bookmark" title="How I bypassed PHP functions to read sensitive files on server">How I bypassed PHP functions to read sensitive files on server</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p>During the penetration testing of a target, the <a href="https://github.com/projectdiscovery/nuclei">nuclei</a> results show that the website of an organization is vulnerable to code execution vulnerability i.e <a href="https://blog.ovhcloud.com/cve-2017-9841-what-is-it-and-how-do-we-protect-our-customers/">CVE-2017-9841</a>. The CVE-2017-9841 vulnerability lets a user run PHP code on vulnerable websites remotely, by exploiting a breach in PHPUnit lets us run desirable PHP codes and read sensitive files.</p>
+
+<p>After checking all the things, I verified the existence of vulnerability making the proper request in Burp suite, and confirmed by running of the PHP function,  <code class="highlighter-rouge">getcwd()</code> that returns the current working directory.<img src="/images/posts/rce1.png" alt="php getcwd() function" />
+Now there won’t be any problem running system commands by using the <code class="highlighter-rouge">shell_exec()</code> function in PHP. This function executes user-supplied commands and returns output as a string. I did this by simply listing all the home directories/files of the current user.<img src="/images/posts/rce2.png" alt="" /> Finally, reading the config file was just easy as reading this post. <img src="/images/posts/rce3.png" alt="" /> I stopped over here and thought of reporting this issue to the organization but because of the tight schedule of my daily life I was unable to report the issue for 4-5 days. After a few days I thought of reporting the issue but wanted to confirm whether the vulnerability still exists or not. <strong>But to my surprise 😕 It wasn’t working as before</strong> 😂. <img src="/images/posts/rce4.png" alt="" />
+As per my guess within 4-5 days, the administrator might have checked the logs or might be aware of the exploit that I tried and made fixation to it. Hence, the execution of <code class="highlighter-rouge">shell_exec()</code> function was forbidden. However, few other functions could still be executed except shell_exec(). From the image below I confirmed that the execution was forbidden by applying some filter in the phpinfo file.<img src="/images/posts/rce5.png" alt="" /> Along with shell_exec(), other functions like <code class="highlighter-rouge">show_source()</code>, <code class="highlighter-rouge">system()</code>,<code class="highlighter-rouge">shell_exec()</code>, <code class="highlighter-rouge">exec()</code>,<code class="highlighter-rouge">popen()</code> and  <code class="highlighter-rouge">proc_open()</code> which can be used to read/write files were also disabled.
+After this I started looking for other possible ways to read the files again, and found we can use the <a href="https://www.php.net/manual/en/function.glob.php"><code class="highlighter-rouge">glob()</code></a> method to return an array of filenames and directories. I used following snippet of code locally and confirmed it returns the array of files and directories.</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nb">glob</span><span class="p">(</span><span class="s2">"*"</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+<p>Eventually, I was able to  list the files again as shown below, and now all that’s left is to find a way to read those listed files.<img src="/images/posts/rce6.png" alt="" />  At the end, I figured out that I had to combine multiple functions together to read files.</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="nv">$a</span> <span class="o">=</span> <span class="s1">'../../../../../../../public_html/application/config/database.php'</span><span class="p">;</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$a</span><span class="p">));</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$b</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</code></pre></div></div>
+<p>In the above code,</p>
+<ul>
+  <li>$a variable is used to set target file which we are going to read. The target file was found using <em>print_r(glob())</em></li>
+  <li>In the $b variable, we used explode function to return array of strings. <em>file_get_contents()</em> reads contents of database.php from public_html/application/config/database.php and contents array is returned.</li>
+  <li>Finally, printed contents of $b variable using <em>print_r()</em> or <em>var_dump()</em> can also be used. 
+<img src="/images/posts/rce7.png" alt="" /></li>
+</ul>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=How I bypassed PHP functions to read sensitive files on server http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/2022/02/04/bypassing-PHP-functions-to-read-system-file/&title=How I bypassed PHP functions to read sensitive files on server&summary=Bypassing file read restriction on an application to achieve Remote Code Execution.&source=http://localhost:4000" class="linkedin" title="Share on LinkedIn"><i class="fa fa-linkedin"></i><span> LinkedIn</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>How I bypassed PHP functions to read sensitive files on server</strong> was published on <time datetime="2022-02-04T00:00:00+05:45">February 04, 2022</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://localhost:4000/posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" title="MSSQL Injection In JSON Request">MSSQL Injection In JSON Request</a></li>
+    
+      <li><a href="http://localhost:4000/blog/2021/05/13/Google-blind-XSS/" title="Blind XSS on Google Internal System ">Blind XSS on Google Internal System </a></li>
+    
+      <li><a href="http://localhost:4000/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/" title="GraphQL IDOR in Facebook streamer dashboard.">GraphQL IDOR in Facebook streamer dashboard.</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  <footer>
+    
+
+<span>&copy; 2022 Kailash. This website was built using the Jekyll.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js" defer></script>
+
+-->
+
+</body>
+</html>

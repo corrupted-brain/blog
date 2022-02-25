@@ -1,0 +1,25 @@
+<p>Two different cross site scripting vulnerabilities were found on version below 20.0.1 and reported to Mdaemon team. As per the resposne from their side both issues were addressed on <a href="http://files.altn.com/MDaemon/Release/relnotes_en.html">latest version 20.0.1 released</a> on 18th August 2020.</p>
+
+<h4 id="case-one">Case One:</h4>
+
+<p>E-mail attachment field is vulnerable to XSS. A attachment with XSS payload as a file name can be uploaded to trigger execution of code. To do that follow steps below:</p>
+
+<ol>
+  <li>Rename a file and set it’s name as <code>&lt;img src=x onerror=alert(1)&gt;.jpg </code></li>
+  <li>Go to New mail, select recipient and the select attachment. Code gets executed as right after upload so it becomes self XSS.
+ <img src="/images/posts/mdaemon-xss-popup.png" alt="XSS Popup1" /></li>
+  <li>Let’s send the mail to recipient and open from his/her side. Opening just a mail doesn’t executes the code but when the victim clicks on forward button, XSS pop-up is shown.<br />
+ <img src="/images/posts/mdaemon-xss-popup-2.png" alt="XSS Popup 2" />
+ Like this a stored self XSS can also becomes perfect XSS for victim users.</li>
+</ol>
+
+<h4 id="case-two">Case Two:</h4>
+
+<p>So the next vulnerable endpoint is Distribution list. A distribution list holds name and email address of persons. We can also refer it as a address book. Following steps can be followed to execute the vulnerability.</p>
+<ol>
+  <li>Go to contact section and distribution list menu. Create a new distribution list.</li>
+  <li>Contact name field was vulnerable to XSS. Use the payload <code>&lt;img src=x onerror=alert(1)&gt;</code> 
+<img src="/images/posts/mdaemon-xss-distribution1.png" alt="Mdaemon XSS" /></li>
+  <li>We can see execution code and after saving it, each time we visits the distribution list section the XSS pop-up is seen.
+<img src="/images/posts/mdaemon-xss-distribution2.png" alt="Mdaemon XSS" /></li>
+</ol>
