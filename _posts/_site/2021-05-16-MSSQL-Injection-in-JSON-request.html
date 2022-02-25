@@ -1,0 +1,22 @@
+<p><a href="https://portswigger.net/web-security/sql-injection">SQL injection</a> is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to retrieve. The impact of the SQL Injection can be extracting data from the database, dropping data, gaining OS or SQL shell access etc.</p>
+
+<p>As it was private scope, I do not want to disclose the application name. So, I was testing the android application of it. I had to bypass <a href="https://developer.android.com/training/articles/security-ssl">SSL pinning</a> to intercept the application requests. Finally, I was able to do it. The first page was the registration page while opening an app, I filled in all the necessary details. An OTP code was sent to our provided phone number. I used a random six-digit code and intercepted the OTP validation request as shown below.
+<img src="/images/posts/app_registration.png" alt="Registration request" />
+Then I sent the above request to Repeater tab in Burp suite and added a single quote on <em>DeviceId</em> parameter. Modified requests look like <code class="highlighter-rouge">"DeviceId":"lol'"</code>
+<img src="/images/posts/app_registration_sqli_req.png" alt="SQL Injection Request" />
+And the response was like: 
+<img src="/images/posts/app_registration_sqli_resp.png" alt="SQL Injection Response" />
+This confirms the existence of the vulnerability. To be assured I used the time delay command for few databases as
+<code class="highlighter-rouge">SLEEP(10)</code>
+<code class="highlighter-rouge">WAITFOR DELAY '0:0:10'</code>
+<code class="highlighter-rouge">SELECT pg_sleep(10)</code> and second one worked as shown below.  <img src="/images/posts/app_registration_sqli_sleep.png" alt="SQL Injection Requets" /> <br />
+Then in the response time, we can see 10ms delays. It confirms MSSQL Injection.
+<img src="/images/posts/app_registration_sqli_sleepres.png" alt="SQL Injection Response" />
+To make proof of concept I decided to create a database object using the query <code class="highlighter-rouge">'CREATE TABLE kailash (line varchar(8000));--'</code></p>
+
+<p><img src="/images/posts/app_registration_sqli_tblc.png" alt="SQL Injection Response" /></p>
+
+<p>After discussion with the development team, it was confirmed that the above query executed successfully. <br />
+<img src="/images/posts/app_registration_sqli_tbl.jpg" alt="SQL Injection Response" /></p>
+
+<p><strong><em>Note</em></strong>: <em>I used different devices during the assessment so you may find difference in parameter values in used screenshots.</em></p>

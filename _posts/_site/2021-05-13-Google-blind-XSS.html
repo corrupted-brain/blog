@@ -1,0 +1,13 @@
+<p><a href="https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/blind-cross-site-scripting/">Blind cross-site scripting</a> (XSS) refers to a type of code injection where an attacker inserts XSS payload in user input fields and they are going to be stored somewhere and executes in an application that is not in control of an attacker.</p>
+
+<p>I ended up finding blind XSS in one of the Google’s internal system (GUTS ticketing system). I used blind XSS payload from <a href="https://xsshunter.com">xsshunter</a> and filled up randomly input fields on the form from Google supplier portal. The forms from the supplier portal must be tracked from GUTS, that’s what I assume and my payload gets executed.</p>
+
+<h4 id="what-happened-">What happened ?</h4>
+
+<p>I get a response in my xsshunter after a very long time and at the moment I was unknown which parameter I tested for.<img src="/images/posts/google_reply-1.png" alt="Google reply" /> I tried to read the <a href="https://www.w3schools.com/js/js_htmldom.asp">DOM</a> so that we may know the possible parameter. Unfortunately, XSS hunter keeps loading and the browser gets
+frozen. Only Referer and Cookies are known. I passed the information that I have to the Google team and they finally managed to know the actual cause and rewards me. <img src="/images/posts/google_reward_xss.png" alt="Reward message" /></p>
+
+<p>I requested to disclose a vulnerable endpoint as seen above but ended up with the following message.<img src="/images/posts/google_final_reply.png" alt="Reply" /> As part of Google’s Vulnerability Reward Program, the panel has decided to issue a reward of $5000 for this issue as it affects the sensitive application.</p>
+
+<h4 id="giveaway-">Giveaway ?</h4>
+<p>Always take a log where we tested for XSS. We don’t know when our luck hits in bug bounty.</p>
