@@ -2,23 +2,23 @@ Adding Security Headers Using Cloudflare Transform Rules in a Static Website
 
 In today's digital age, security is a vital aspect of any website. One way to improve website security is to add security headers to your website. Security headers are a set of HTTP response headers that inform the browser how to behave when it comes to website security. 
 
-In this blog, we will show you how to add security headers to your static website using Cloudflare transform rules. The transform Rules allow us to manage the URI path, query string, and HTTP headers of requests and responses. By Applying the HTTP response header modification rules we will set all required security headers to get an A+ score. Let’s check our website score before configuring the rules using [https://securityheaders.com](https://securityheaders.com/) . 
+In this blog, we will show you how to add security headers to your static website using Cloudflare transform rules. The transform Rules allow us to manage the URI path, query string, and HTTP headers of requests and responses. By Applying the HTTP response header modification rules we will set all required security headers to get an A+ score. Let’s check our website score before configuring the rules using [https://securityheaders.com](https://securityheaders.com/). 
 
-![Untitled](images/securityheader/header1.png)
+![website HTPP headers](/images/posts/securityheader/header1.png)
 
 We got an ‘F’ grade in website HTTP headers. 😀 The next approach would be fixing the headers and getting ‘A+’ grade. The main complexity here is the website [https://kailashbohara.com.np/](https://kailashbohara.com.np/)  is hosted using GitHub Pages and we have no control on the server to set HTTP headers as the server-level control is not available in GitHub. The next thing is we are using Jekyll on this website, if this has been made with PHP we can set headers directly in PHP code. Okay! let's fix this issue using Cloudflare transform rules. 
 
 First, we need to confirm that we have enabled the “orange cloud” so that traffic flows through Cloudflare and we can implement various features on it. 
 
-![Untitled](Blog%209e0969465b1041abb58b40d9b65e99fc/Untitled%201.png)
+![Enable orange cloud in cloudflare](/images/posts/securityheader/header2.png)
 
 The next step is to create a list of rules in Cloudflare Transform rules. From your Cloudflare dashboard, select the target website and then go to Rules>Transform Rules>modify Response Header. Then create a new rule checking All incoming requests and set the static response header as shown below. Here, we have implemented `X-Frame-Options: SAMEORIGIN`  header for preventing clickjacking attacks. 
 
-![Untitled](Blog%209e0969465b1041abb58b40d9b65e99fc/Untitled%202.png)
+![X-Frame-Options header](/images/posts/securityheader/header3.png)
 
 In a similar way, set more security headers as shown below.
 
-![Untitled](Blog%209e0969465b1041abb58b40d9b65e99fc/Untitled%203.png)
+![HTTP headers list](/images/posts/securityheader/header4.png)
 
 This  adds seven security headers to our website: 
 
@@ -35,8 +35,8 @@ X-XSS-Protection: 1; mode=block //stops pages from loading when they detect refl
 
 After setting up these headers and turning on the transform rules, let’s check our score on [https://securityheaders.com/](https://securityheaders.com/) and we got A+ grade. 
 
-![Untitled](Blog%209e0969465b1041abb58b40d9b65e99fc/Untitled%204.png)
+![A grade in HTTP header](/images/posts/securityheader/header5.png)
 
-That's it! By following these simple steps, we can add security headers to our static website using Cloudflare transform rules. This will help boosting the security of any website (static/dynamic) protecting it from common security threats.
+That's it! By following these simple steps, we can add security headers to our static website using Cloudflare transform rules. This will help boost the security of any website (static/dynamic) protecting it from common security threats.
 
 **Reference:** [https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
