@@ -1,11 +1,9 @@
 ---
 layout: post
 title:  "Adding Security Headers Using Cloudflare in a Static Website"
-excerpt: Getting A+ grade in securityheaders.com for a static website using Cloudflare transform rules..
-tags: [XSS, GoDaddy XSS, Reverse CNAME,]
+excerpt: Getting A+ grade in securityheaders.com for a static website using Cloudflare transform rules.
+tags: [Cloudflare transform rules, HTTP headers, security header in static website,]
 ---
-
-Adding Security Headers Using Cloudflare in a Static Website.
 
 In today's digital age, security is a vital aspect of any website. One way to improve website security is to add security headers to your website. Security headers are a set of HTTP response headers that inform the browser how to behave when it comes to website security. 
 
