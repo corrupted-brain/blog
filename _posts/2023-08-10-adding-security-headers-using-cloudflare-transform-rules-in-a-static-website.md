@@ -17,7 +17,7 @@ First, we need to confirm that we have enabled the “orange cloud” so that tr
 
 ![Enable orange cloud in cloudflare](/images/posts/securityheader/header2.png)
 
-The next step is to create a list of rules in Cloudflare Transform rules. From your Cloudflare dashboard, select the target website and then go to Rules>Transform Rules>modify Response Header. Then create a new rule checking All incoming requests and set the static response header as shown below. Here, we have implemented `X-Frame-Options: SAMEORIGIN`  header for preventing clickjacking attacks. 
+The next step is to create a list of rules in Cloudflare Transform rules. From your Cloudflare dashboard, select the target website and then go to _Rules>Transform Rules>modify Response Header_. Then create a new rule checking All incoming requests and set the static response header as shown below. Here, we have implemented `X-Frame-Options: SAMEORIGIN`  header for preventing clickjacking attacks. 
 
 ![X-Frame-Options header](/images/posts/securityheader/header3.png)
 
