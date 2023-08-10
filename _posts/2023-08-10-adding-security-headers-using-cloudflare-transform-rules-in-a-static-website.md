@@ -1,12 +1,10 @@
-# Blog
-
-## Blog: Adding Security Headers Using Cloudflare Transform Rules in a Static Website
+Adding Security Headers Using Cloudflare Transform Rules in a Static Website
 
 In today's digital age, security is a vital aspect of any website. One way to improve website security is to add security headers to your website. Security headers are a set of HTTP response headers that inform the browser how to behave when it comes to website security. 
 
 In this blog, we will show you how to add security headers to your static website using Cloudflare transform rules. The transform Rules allow us to manage the URI path, query string, and HTTP headers of requests and responses. By Applying the HTTP response header modification rules we will set all required security headers to get an A+ score. Let’s check our website score before configuring the rules using [https://securityheaders.com](https://securityheaders.com/) . 
 
-![Untitled](Blog%209e0969465b1041abb58b40d9b65e99fc/Untitled.png)
+![Untitled](images/securityheader/header1.png)
 
 We got an ‘F’ grade in website HTTP headers. 😀 The next approach would be fixing the headers and getting ‘A+’ grade. The main complexity here is the website [https://kailashbohara.com.np/](https://kailashbohara.com.np/)  is hosted using GitHub Pages and we have no control on the server to set HTTP headers as the server-level control is not available in GitHub. The next thing is we are using Jekyll on this website, if this has been made with PHP we can set headers directly in PHP code. Okay! let's fix this issue using Cloudflare transform rules. 
 
