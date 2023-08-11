@@ -1,5 +1,5 @@
 ---
 layout: home
 excerpt: "Kailash Bohara - Information Security Researcher."
-tags: [Information security researcher, pentester, cyber security, hacking, infosec, Information System Audit]
+tags: [Information Security Researcher, Penetration Tester, Cyber Security, Red Teamer, Information System Audit]
 ---
