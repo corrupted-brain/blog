@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Adding Security Headers Using Cloudflare in a Static Website"
+title:  "Cloudflare transform rules to get an A+ in the security header."
 excerpt: Getting A+ grade in securityheaders.com for a static website using Cloudflare transform rules.
-tags: [Cloudflare transform rules, HTTP headers, security header in static website,]
+tags: [Cloudflare transform rules, HTTP headers, security header in a static website,]
 ---
 
 In today's digital age, security is a vital aspect of any website. One way to improve website security is to add security headers to your website. Security headers are a set of HTTP response headers that inform the browser how to behave when it comes to website security. 
@@ -38,7 +38,7 @@ X-XSS-Protection: 1; mode=block //stops pages from loading when they detect refl
 
 ```
 
-After setting up these headers and turning on the transform rules, let’s check our score on [https://securityheaders.com/](https://securityheaders.com/) and we got A+ grade. 
+After setting up these headers and turning on the transform rules, let’s check our score on [https://securityheaders.com/](https://securityheaders.com/) and we got an A+ grade. 
 
 ![A grade in HTTP header](/images/posts/securityheader/header5.png)
 
