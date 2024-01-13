@@ -55,7 +55,7 @@ After this I started looking for other possible ways to read the files again, an
 
 <entry>
   <title type="html"><![CDATA[MSSQL Injection In JSON Request]]></title>
-  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" />
+  <link rel="alternate" type="text/html" href="https://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request/" />
   <id>http://localhost:4000/blog/2021/05/16/MSSQL-Injection-in-JSON-request</id>
   <published>2021-05-16T00:00:00+05:45</published>
   <updated>2021-05-16T00:00:00+05:45</updated>
@@ -212,7 +212,7 @@ According to facebook only highlighted information i.e. &lt;em&gt;“l30_live_ea
   
   <author>
     <name>Kailash</name>
-    <uri>http://localhost:4000</uri>
+    <uri>https://localhost:4000</uri>
     
   </author>
   <content type="html">
