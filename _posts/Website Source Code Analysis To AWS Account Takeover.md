@@ -1,16 +1,22 @@
-# Website Source Code Analysis To AWS Account Takeover
+---
+layout: post
+title:  "Website Source Code Analysis To AWS Account Takeover"
+excerpt: Unveiling the risks of website source code analysis led to the discovery of AWS access/secret keys resulting in the takeover of an organization's AWS account.
+tags: [AWS Security, AWS, Cloud Security]
+modified: "2024-05-06"
+---
 
 We are going to discuss a vulnerability that I found by checking the source code of a website, which escalated to gaining access to the AWS account of an organization.
 
 During the security assessment of an organization, I began by browsing their corporate website to understand their business purpose and the solutions they provide. Since the corporate website only had static information and nothing more, I started scanning for subdomains using the [subfinder tool](https://github.com/projectdiscovery/subfinder).
 
-![Screenshot 2024-04-30 at 23.25.15.png](Website%20Source%20Code%20Analysis%20To%20AWS%20Account%20Takeov%201e93a615b1d447f5b87dda28265e283b/Screenshot_2024-04-30_at_23.25.15.png)
+![Screenshot 2024-04-30 at 23.25.15.png](/images/posts/AWS%20takeover//Screenshot_2024-04-30_at_23.25.15.png)
 
 I found only three subdomains using Subfinder and didn't bother to look for more because I was convinced with the result. Instead, I started looking into the admin subdomain, [admin.target.com](http://admin.target.com/).
 
 To my surprise, when I visited [admin.target.com](http://admin.target.com/), I got a pop-up message from the Trufflehog browser extension.
 
-![Screenshot 2024-04-30 at 23.34.19.png](Website%20Source%20Code%20Analysis%20To%20AWS%20Account%20Takeov%201e93a615b1d447f5b87dda28265e283b/Screenshot_2024-04-30_at_23.34.19.png)
+![Screenshot 2024-04-30 at 23.34.19.png](/images/posts/AWS%20takeover/Screenshot_2024-04-30_at_23.34.19.png)
 
 If you don’t know about TruffleHog
 
@@ -19,7 +25,7 @@ If you don’t know about TruffleHog
 
 The Trufflehog pop-up gave me hope that the AWS Access key and AWS Secret key might exist. To confirm this, I browsed the mentioned JS file, i.e., [https://admin.example.com/main.js](https://admin.example.com/main.js), and searched for the keys. I also used the JavaScript beautifier tool to make the chunked JS code look organized, and the result looked like this:
 
-![Screenshot 2024-05-01 at 00.27.22.png](Website%20Source%20Code%20Analysis%20To%20AWS%20Account%20Takeov%201e93a615b1d447f5b87dda28265e283b/Screenshot_2024-05-01_at_00.27.22.png)
+![Screenshot 2024-05-01 at 00.27.22.png](/images/posts/AWS%20takeover/Screenshot_2024-05-01_at_00.27.22.png)
 
 In the image above, we found the AWS Access Key, Secret Key, Bucket and the upload path as well. Access and secret keys are very sensitive information. 
 
@@ -40,7 +46,7 @@ aws s3 ls
 
 Damn! Both the keys were valid and all the S3 buckets were listed as shown. 
 
-![Screenshot 2024-05-01 at 00.49.57.png](Website%20Source%20Code%20Analysis%20To%20AWS%20Account%20Takeov%201e93a615b1d447f5b87dda28265e283b/Screenshot_2024-05-01_at_00.49.57.png)
+![Screenshot 2024-05-01 at 00.49.57.png](/images/posts/AWS%20takeover/Screenshot_2024-05-01_at_00.49.57.png)
 
 I have masked the bucket names as they have misconfiguration in them and holds sensitive data. Checking the caller identity using the command It was found that the IAM user was specific for the S3 bucket.
 
@@ -48,11 +54,11 @@ I have masked the bucket names as they have misconfiguration in them and holds s
 aws sts get-caller-identity
 ```
 
-![Screenshot 2024-05-01 at 00.54.33.png](Website%20Source%20Code%20Analysis%20To%20AWS%20Account%20Takeov%201e93a615b1d447f5b87dda28265e283b/Screenshot_2024-05-01_at_00.54.33.png)
+![Screenshot 2024-05-01 at 00.54.33.png](/images/posts/AWS%20takeover/Screenshot_2024-05-01_at_00.54.33.png)
 
 Then, I attempted to directly visit the S3 bucket URL, as there might be cases of object listing enabled in public buckets due to poorly configured bucket ACLs. The result was alarming: multiple documents and SQL backup files were there.
 
-![Screenshot 2024-05-01 at 00.58.51.png](Website%20Source%20Code%20Analysis%20To%20AWS%20Account%20Takeov%201e93a615b1d447f5b87dda28265e283b/Screenshot_2024-05-01_at_00.58.51.png)
+![Screenshot 2024-05-01 at 00.58.51.png](/images/posts/AWS%20takeover/Screenshot_2024-05-01_at_00.58.51.png)
 
 **Lessons Learned:**
 
