@@ -32,7 +32,7 @@ Now using the AWS CLI, we can configure the found keys and can request AWS. AWS 
 aws configure
 ```
 
-After this, I had to input the found access key and the secret key. Once I provided the required information, I attempted to list the available buckets in that particular AWS account using the following command:
+After this, I had to input the found access and secret keys. Once I provided the required information, I attempted to list the available buckets in that particular AWS account using the following command:
 
 ```bash
 aws s3 ls
