@@ -1,14 +1,4 @@
 
----
-layout: page
-title: About Kailash
-meta-title: About me
-subtitle: "Experienced cybersecurity professional with expertise in penetration testing, security analysis, and application security. Skilled in both offensive and defensive security, threat hunting, and security engineering. Passionate about identifying vulnerabilities and developing robust defences to protect critical assets. "
----
-
-
-
-
 # About Me
 
 
