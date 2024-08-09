@@ -10,7 +10,7 @@
   #url: /website/resume/
 
   title: About
-  url: /website/about/
+  url: /_site/aboutme.md
 
 - title: Github
   url: https://github.com/corrupted-brain
