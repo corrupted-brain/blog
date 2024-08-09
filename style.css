@@ -1,0 +1,104 @@
+/* Basic Reset */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: 'PT Sans Narrow', sans-serif;
+    line-height: 1.6;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+section h3 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.icon {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    background: #e9ecef;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+
+footer {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header h2 {
+        font-size: 1.25rem;
+    }
+
+    .icon {
+        height: 48px;
+        width: 48px;
+    }
+}
