@@ -1,6 +1,6 @@
 ---
 layout: about
-title: "About Me"
+title: "Kailash Bohara"
 permalink: /about/
 name: "Kailash Bohara"
 role: "Cybersecurity Professional"
