@@ -26,6 +26,39 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  // Mobile Navigation Toggle
+  const mobileToggle = document.getElementById("mobile-toggle")
+  const mobileNav = document.getElementById("mobile-nav")
+
+  if (mobileToggle && mobileNav) {
+    mobileToggle.addEventListener("click", function () {
+      mobileNav.classList.toggle("active")
+      const icon = this.querySelector("i")
+      if (mobileNav.classList.contains("active")) {
+        icon.className = "fas fa-times"
+      } else {
+        icon.className = "fas fa-bars"
+      }
+    })
+
+    // Close mobile nav when clicking on nav items
+    const mobileNavButtons = mobileNav.querySelectorAll(".nav-btn")
+    mobileNavButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        mobileNav.classList.remove("active")
+        mobileToggle.querySelector("i").className = "fas fa-bars"
+      })
+    })
+
+    // Close mobile nav when clicking outside
+    document.addEventListener("click", (event) => {
+      if (!mobileToggle.contains(event.target) && !mobileNav.contains(event.target)) {
+        mobileNav.classList.remove("active")
+        mobileToggle.querySelector("i").className = "fas fa-bars"
+      }
+    })
+  }
+
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
