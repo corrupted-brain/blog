@@ -3,12 +3,12 @@ layout: about
 title: "About Me"
 name: "Kailash Bohara"
 role: "Cybersecurity Professional"
-description: "Cybersecurity professional with expertise in penetration testing, vulnerability assessment, and security architecture. Passionate about protecting organizations from evolving cyber threats."
+description: "Experienced cybersecurity professional with expertise in penetration testing, security analysis, and application security. Skilled in both offensive and defensive security, threat hunting, and security engineering. Passionate about identifying vulnerabilities and developing robust defenses to protect critical assets."
 profile_image: "/assets/images/profile.jpg"
 email: "kailash@example.com"
-linkedin: "https://linkedin.com/in/kailashbohara"
-github: "https://github.com/kailashbohara"
-twitter: "https://twitter.com/kailashbohara"
+linkedin: "https://www.linkedin.com/in/kailash0x01/"
+github: "https://github.com/corrupted-brain"
+twitter: "https://twitter.com/corrupted_brain"
 portfolio_url: "https://kailashbohara.com.np"
 
 skills:
@@ -19,30 +19,24 @@ skills:
   - "Mobile Security"
   - "Cloud Security"
   - "Incident Response"
-  - "Digital Forensics"
+  - "Vulnerability Management"
   - "Security Architecture"
   - "Risk Assessment"
   - "Compliance"
-  - "Security Training"
+  - "Secure Code Training"
 
 certifications:
-  - name: "CISSP"
-    org: "ISC²"
-    year: "2023"
   - name: "CEH"
     org: "EC-Council"
     year: "2022"
   - name: "OSCP"
     org: "Offensive Security"
     year: "2021"
-  - name: "CISM"
-    org: "ISACA"
-    year: "2023"
 
 experience:
-  - role: "Senior Security Consultant"
-    company: "CyberGuard Solutions"
-    period: "2022 - Present"
+  - role: "Senior Cybersecurity Engineer"
+    company: "Cedar Gate Technologies"
+    period: "2023 - Present"
     description: "Leading security assessments and penetration testing for enterprise clients across various industries."
   - role: "Security Analyst"
     company: "SecureNet Inc."
@@ -92,8 +86,6 @@ strategic_topics:
   - "Security Awareness Training"
 ---
 
-I'm a passionate cybersecurity professional with over 5 years of experience in protecting organizations from cyber threats. My expertise spans across penetration testing, vulnerability assessments, and security architecture design.
+I’m a passionate Security Engineer with experience in securing applications, networks, and cloud environments. My expertise spans manual and automated penetration testing, application security assessments (web, mobile, API), Active Directory and network penetration testing, and proactive threat hunting. Build and maintain security automation scripts to streamline and enhance security operations.
 
-I believe in continuous learning and staying ahead of the evolving threat landscape. When I'm not securing systems, you'll find me researching the latest security trends, contributing to open-source security tools, or sharing knowledge through speaking engagements.
-
-My mission is to make the digital world safer, one system at a time.
+Worked to enhance DLP, SOC, MDR, and cloud security configurations, ensuring a strong security posture across the organisation. Experience in vulnerability management and playing a role in achieving compliance with industry standards such as SOC 2, HITRUST, and ISO 27001 by supporting audit readiness and driving operational security improvements.
