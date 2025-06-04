@@ -2,8 +2,6 @@
 layout: about
 title: "About Me"
 permalink: /about/
----
-
 name: "Kailash Bohara"
 role: "Cybersecurity Professional"
 description: "Cybersecurity professional with expertise in penetration testing, vulnerability assessment, and security architecture. Passionate about protecting organizations from evolving cyber threats."
@@ -13,7 +11,6 @@ linkedin: "https://linkedin.com/in/kailashbohara"
 github: "https://github.com/kailashbohara"
 twitter: "https://twitter.com/kailashbohara"
 portfolio_url: "https://kailashbohara.com.np"
-
 skills:
   - "Penetration Testing"
   - "Vulnerability Assessment"
@@ -27,7 +24,7 @@ skills:
   - "Risk Assessment"
   - "Compliance"
   - "Security Training"
-
+    
 certifications:
   - name: "CISSP"
     org: "ISC²"
