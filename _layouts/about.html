@@ -41,7 +41,15 @@ layout: default
                         <button class="nav-btn" data-section="experience">Experience</button>
                         <button class="nav-btn" data-section="talks">Talks</button>
                     </nav>
+                    <button class="mobile-nav-toggle" id="mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
+                <nav class="mobile-nav" id="mobile-nav">
+                    <button class="nav-btn active" data-section="about">About</button>
+                    <button class="nav-btn" data-section="experience">Experience</button>
+                    <button class="nav-btn" data-section="talks">Talks</button>
+                </nav>
             </div>
         </header>
 
@@ -103,23 +111,18 @@ layout: default
         <section class="main-content">
             <div class="container">
                 <!-- About Tab -->
-<div class="tab-content active full-width" id="about-tab">
-    <div class="hero-section">
-        <h1>About Me</h1>
-    </div>
-
-    <div class="about-content">
-        <div class="card">
-            <div class="card-header">
-                <i class="fas fa-user text-emerald"></i>
-                <h3>About Me</h3>
-            </div>
-            <div class="card-content">
-                {{ content }}
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="tab-content active" id="about-tab">
+                    <div class="content-grid">
+                        <!-- About Me Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-user text-emerald"></i>
+                                <h3>About Me</h3>
+                            </div>
+                            <div class="card-content">
+                                {{ content }}
+                            </div>
+                        </div>
 
                         <!-- Skills Card -->
                         <div class="card">
