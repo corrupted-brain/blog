@@ -5,7 +5,7 @@ permalink: /about/
 name: "Kailash Bohara"
 role: "Cybersecurity Professional"
 description: "Cybersecurity professional with expertise in penetration testing, vulnerability assessment, and security architecture. Passionate about protecting organizations from evolving cyber threats."
-profile_image: "/assets/images/profile.jpg"
+profile_image: "/images/author/avatar.png"
 email: "kailash@example.com"
 linkedin: "https://linkedin.com/in/kailashbohara"
 github: "https://github.com/kailashbohara"
