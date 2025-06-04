@@ -1,0 +1,266 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/about.css' | relative_url }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="cybersec-container">
+        <!-- Animated Background Elements -->
+        <div class="bg-elements">
+            <div class="bg-circle bg-circle-1"></div>
+            <div class="bg-circle bg-circle-2"></div>
+            <div class="bg-circle bg-circle-3"></div>
+        </div>
+
+        <!-- Matrix Background Pattern -->
+        <div class="matrix-bg"></div>
+
+        <!-- Header -->
+        <header class="cybersec-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>{{ page.name | default: "Kailash Bohara" }}</h1>
+                            <p>{{ page.role | default: "Cybersecurity Professional" }}</p>
+                        </div>
+                    </div>
+                    <nav class="main-nav">
+                        <button class="nav-btn active" data-section="about">About</button>
+                        <button class="nav-btn" data-section="experience">Experience</button>
+                        <button class="nav-btn" data-section="talks">Talks</button>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="profile-image">
+                        <div class="image-wrapper">
+                            <img src="{{ page.profile_image | default: '/assets/images/profile.jpg' }}" alt="{{ page.name }}">
+                        </div>
+                        <div class="status-badge">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Securing the
+                        <span class="gradient-text">Digital World</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        {{ page.description | default: "Cybersecurity professional with expertise in penetration testing, vulnerability assessment, and security architecture. Passionate about protecting organizations from evolving cyber threats." }}
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="mailto:{{ page.email }}" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i>
+                            Get In Touch
+                        </a>
+                        <a href="{{ page.portfolio_url }}" class="btn btn-secondary">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Portfolio
+                        </a>
+                    </div>
+
+                    <div class="social-links">
+                        {% if page.linkedin %}
+                        <a href="{{ page.linkedin }}" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.github %}
+                        <a href="{{ page.github }}" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.twitter %}
+                        <a href="{{ page.twitter }}" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <div class="container">
+                <!-- About Tab -->
+                <div class="tab-content active" id="about-tab">
+                    <div class="content-grid">
+                        <!-- About Me Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-user text-emerald"></i>
+                                <h3>About Me</h3>
+                            </div>
+                            <div class="card-content">
+                                {{ content }}
+                            </div>
+                        </div>
+
+                        <!-- Skills Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-bolt text-emerald"></i>
+                                <h3>Core Skills</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="skills-grid">
+                                    {% for skill in page.skills %}
+                                    <span class="skill-badge">{{ skill }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <i class="fas fa-award text-emerald"></i>
+                            <h3>Certifications</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="certifications-grid">
+                                {% for cert in page.certifications %}
+                                <div class="cert-item">
+                                    <h4>{{ cert.name }}</h4>
+                                    <p class="cert-org">{{ cert.org }}</p>
+                                    <p class="cert-year">{{ cert.year }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Tab -->
+                <div class="tab-content" id="experience-tab">
+                    {% for exp in page.experience %}
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="exp-header">
+                                <div class="exp-info">
+                                    <h3>{{ exp.role }}</h3>
+                                    <p class="company">{{ exp.company }}</p>
+                                </div>
+                                <span class="period-badge">{{ exp.period }}</span>
+                            </div>
+                            <p class="exp-description">{{ exp.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Talks Tab -->
+                <div class="tab-content" id="talks-tab">
+                    {% for talk in page.talks %}
+                    <div class="card talk-card">
+                        <div class="card-content">
+                            <div class="talk-header">
+                                <div class="talk-info">
+                                    <h3>{{ talk.title }}</h3>
+                                    <div class="talk-meta">
+                                        <span class="event-badge">
+                                            <i class="fas fa-microphone"></i>
+                                            {{ talk.event }}
+                                        </span>
+                                        <span class="talk-date">{{ talk.date }}</span>
+                                        <span class="talk-location">{{ talk.location }}</span>
+                                    </div>
+                                    <p class="talk-description">{{ talk.description }}</p>
+                                </div>
+                                {% if talk.link %}
+                                <a href="{{ talk.link }}" class="talk-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Speaking Topics -->
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <i class="fas fa-book-open text-emerald"></i>
+                            <h3>Speaking Topics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="topics-grid">
+                                <div class="topic-category">
+                                    <h4>Technical Topics</h4>
+                                    <ul>
+                                        {% for topic in page.technical_topics %}
+                                        <li>{{ topic }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="topic-category">
+                                    <h4>Strategic Topics</h4>
+                                    <ul>
+                                        {% for topic in page.strategic_topics %}
+                                        <li>{{ topic }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="cybersec-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-social">
+                        {% if page.email %}
+                        <a href="mailto:{{ page.email }}" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.linkedin %}
+                        <a href="{{ page.linkedin }}" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.github %}
+                        <a href="{{ page.github }}" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.twitter %}
+                        <a href="{{ page.twitter }}" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <p>&copy; 2024 {{ page.name | default: "Kailash Bohara" }}. Securing the digital frontier, one system at a time.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ '/assets/js/about.js' | relative_url }}"></script>
+</body>
+</html>
