@@ -1,6 +1,9 @@
 ---
 layout: about
 title: "About Me"
+permalink: /about/
+---
+
 name: "Kailash Bohara"
 role: "Cybersecurity Professional"
 description: "Cybersecurity professional with expertise in penetration testing, vulnerability assessment, and security architecture. Passionate about protecting organizations from evolving cyber threats."
