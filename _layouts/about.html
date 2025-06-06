@@ -38,7 +38,7 @@ layout: default
                     </div>
                     <nav class="main-nav">
                         <button class="nav-btn active" data-section="about">About</button>
-                        <button class="nav-btn" data-section="experience">Experience</button>
+                        <button id="experience" class="nav-btn" data-section="experience">Experience</button>
                         <button class="nav-btn" data-section="talks">Talks</button>
                     </nav>
                     <button class="mobile-nav-toggle" id="mobile-toggle">
@@ -248,7 +248,7 @@ layout: default
                 </div>
 
                 <!-- Experience Tab -->
-                <div class="tab-content" id="experience-tab">
+                <div class="tab-content" id="experience">
                     {% for exp in page.experience %}
                     <div class="card">
                         <div class="card-content">
