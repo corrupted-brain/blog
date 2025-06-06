@@ -32,8 +32,8 @@ layout: default
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <div class="logo-text">
-                            <h1>{{ page.name | default: "Kailash Bohara" }}</h1>
-                            <p>{{ page.role | default: "Cybersecurity Professional" }}</p>
+                            <h1>{{ "Kailash Bohara" }}</h1>
+                            <p>{{ "Cybersecurity Engineer" }}</p>
                         </div>
                     </div>
                     <nav class="main-nav">
@@ -188,11 +188,34 @@ layout: default
                                      title="Dell"
                                      onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                                 <span class="company-text" style="display:none;">Dell</span>
-
-                                <span class="company-text">Zoho</span>
-                                <span class="company-text">Alibaba Cloud</span>
-                                <span class="company-text">Toyota</span>
-                                <span class="company-text">United Nations</span>
+                                
+                                <img class="company-icon" 
+                                     src="https://en.wikipedia.org/wiki/Zoho_Corporation#/media/File:ZOHO_logo_2023.svg" 
+                                     alt="Zoho" 
+                                     title="Zoho"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Zoho</span>
+                                
+                                 <img class="company-icon" 
+                                     src="https://en.wikipedia.org/wiki/Alibaba_Cloud#/media/File:AlibabaCloudLogo.svg" 
+                                     alt="Alibaba" 
+                                     title="Alibaba"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Alibaba Cloud</span>
+                            
+                                <img class="company-icon" 
+                                     src="https://en.wikipedia.org/wiki/Toyota#/media/File:Toyota.svg" 
+                                     alt="Alibaba" 
+                                     title="Alibaba"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Toyota</span>
+                                
+                                <img class="company-icon" 
+                                     src="https://en.wikipedia.org/wiki/United_Nations#/media/File:UN_emblem_blue.svg" 
+                                     alt="UN" 
+                                     title="UN"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">United Nations</span>
 
                                 <img class="company-icon" 
                                      src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" 
@@ -334,5 +357,17 @@ layout: default
     </div>
 
     <script src="{{ '/assets/js/about.js' | relative_url }}"></script>
+        <script>
+  document.querySelectorAll('.nav-btn[data-section]').forEach(button => {
+    button.addEventListener('click', () => {
+      const sectionId = button.getAttribute('data-section');
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
