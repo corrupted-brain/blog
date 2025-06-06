@@ -100,7 +100,7 @@ My mission is to make the digital world safer, one system at a time.
 
 ---
 
-<section id="helped">
+<!-- <section id="helped">
   <h3>Helped to Secure</h3>
   <p>Identified and reported security vulnerabilities and zero-day flaws in various products and companies through responsible disclosure processes and bug bounty platforms.</p>
   <div class="icon-container" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
@@ -115,7 +115,7 @@ My mission is to make the digital world safer, one system at a time.
     <img class="icon" src="https://cdn.simpleicons.org/unitednations" alt="United Nations" width="40">
     <img class="icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows11/windows11-original.svg" alt="Windows 11" width="40">
   </div>
-</section>
+</section> -->
 
 ---
 
