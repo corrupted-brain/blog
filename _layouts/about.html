@@ -3,47 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>About Me</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
+            background-color: #0f172a;
+            color: white;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            transition: background-color 0.3s cubic-bezier;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
+        header {
+            backdrop-filter: blur(10px);
             padding: 20px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            text-align: center;
         }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-            color: #333;
+        .hero {
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
         }
-        p {
-            font-size: 1.2em;
-            margin-bottom: 1.5em;
-            color: #666;
+        .hero img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: pulse 3s infinite;
         }
-        .fade-in {
-            animation: fadeIn 1s ease-in;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .badge {
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .badge:hover {
+            transform: scale(1.05);
+        }
+        .skills, .experience, .talks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            width: calc(33% - 40px);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            header, .hero {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container fade-in">
-        <h1>About Us</h1>
-        <p>Welcome to our blog! We are passionate about sharing our thoughts and ideas.</p>
-        <p>Our mission is to inspire and engage our readers with high-quality content and an inviting design.</p>
+    <header>
+        <h1>About Me</h1>
+        <p class="badge">Status: Available</p>
+    </header>
+    <div class="hero">
+        <img src="profile.jpg" alt="Profile Image">
+        <h2>Hi, I'm Your Name!</h2>
+        <div class="skills">
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+        </div>
     </div>
+    <div class="experience">
+        <div class="card">
+            <h3>Job Title</h3>
+            <p>Company Name</p>
+            <span class="badge">2021 - Present</span>
+        </div>
+    </div>
+    <div class="talks">
+        <h3>Talks</h3>
+        <div class="card">
+            <h4>Event Title</h4>
+            <p>Details about the event...</p>
+        </div>
+    </div>
+    <script>
+        // Code for tab navigation and mobile menu toggle
+    </script>
 </body>
 </html>
