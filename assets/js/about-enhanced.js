@@ -14,14 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
     navButtons.forEach((btn) => btn.classList.remove("active"));
     tabContents.forEach((content) => content.classList.remove("active"));
 
-    // Add active class to clicked button and corresponding content
-    const targetButton = document.querySelector(
+    // Add active class to all buttons matching the section (desktop + mobile)
+    const targetButtons = document.querySelectorAll(
       `[data-section="${targetSection}"]`
     );
-    const targetContent = document.getElementById(`${targetSection}-tab`);
+    targetButtons.forEach((btn) => btn.classList.add("active"));
 
-    if (targetButton && targetContent) {
-      targetButton.classList.add("active");
+    // Activate the corresponding content panel
+    const targetContent = document.getElementById(`${targetSection}-tab`);
+    if (targetContent) {
       targetContent.classList.add("active");
     }
   }
@@ -32,8 +33,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const section = this.getAttribute("data-section");
       switchTab(section);
 
-      // Scroll to top of content for better UX when switching tabs
-      window.scrollTo({ top: document.querySelector('.main-content').offsetTop - 20, behavior: 'smooth' });
+      // Scroll the selected tab into view (account for sticky header)
+      const targetContent = document.getElementById(`${section}-tab`);
+      const headerHeight = document.querySelector('.cybersec-header')?.offsetHeight || 0;
+      if (targetContent) {
+        window.scrollTo({ top: targetContent.offsetTop - headerHeight - 12, behavior: 'smooth' });
+      } else {
+        // Fallback: scroll to main content
+        const main = document.querySelector('.main-content');
+        if (main) window.scrollTo({ top: main.offsetTop - headerHeight - 12, behavior: 'smooth' });
+      }
 
       // Close mobile menu if open
       closeMobileNav();
