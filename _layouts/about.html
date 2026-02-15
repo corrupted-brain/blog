@@ -41,6 +41,9 @@ layout: default
                         <button class="nav-btn active" data-section="about">About</button>
                         <button class="nav-btn" data-section="experience">Experience</button>
                         <button class="nav-btn" data-section="talks">Talks</button>
+                        <button class="nav-btn" data-section="certifications">Certifications</button>
+                        <button class="nav-btn" data-section="hacktivity">Hacktivity</button>
+                        <button class="nav-btn" data-section="cve">CVE</button>
                     </nav>
                     <button class="mobile-nav-toggle" id="mobile-toggle">
                         <i class="fas fa-bars"></i>
@@ -50,6 +53,9 @@ layout: default
                     <button class="nav-btn active" data-section="about">About</button>
                     <button class="nav-btn" data-section="experience">Experience</button>
                     <button class="nav-btn" data-section="talks">Talks</button>
+                    <button class="nav-btn" data-section="certifications">Certifications</button>
+                    <button class="nav-btn" data-section="hacktivity">Hacktivity</button>
+                    <button class="nav-btn" data-section="cve">CVE</button>
                 </nav>
             </div>
         </header>
@@ -228,24 +234,7 @@ layout: default
                         </div>
                     </div>
 
-                    <!-- Certifications -->
-                    <div class="card full-width">
-                        <div class="card-header">
-                            <i class="fas fa-award text-emerald"></i>
-                            <h3>Certifications</h3>
-                        </div>
-                        <div class="card-content">
-                            <div class="certifications-grid">
-                                {% for cert in page.certifications %}
-                                <div class="cert-item">
-                                    <h4>{{ cert.name }}</h4>
-                                    <p class="cert-org">{{ cert.org }}</p>
-                                    <p class="cert-year">{{ cert.year }}</p>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Certifications (moved to its own tab) -->
                 </div>
 
                 <!-- Experience Tab -->
@@ -324,6 +313,181 @@ layout: default
                 </div>
             </div>
         </section>
+
+                <!-- Certifications Tab -->
+                <div class="tab-content" id="certifications-tab">
+                    <div class="section-title">
+                        <h2>Certifications & Credentials</h2>
+                        <p>Professional certifications and qualifications</p>
+                    </div>
+                    <div class="card full-width">
+                        <div class="card-content">
+                            <div class="certifications-grid">
+                                {% for cert in page.certifications %}
+                                <div class="cert-card">
+                                    <div class="cert-logo-wrapper">
+                                        <img src="{{ cert.logo | default: '/assets/images/cert-placeholder.svg' }}" alt="{{ cert.name }}" class="cert-logo" onerror="this.onerror=null;this.src='{{ '/assets/images/cert-placeholder.svg' | relative_url }}'">
+                                    </div>
+                                    <h4>{{ cert.name }}</h4>
+                                    <p class="cert-issuer">{{ cert.org }}</p>
+                                    <span class="cert-year-badge">{{ cert.year }}</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Hacktivity Tab -->
+                <div class="tab-content" id="hacktivity-tab">
+                    <div class="section-title">
+                        <h2>Hacktivity</h2>
+                        <p>Bug bounty discoveries and responsible disclosures</p>
+                    </div>
+                    <div class="hacktivity-timeline">
+                        {% for activity in page.hacktivity %}
+                        <div class="hacktivity-item">
+                            <div class="hacktivity-marker">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <div class="hacktivity-content">
+                                <div class="hacktivity-header">
+                                    <h3>{{ activity.title }}</h3>
+                                    <span class="hacktivity-date">
+                                        <i class="fas fa-calendar"></i>
+                                        {{ activity.date }}
+                                    </span>
+                                </div>
+                                <p class="hacktivity-platform">
+                                    <i class="fas fa-globe"></i>
+                                    {{ activity.platform }}
+                                </p>
+                                <p class="hacktivity-description">{{ activity.description }}</p>
+                                <div class="hacktivity-tags">
+                                    {% for tag in activity.tags %}
+                                    <span class="hacktivity-tag">{{ tag }}</span>
+                                    {% endfor %}
+                                    {% if activity.bounty %}
+                                    <span class="hacktivity-tag bounty">{{ activity.bounty }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Hacktivity Statistics -->
+                    <div class="card full-width hacktivity-stats">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar text-emerald"></i>
+                            <h3>Bug Bounty Statistics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number">{{ page.hacktivity | size }}</div>
+                                    <div class="stat-label">Vulnerabilities Found</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">$18,500</div>
+                                    <div class="stat-label">Total Bounty Earned</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">100%</div>
+                                    <div class="stat-label">Resolved Issues</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">8</div>
+                                    <div class="stat-label">Platforms</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- CVE Tab -->
+                <div class="tab-content" id="cve-tab">
+                    <div class="section-title">
+                        <h2>CVE Disclosures</h2>
+                        <p>Security vulnerabilities identified and responsibly disclosed</p>
+                    </div>
+                    <div class="cve-grid">
+                        <div class="cve-card">
+                            <div class="cve-id">CVE-2020-10596</div>
+                            <div class="cve-product">Opencart</div>
+                            <div class="cve-severity high">High Severity</div>
+                            <p class="cve-description">Critical vulnerability in Opencart e-commerce platform affecting core functionality.</p>
+                            <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-10596" target="_blank" class="cve-link">
+                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+
+                        <div class="cve-card">
+                            <div class="cve-id">CVE-2020-18723</div>
+                            <div class="cve-product">Mdaemon Webmail Service</div>
+                            <div class="cve-severity critical">Critical Severity</div>
+                            <p class="cve-description">Critical flaw in Mdaemon Webmail Service exposing sensitive user data.</p>
+                            <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-18723" target="_blank" class="cve-link">
+                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+
+                        <div class="cve-card">
+                            <div class="cve-id">CVE-2020-18724</div>
+                            <div class="cve-product">Mdaemon Webmail Service</div>
+                            <div class="cve-severity high">High Severity</div>
+                            <p class="cve-description">Authentication bypass vulnerability in Mdaemon Webmail Service.</p>
+                            <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-18724" target="_blank" class="cve-link">
+                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+
+                        <div class="cve-card">
+                            <div class="cve-id">CVE-2021-46065</div>
+                            <div class="cve-product">Zoho ManageEngine ServiceDesk Plus</div>
+                            <div class="cve-severity high">High Severity</div>
+                            <p class="cve-description">Remote Code Execution vulnerability in Zoho ManageEngine ServiceDesk Plus.</p>
+                            <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-46065" target="_blank" class="cve-link">
+                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+
+                        <div class="cve-card">
+                            <div class="cve-id">CVE-2024-2301</div>
+                            <div class="cve-product">HP Printers</div>
+                            <div class="cve-severity medium">Medium Severity</div>
+                            <p class="cve-description">Privilege escalation vulnerability affecting multiple HP printer models.</p>
+                            <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-2301" target="_blank" class="cve-link">
+                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- CVE Statistics -->
+                    <div class="card full-width cve-stats">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar text-emerald"></i>
+                            <h3>CVE Statistics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number">5</div>
+                                    <div class="stat-label">Total CVEs</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">3</div>
+                                    <div class="stat-label">High Severity</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">1</div>
+                                    <div class="stat-label">Critical</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">1</div>
+                                    <div class="stat-label">Medium</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
         <!-- Footer -->
         <footer class="cybersec-footer">

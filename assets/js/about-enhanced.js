@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const section = this.getAttribute("data-section");
       switchTab(section);
 
+      // Scroll to top of content for better UX when switching tabs
+      window.scrollTo({ top: document.querySelector('.main-content').offsetTop - 20, behavior: 'smooth' });
+
       // Close mobile menu if open
       closeMobileNav();
     });
