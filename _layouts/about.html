@@ -1,114 +1,412 @@
+---
+layout: default
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>About Me</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/about.css' | relative_url }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>About</title>
     <style>
         body {
-            background-color: #0f172a;
-            color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s cubic-bezier;
+            background-color: #f4f4f4;
         }
-        header {
-            backdrop-filter: blur(10px);
+        .container {
+            max-width: 800px;
+            margin: auto;
             padding: 20px;
-            text-align: center;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
-        .hero {
-            text-align: center;
-            padding: 50px;
-            position: relative;
-            overflow: hidden;
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #333;
         }
-        .hero img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            animation: pulse 3s infinite;
+        p {
+            font-size: 1.2em;
+            margin-bottom: 1.5em;
+            color: #666;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
         }
-        .badge {
-            background: linear-gradient(90deg, #10b981, #06b6d4);
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        .badge:hover {
-            transform: scale(1.05);
-        }
-        .skills, .experience, .talks {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            border-radius: 10px;
-            margin: 10px;
-            padding: 20px;
-            width: calc(33% - 40px);
-            transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        @media (max-width: 768px) {
-            .card {
-                width: 100%;
-                margin: 10px 0;
-            }
-        }
-        @media (max-width: 480px) {
-            header, .hero {
-                padding: 20px;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>About Me</h1>
-        <p class="badge">Status: Available</p>
-    </header>
-    <div class="hero">
-        <img src="profile.jpg" alt="Profile Image">
-        <h2>Hi, I'm Your Name!</h2>
-        <div class="skills">
-            <span class="badge">HTML</span>
-            <span class="badge">CSS</span>
-            <span class="badge">JavaScript</span>
+    <div class="cybersec-container">
+        <!-- Animated Background Elements -->
+        <div class="bg-elements">
+            <div class="bg-circle bg-circle-1"></div>
+            <div class="bg-circle bg-circle-2"></div>
+            <div class="bg-circle bg-circle-3"></div>
         </div>
-    </div>
-    <div class="experience">
-        <div class="card">
-            <h3>Job Title</h3>
-            <p>Company Name</p>
-            <span class="badge">2021 - Present</span>
-        </div>
-    </div>
-    <div class="talks">
-        <h3>Talks</h3>
-        <div class="card">
-            <h4>Event Title</h4>
-            <p>Details about the event...</p>
-        </div>
-    </div>
-    <script>
-        // Code for tab navigation and mobile menu toggle
-    </script>
+
+        <!-- Matrix Background Pattern -->
+        <div class="matrix-bg"></div>
+
+        <!-- Header -->
+        <header class="cybersec-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>{{ "Kailash Bohara" }}</h1>
+                            <p>{{ "Cybersecurity Engineer" }}</p>
+                        </div>
+                    </div>
+                    <nav class="main-nav">
+                        <button class="nav-btn active" data-section="about">About</button>
+                        <button class="nav-btn" data-section="experience">Experience</button>
+                        <button class="nav-btn" data-section="talks">Talks</button>
+                    </nav>
+                    <button class="mobile-nav-toggle" id="mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <nav class="mobile-nav" id="mobile-nav">
+                    <button class="nav-btn active" data-section="about">About</button>
+                    <button class="nav-btn" data-section="experience">Experience</button>
+                    <button class="nav-btn" data-section="talks">Talks</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="profile-image">
+                        <div class="image-wrapper">
+                            <img src="{{ page.profile_image | default: '/assets/images/profile.jpg' }}" alt="{{ page.name }}">
+                        </div>
+                        <div class="status-badge">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Securing the
+                        <span class="gradient-text">Digital World</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        {{ page.description | default: "Cybersecurity professional with expertise in penetration testing, vulnerability assessment, and security architecture. Passionate about protecting organizations from evolving cyber threats." }}
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="mailto:{{ page.email }}" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i>
+                            Get In Touch
+                        </a>
+                        <a href="{{ page.portfolio_url }}" class="btn btn-secondary">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Portfolio
+                        </a>
+                    </div>
+
+                    <div class="social-links">
+                        {% if page.linkedin %}
+                        <a href="{{ page.linkedin }}" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.github %}
+                        <a href="{{ page.github }}" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.twitter %}
+                        <a href="{{ page.twitter }}" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <div class="container">
+                <!-- About Tab -->
+                <div class="tab-content active" id="about-tab">
+                    <div class="content-grid">
+                        <!-- About Me Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-user text-emerald"></i>
+                                <h3>About Me</h3>
+                            </div>
+                            <div class="card-content">
+                                {{ content }}
+                            </div>
+                        </div>
+
+                        <!-- Skills Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-bolt text-emerald"></i>
+                                <h3>Core Skills</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="skills-grid">
+                                    {% for skill in page.skills %}
+                                    <span class="skill-badge">{{ skill }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Helped to Secure Section -->
+                    <div class="card helped-section">
+                        <div class="card-header">
+                            <i class="fas fa-shield-check text-emerald"></i>
+                            <h3>Helped to Secure</h3>
+                        </div>
+                        <div class="card-content">
+                            <p class="helped-description">
+                                Identified and reported security vulnerabilities and zero-day flaws in various products and companies through responsible disclosure processes and bug bounty platforms.
+                            </p>
+                            
+                            <!-- Company Icons with Fallback -->
+                            <div class="icon-container">
+                                <!-- Using alternative CDN sources and text fallbacks -->
+                                <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" 
+                                     alt="Google" 
+                                     title="Google"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Google</span>
+
+                                <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
+                                     alt="Facebook" 
+                                     title="Facebook"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Facebook</span>
+
+                                <img class="company-icon aws-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" 
+                                     alt="AWS" 
+                                     title="Amazon Web Services"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">AWS</span>
+
+                                <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg" 
+                                     alt="Adobe" 
+                                     title="Adobe"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Adobe</span>
+
+                                <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" 
+                                     alt="Dell" 
+                                     title="Dell"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Dell</span>
+                                
+                                <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/3/30/ZOHO_logo_2023.svg" 
+                                     alt="Zoho" 
+                                     title="Zoho"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Zoho</span>
+                                
+                                 <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/b/b3/AlibabaCloudLogo.svg" 
+                                     alt="Alibaba" 
+                                     title="Alibaba"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Alibaba Cloud</span>
+                            
+                                <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Toyota.svg" 
+                                     alt="Alibaba" 
+                                     title="Alibaba"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Toyota</span>
+                                
+                                <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/e/ee/UN_emblem_blue.svg" 
+                                     alt="UN" 
+                                     title="UN"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">United Nations</span>
+
+                                <img class="company-icon" 
+                                     src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" 
+                                     alt="Microsoft Windows" 
+                                     title="Microsoft Windows"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Microsoft</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <i class="fas fa-award text-emerald"></i>
+                            <h3>Certifications</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="certifications-grid">
+                                {% for cert in page.certifications %}
+                                <div class="cert-item">
+                                    <h4>{{ cert.name }}</h4>
+                                    <p class="cert-org">{{ cert.org }}</p>
+                                    <p class="cert-year">{{ cert.year }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Tab -->
+                <div class="tab-content" id="experience-tab">
+                    {% for exp in page.experience %}
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="exp-header">
+                                <div class="exp-info">
+                                    <h3>{{ exp.role }}</h3>
+                                    <p class="company">{{ exp.company }}</p>
+                                </div>
+                                <span class="period-badge">{{ exp.period }}</span>
+                            </div>
+                            <p class="exp-description">{{ exp.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Talks Tab -->
+                <div class="tab-content" id="talks-tab">
+                    {% for talk in page.talks %}
+                    <div class="card talk-card">
+                        <div class="card-content">
+                            <div class="talk-header">
+                                <div class="talk-info">
+                                    <h3>{{ talk.title }}</h3>
+                                    <div class="talk-meta">
+                                        <span class="event-badge">
+                                            <i class="fas fa-microphone"></i>
+                                            {{ talk.event }}
+                                        </span>
+                                        <span class="talk-date">{{ talk.date }}</span>
+                                        <span class="talk-location">{{ talk.location }}</span>
+                                    </div>
+                                    <p class="talk-description">{{ talk.description }}</p>
+                                </div>
+                                {% if talk.link %}
+                                <a href="{{ talk.link }}" class="talk-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Speaking Topics -->
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <i class="fas fa-book-open text-emerald"></i>
+                            <h3>Speaking Topics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="topics-grid">
+                                <div class="topic-category">
+                                    <h4>Technical Topics</h4>
+                                    <ul>
+                                        {% for topic in page.technical_topics %}
+                                        <li>{{ topic }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="topic-category">
+                                    <h4>Strategic Topics</h4>
+                                    <ul>
+                                        {% for topic in page.strategic_topics %}
+                                        <li>{{ topic }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="cybersec-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-social">
+                        {% if page.email %}
+                        <a href="mailto:{{ page.email }}" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.linkedin %}
+                        <a href="{{ page.linkedin }}" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.github %}
+                        <a href="{{ page.github }}" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% endif %}
+                        {% if page.twitter %}
+                        <a href="{{ page.twitter }}" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <p>&copy; 2025 </p>
+                </div>
+            </div>
+        </footer>
+    <div class="container fade-in">
+        <h1>About Us</h1>
+        <p>Welcome to our blog! We are passionate about sharing our thoughts and ideas.</p>
+        <p>Our mission is to inspire and engage our readers with high-quality content and an inviting design.</p>
+</div>
+
+    <script src="{{ '/assets/js/about.js' | relative_url }}"></script>
+        <script>
+  document.querySelectorAll('.nav-btn[data-section]').forEach(button => {
+    button.addEventListener('click', () => {
+      const sectionId = button.getAttribute('data-section');
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
