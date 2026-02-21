@@ -43,7 +43,7 @@ layout: default
                         <a href="#experience" class="nav-btn">Experience</a>
                         <a href="#talks" class="nav-btn">Talks</a>
                         <a href="#certifications" class="nav-btn">Certifications</a>
-                        <a href="#cve" class="nav-btn">CVE</a>
+                        <a href="#cve" class="nav-btn">Research</a>
                     </nav>
                     <button class="mobile-nav-toggle" id="mobile-toggle">
                         <i class="fas fa-bars"></i>
@@ -55,7 +55,7 @@ layout: default
                     <a href="#experience" class="nav-btn">Experience</a>
                     <a href="#talks" class="nav-btn">Talks</a>
                     <a href="#certifications" class="nav-btn">Certifications</a>
-                    <a href="#cve" class="nav-btn">CVE</a>
+                    <a href="#cve" class="nav-btn">Research</a>
                 </nav>
             </div>
         </header>
@@ -74,7 +74,7 @@ layout: default
                     </div>
 
                     <div class="hero-text">
-                        <h1 class="hero-title">{{ page.name }}</h1>
+                        <h1 class="hero-title">About me</h1>
                         <p class="hero-role">{{ page.role }}</p>
                         <p class="hero-description">{{ page.description }}</p>
 
@@ -179,6 +179,9 @@ layout: default
                                 
                                 <img class="company-icon" src="https://upload.wikimedia.org/wikipedia/commons/3/30/ZOHO_logo_2023.svg" alt="Zoho" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                                 <span class="company-text" style="display:none;">Zoho</span>
+
+                                <img class="company-icon" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Zoho" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <span class="company-text" style="display:none;">Microsoft</span>
                             </div>
                         </div>
                     </div>
@@ -268,7 +271,7 @@ layout: default
                 <!-- TALKS SECTION -->
                 <section id="talks" class="content-section">
                     <div class="section-header">
-                        <h2 class="section-title">Speaking Engagements</h2>
+                        <h2 class="section-title">Talks and Presentations</h2>
                         <p class="section-subtitle">Talks and Presentations</p>
                     </div>
 
@@ -305,7 +308,7 @@ layout: default
                         {% endfor %}
                     </div>
 
-                    <!-- Speaking Topics -->
+                    <!-- Speaking Topics
                     <div class="card full-width">
                         <div class="card-header">
                             <i class="fas fa-book-open text-emerald"></i>
@@ -332,7 +335,7 @@ layout: default
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> -->
 
                 <!-- CERTIFICATIONS SECTION -->
                 <section id="certifications" class="content-section">
@@ -371,7 +374,7 @@ layout: default
                             <div class="cve-id">CVE-2020-10596</div>
                             <div class="cve-product">Opencart</div>
                             <div class="cve-severity high">High Severity</div>
-                            <p class="cve-description">Critical vulnerability in Opencart e-commerce platform affecting core functionality.</p>
+                            <p class="cve-description">OpenCart 3.0.3.2 allows remote authenticated users to conduct XSS attacks via a crafted filename in the users' image upload section.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-10596" target="_blank" class="cve-link">
                                 View Details <i class="fas fa-external-link-alt"></i>
                             </a>
@@ -381,7 +384,7 @@ layout: default
                             <div class="cve-id">CVE-2020-18723</div>
                             <div class="cve-product">Mdaemon Webmail Service</div>
                             <div class="cve-severity critical">Critical Severity</div>
-                            <p class="cve-description">Critical flaw exposing sensitive user data.</p>
+                            <p class="cve-description">Stored cross-site scripting (XSS) in file attachment field in MDaemon webmail 19.5.5 allows an attacker to execute code on the email recipient side while forwarding an email to perform potentially malicious activities.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-18723" target="_blank" class="cve-link">
                                 View Details <i class="fas fa-external-link-alt"></i>
                             </a>
@@ -391,7 +394,7 @@ layout: default
                             <div class="cve-id">CVE-2020-18724</div>
                             <div class="cve-product">Mdaemon Webmail Service</div>
                             <div class="cve-severity high">High Severity</div>
-                            <p class="cve-description">Authentication bypass vulnerability in Mdaemon Webmail Service.</p>
+                            <p class="cve-description">Authenticated stored cross-site scripting (XSS) in the contact name field in the distribution list of MDaemon webmail 19.5.5</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-18724" target="_blank" class="cve-link">
                                 View Details <i class="fas fa-external-link-alt"></i>
                             </a>
@@ -401,7 +404,7 @@ layout: default
                             <div class="cve-id">CVE-2021-46065</div>
                             <div class="cve-product">Zoho ManageEngine ServiceDesk Plus</div>
                             <div class="cve-severity high">High Severity</div>
-                            <p class="cve-description">Remote Code Execution vulnerability.</p>
+                            <p class="cve-description">Secondary Email Field in Zoho ManageEngine ServiceDesk Plus 11.3 Build 11306 allows an attackers to inject arbitrary JavaScript code.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-46065" target="_blank" class="cve-link">
                                 View Details <i class="fas fa-external-link-alt"></i>
                             </a>
@@ -411,7 +414,7 @@ layout: default
                             <div class="cve-id">CVE-2024-2301</div>
                             <div class="cve-product">HP Printers</div>
                             <div class="cve-severity medium">Medium Severity</div>
-                            <p class="cve-description">Privilege escalation vulnerability in HP printer models.</p>
+                            <p class="cve-description">Stored cross-site scripting (XSS) vulnerability in HP printer web interface.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-2301" target="_blank" class="cve-link">
                                 View Details <i class="fas fa-external-link-alt"></i>
                             </a>
@@ -449,7 +452,7 @@ layout: default
                         </a>
                         {% endif %}
                     </div>
-                    <p>&copy; 2025 </p>
+                    <p>&copy; 2026 </p>
                 </div>
             </div>
         </footer>
