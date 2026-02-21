@@ -38,24 +38,24 @@ layout: default
                         </div>
                     </div>
                     <nav class="main-nav">
-                        <button class="nav-btn active" data-section="about">About</button>
-                        <button class="nav-btn" data-section="experience">Experience</button>
-                        <button class="nav-btn" data-section="talks">Talks</button>
-                        <button class="nav-btn" data-section="certifications">Certifications</button>
-                        <button class="nav-btn" data-section="hacktivity">Hacktivity</button>
-                        <button class="nav-btn" data-section="cve">CVE</button>
+                        <a href="#about" class="nav-btn active">About</a>
+                        <a href="#hacktivity" class="nav-btn">Hacktivity</a>
+                        <a href="#experience" class="nav-btn">Experience</a>
+                        <a href="#talks" class="nav-btn">Talks</a>
+                        <a href="#certifications" class="nav-btn">Certifications</a>
+                        <a href="#cve" class="nav-btn">CVE</a>
                     </nav>
                     <button class="mobile-nav-toggle" id="mobile-toggle">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
                 <nav class="mobile-nav" id="mobile-nav">
-                    <button class="nav-btn active" data-section="about">About</button>
-                    <button class="nav-btn" data-section="experience">Experience</button>
-                    <button class="nav-btn" data-section="talks">Talks</button>
-                    <button class="nav-btn" data-section="certifications">Certifications</button>
-                    <button class="nav-btn" data-section="hacktivity">Hacktivity</button>
-                    <button class="nav-btn" data-section="cve">CVE</button>
+                    <a href="#about" class="nav-btn">About</a>
+                    <a href="#hacktivity" class="nav-btn">Hacktivity</a>
+                    <a href="#experience" class="nav-btn">Experience</a>
+                    <a href="#talks" class="nav-btn">Talks</a>
+                    <a href="#certifications" class="nav-btn">Certifications</a>
+                    <a href="#cve" class="nav-btn">CVE</a>
                 </nav>
             </div>
         </header>
@@ -73,58 +73,60 @@ layout: default
                         </div>
                     </div>
 
-                    <h1 class="hero-title">
-                        Securing the
-                        <span class="gradient-text">Digital World</span>
-                    </h1>
+                    <div class="hero-text">
+                        <h1 class="hero-title">{{ page.name }}</h1>
+                        <p class="hero-role">{{ page.role }}</p>
+                        <p class="hero-description">{{ page.description }}</p>
 
-                    <p class="hero-description">
-                        {{ page.description | default: "Cybersecurity professional with expertise in penetration testing, vulnerability assessment, and security architecture. Passionate about protecting organizations from evolving cyber threats." }}
-                    </p>
+                        <div class="hero-buttons">
+                            <a href="mailto:{{ page.email }}" class="btn btn-primary">
+                                <i class="fas fa-envelope"></i>
+                                Get In Touch
+                            </a>
+                            <a href="{{ page.portfolio_url }}" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Portfolio
+                            </a>
+                        </div>
 
-                    <div class="hero-buttons">
-                        <a href="mailto:{{ page.email }}" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i>
-                            Get In Touch
-                        </a>
-                        <a href="{{ page.portfolio_url }}" class="btn btn-secondary">
-                            <i class="fas fa-external-link-alt"></i>
-                            View Portfolio
-                        </a>
-                    </div>
-
-                    <div class="social-links">
-                        {% if page.linkedin %}
-                        <a href="{{ page.linkedin }}" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        {% endif %}
-                        {% if page.github %}
-                        <a href="{{ page.github }}" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        {% endif %}
-                        {% if page.twitter %}
-                        <a href="{{ page.twitter }}" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        {% endif %}
+                        <div class="social-links">
+                            {% if page.linkedin %}
+                            <a href="{{ page.linkedin }}" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            {% endif %}
+                            {% if page.github %}
+                            <a href="{{ page.github }}" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            {% endif %}
+                            {% if page.twitter %}
+                            <a href="{{ page.twitter }}" target="_blank" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Main Content -->
+        <!-- Main Content - Single Page Layout -->
         <section class="main-content">
             <div class="container">
-                <!-- About Tab -->
-                <div class="tab-content active" id="about-tab">
+                <!-- ABOUT SECTION -->
+                <section id="about" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">About Me</h2>
+                        <p class="section-subtitle">Professional Profile & Overview</p>
+                    </div>
+
                     <div class="content-grid">
-                        <!-- About Me Card -->
+                        <!-- About Card -->
                         <div class="card">
                             <div class="card-header">
                                 <i class="fas fa-user text-emerald"></i>
-                                <h3>About Me</h3>
+                                <h3>Who I Am</h3>
                             </div>
                             <div class="card-content">
                                 {{ content }}
@@ -160,196 +162,42 @@ layout: default
                             
                             <!-- Company Icons with Fallback -->
                             <div class="icon-container">
-                                <!-- Using alternative CDN sources and text fallbacks -->
-                                <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" 
-                                     alt="Google" 
-                                     title="Google"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <img class="company-icon" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                                 <span class="company-text" style="display:none;">Google</span>
 
-                                <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
-                                     alt="Facebook" 
-                                     title="Facebook"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <img class="company-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                                 <span class="company-text" style="display:none;">Facebook</span>
 
-                                <img class="company-icon aws-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" 
-                                     alt="AWS" 
-                                     title="Amazon Web Services"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <img class="company-icon aws-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                                 <span class="company-text" style="display:none;">AWS</span>
 
-                                <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg" 
-                                     alt="Adobe" 
-                                     title="Adobe"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <img class="company-icon" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg" alt="Adobe" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                                 <span class="company-text" style="display:none;">Adobe</span>
 
-                                <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" 
-                                     alt="Dell" 
-                                     title="Dell"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <img class="company-icon" src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                                 <span class="company-text" style="display:none;">Dell</span>
                                 
-                                <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/3/30/ZOHO_logo_2023.svg" 
-                                     alt="Zoho" 
-                                     title="Zoho"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <img class="company-icon" src="https://upload.wikimedia.org/wikipedia/commons/3/30/ZOHO_logo_2023.svg" alt="Zoho" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                                 <span class="company-text" style="display:none;">Zoho</span>
-                                
-                                 <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/b/b3/AlibabaCloudLogo.svg" 
-                                     alt="Alibaba" 
-                                     title="Alibaba"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-                                <span class="company-text" style="display:none;">Alibaba Cloud</span>
-                            
-                                <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Toyota.svg" 
-                                     alt="Alibaba" 
-                                     title="Alibaba"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-                                <span class="company-text" style="display:none;">Toyota</span>
-                                
-                                <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/e/ee/UN_emblem_blue.svg" 
-                                     alt="UN" 
-                                     title="UN"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-                                <span class="company-text" style="display:none;">United Nations</span>
-
-                                <img class="company-icon" 
-                                     src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" 
-                                     alt="Microsoft Windows" 
-                                     title="Microsoft Windows"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-                                <span class="company-text" style="display:none;">Microsoft</span>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <!-- Certifications (moved to its own tab) -->
-                </div>
-
-                <!-- Experience Tab -->
-                <div class="tab-content" id="experience-tab">
-                    {% for exp in page.experience %}
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="exp-header">
-                                <div class="exp-info">
-                                    <h3>{{ exp.role }}</h3>
-                                    <p class="company">{{ exp.company }}</p>
-                                </div>
-                                <span class="period-badge">{{ exp.period }}</span>
-                            </div>
-                            <p class="exp-description">{{ exp.description }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-
-                <!-- Talks Tab -->
-                <div class="tab-content" id="talks-tab">
-                    {% for talk in page.talks %}
-                    <div class="card talk-card">
-                        <div class="card-content">
-                            <div class="talk-header">
-                                <div class="talk-info">
-                                    <h3>{{ talk.title }}</h3>
-                                    <div class="talk-meta">
-                                        <span class="event-badge">
-                                            <i class="fas fa-microphone"></i>
-                                            {{ talk.event }}
-                                        </span>
-                                        <span class="talk-date">{{ talk.date }}</span>
-                                        <span class="talk-location">{{ talk.location }}</span>
-                                    </div>
-                                    <p class="talk-description">{{ talk.description }}</p>
-                                </div>
-                                {% if talk.link %}
-                                <a href="{{ talk.link }}" class="talk-link">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                    <!-- Speaking Topics -->
-                    <div class="card full-width">
-                        <div class="card-header">
-                            <i class="fas fa-book-open text-emerald"></i>
-                            <h3>Speaking Topics</h3>
-                        </div>
-                        <div class="card-content">
-                            <div class="topics-grid">
-                                <div class="topic-category">
-                                    <h4>Technical Topics</h4>
-                                    <ul>
-                                        {% for topic in page.technical_topics %}
-                                        <li>{{ topic }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                                <div class="topic-category">
-                                    <h4>Strategic Topics</h4>
-                                    <ul>
-                                        {% for topic in page.strategic_topics %}
-                                        <li>{{ topic }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-                <!-- Certifications Tab -->
-                <div class="tab-content" id="certifications-tab">
-                    <div class="section-title">
-                        <h2>Certifications & Credentials</h2>
-                        <p>Professional certifications and qualifications</p>
-                    </div>
-                    <div class="card full-width">
-                        <div class="card-content">
-                            <div class="certifications-grid">
-                                {% for cert in page.certifications %}
-                                <div class="cert-card">
-                                    <div class="cert-logo-wrapper">
-                                        <img src="{{ cert.logo | default: '/assets/images/cert-placeholder.svg' }}" alt="{{ cert.name }}" class="cert-logo" onerror="this.onerror=null;this.src='{{ '/assets/images/cert-placeholder.svg' | relative_url }}'">
-                                    </div>
-                                    <h4>{{ cert.name }}</h4>
-                                    <p class="cert-issuer">{{ cert.org }}</p>
-                                    <span class="cert-year-badge">{{ cert.year }}</span>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
+                <!-- HACKTIVITY SECTION -->
+                <section id="hacktivity" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Hacktivity</h2>
+                        <p class="section-subtitle">Bug Bounty Discoveries & Responsible Disclosures</p>
                     </div>
 
-                <!-- Hacktivity Tab -->
-                <div class="tab-content" id="hacktivity-tab">
-                    <div class="section-title">
-                        <h2>Hacktivity</h2>
-                        <p>Bug bounty discoveries and responsible disclosures</p>
-                    </div>
                     <div class="hacktivity-timeline">
                         {% for activity in page.hacktivity %}
                         <div class="hacktivity-item">
                             <div class="hacktivity-marker">
                                 <i class="fas fa-bug"></i>
                             </div>
-                            <div class="hacktivity-content">
+                            <div class="hacktivity-content card">
                                 <div class="hacktivity-header">
                                     <h3>{{ activity.title }}</h3>
                                     <span class="hacktivity-date">
@@ -359,17 +207,26 @@ layout: default
                                 </div>
                                 <p class="hacktivity-platform">
                                     <i class="fas fa-globe"></i>
-                                    {{ activity.platform }}
+                                    <strong>{{ activity.platform }}</strong>
                                 </p>
+                                {% if activity.severity %}
+                                <p class="hacktivity-severity">
+                                    <strong>Severity:</strong> <span class="severity-badge {{ activity.severity | downcase }}">{{ activity.severity }}</span>
+                                </p>
+                                {% endif %}
                                 <p class="hacktivity-description">{{ activity.description }}</p>
+                                {% if activity.bounty %}
+                                <p class="hacktivity-bounty">
+                                    <strong>Bounty:</strong> {{ activity.bounty }}
+                                </p>
+                                {% endif %}
+                                {% if activity.tags %}
                                 <div class="hacktivity-tags">
                                     {% for tag in activity.tags %}
                                     <span class="hacktivity-tag">{{ tag }}</span>
                                     {% endfor %}
-                                    {% if activity.bounty %}
-                                    <span class="hacktivity-tag bounty">{{ activity.bounty }}</span>
-                                    {% endif %}
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
                         {% endfor %}
@@ -385,30 +242,156 @@ layout: default
                             <div class="stats-grid">
                                 <div class="stat-item">
                                     <div class="stat-number">{{ page.hacktivity | size }}</div>
-                                    <div class="stat-label">Vulnerabilities Found</div>
+                                    <div class="stat-label">Total Discoveries</div>
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-number">$18,500</div>
-                                    <div class="stat-label">Total Bounty Earned</div>
+                                    <div class="stat-label">Bounties Earned</div>
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-number">100%</div>
-                                    <div class="stat-label">Resolved Issues</div>
+                                    <div class="stat-label">Resolution Rate</div>
                                 </div>
                                 <div class="stat-item">
-                                    <div class="stat-number">8</div>
+                                    <div class="stat-number">3</div>
                                     <div class="stat-label">Platforms</div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                <!-- CVE Tab -->
-                <div class="tab-content" id="cve-tab">
-                    <div class="section-title">
-                        <h2>CVE Disclosures</h2>
-                        <p>Security vulnerabilities identified and responsibly disclosed</p>
+                <!-- EXPERIENCE SECTION -->
+                <section id="experience" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Experience</h2>
+                        <p class="section-subtitle">Professional Work History</p>
                     </div>
+
+                    <div class="experience-list">
+                        {% for exp in page.experience %}
+                        <div class="card experience-card">
+                            <div class="experience-timeline-marker"></div>
+                            <div class="exp-header">
+                                <div class="exp-info">
+                                    <h3 class="exp-role">{{ exp.role }}</h3>
+                                    <p class="exp-company">
+                                        <i class="fas fa-building"></i>
+                                        {{ exp.company }}
+                                    </p>
+                                </div>
+                                <span class="period-badge">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    {{ exp.period }}
+                                </span>
+                            </div>
+                            <p class="exp-description">{{ exp.description }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <!-- TALKS SECTION -->
+                <section id="talks" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Speaking Engagements</h2>
+                        <p class="section-subtitle">Talks and Presentations</p>
+                    </div>
+
+                    <div class="talks-grid">
+                        {% for talk in page.talks %}
+                        <div class="card talk-card">
+                            <div class="talk-header">
+                                <div>
+                                    <h4 class="talk-title">{{ talk.title }}</h4>
+                                    <p class="talk-event">{{ talk.event }}</p>
+                                </div>
+                                <span class="talk-badge">
+                                    <i class="fas fa-microphone"></i>
+                                    Speaker
+                                </span>
+                            </div>
+                            <div class="talk-content">
+                                <div class="talk-location">
+                                    <i class="fas fa-map-pin"></i>
+                                    {{ talk.location }}
+                                </div>
+                                <div class="talk-date">
+                                    <i class="fas fa-calendar"></i>
+                                    {{ talk.date }}
+                                </div>
+                                <p class="talk-description">{{ talk.description }}</p>
+                            </div>
+                            <div class="talk-footer">
+                                <a href="{{ talk.link }}" target="_blank" class="talk-link">
+                                    View Details <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Speaking Topics -->
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <i class="fas fa-book-open text-emerald"></i>
+                            <h3>Speaking Topics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="topics-grid">
+                                <div class="topic-category">
+                                    <h4><i class="fas fa-code text-emerald"></i> Technical Topics</h4>
+                                    <ul>
+                                        {% for topic in page.technical_topics %}
+                                        <li>{{ topic }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="topic-category">
+                                    <h4><i class="fas fa-chart-line text-emerald"></i> Strategic Topics</h4>
+                                    <ul>
+                                        {% for topic in page.strategic_topics %}
+                                        <li>{{ topic }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CERTIFICATIONS SECTION -->
+                <section id="certifications" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Certifications</h2>
+                        <p class="section-subtitle">Professional Credentials & Qualifications</p>
+                    </div>
+
+                    <div class="card full-width">
+                        <div class="card-content">
+                            <div class="certifications-grid">
+                                {% for cert in page.certifications %}
+                                <div class="cert-card">
+                                    <div class="cert-logo-wrapper">
+                                        <img src="{{ cert.logo }}" alt="{{ cert.name }}" class="cert-logo">
+                                    </div>
+                                    <h4>{{ cert.name }}</h4>
+                                    <p class="cert-issuer">{{ cert.org }}</p>
+                                    <span class="cert-year-badge">{{ cert.year }}</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CVE SECTION -->
+                <section id="cve" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">CVE Disclosures</h2>
+                        <p class="section-subtitle">Security Vulnerabilities Responsibly Disclosed</p>
+                    </div>
+
                     <div class="cve-grid">
                         <div class="cve-card">
                             <div class="cve-id">CVE-2020-10596</div>
@@ -416,7 +399,7 @@ layout: default
                             <div class="cve-severity high">High Severity</div>
                             <p class="cve-description">Critical vulnerability in Opencart e-commerce platform affecting core functionality.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-10596" target="_blank" class="cve-link">
-                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                                View Details <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
 
@@ -424,9 +407,9 @@ layout: default
                             <div class="cve-id">CVE-2020-18723</div>
                             <div class="cve-product">Mdaemon Webmail Service</div>
                             <div class="cve-severity critical">Critical Severity</div>
-                            <p class="cve-description">Critical flaw in Mdaemon Webmail Service exposing sensitive user data.</p>
+                            <p class="cve-description">Critical flaw exposing sensitive user data.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-18723" target="_blank" class="cve-link">
-                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                                View Details <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
 
@@ -436,7 +419,7 @@ layout: default
                             <div class="cve-severity high">High Severity</div>
                             <p class="cve-description">Authentication bypass vulnerability in Mdaemon Webmail Service.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-18724" target="_blank" class="cve-link">
-                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                                View Details <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
 
@@ -444,9 +427,9 @@ layout: default
                             <div class="cve-id">CVE-2021-46065</div>
                             <div class="cve-product">Zoho ManageEngine ServiceDesk Plus</div>
                             <div class="cve-severity high">High Severity</div>
-                            <p class="cve-description">Remote Code Execution vulnerability in Zoho ManageEngine ServiceDesk Plus.</p>
+                            <p class="cve-description">Remote Code Execution vulnerability.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-46065" target="_blank" class="cve-link">
-                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                                View Details <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
 
@@ -454,9 +437,9 @@ layout: default
                             <div class="cve-id">CVE-2024-2301</div>
                             <div class="cve-product">HP Printers</div>
                             <div class="cve-severity medium">Medium Severity</div>
-                            <p class="cve-description">Privilege escalation vulnerability affecting multiple HP printer models.</p>
+                            <p class="cve-description">Privilege escalation vulnerability in HP printer models.</p>
                             <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-2301" target="_blank" class="cve-link">
-                                View CVE Details <i class="fas fa-external-link-alt"></i>
+                                View Details <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                     </div>
@@ -488,6 +471,9 @@ layout: default
                             </div>
                         </div>
                     </div>
+                </section>
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer class="cybersec-footer">

@@ -17,6 +17,11 @@ body {
     overflow-x: hidden;
 }
 
+/* Active nav styling through JavaScript */
+html {
+    scroll-behavior: smooth;
+}
+
 .cybersec-container {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 244, 0.95) 100%);
     backdrop-filter: blur(10px);
@@ -392,30 +397,30 @@ body {
     z-index: 2;
 }
 
-.main-content .container {
-    max-width: 1200px;
-    margin: 0 auto;
+.content-section {
+    margin-bottom: 5rem;
+    scroll-margin-top: 100px;
 }
 
-/* TAB CONTENT */
-.tab-content {
-    display: none;
-    animation: fadeIn 0.5s ease;
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-.tab-content.active {
-    display: block;
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1f2937, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 0.5rem;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.section-subtitle {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
 }
 
 /* CARD STYLES */
@@ -579,11 +584,18 @@ body {
     font-size: 0.9rem;
 }
 
-/* EXPERIENCE SECTION */
+/**EXPERIENCE SECTION */
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .experience-card {
     position: relative;
     margin-left: 2rem;
     border-left: 3px solid rgba(16, 185, 129, 0.3);
+    padding-left: 2rem !important;
     transition: all 0.3s ease;
 }
 
@@ -984,36 +996,38 @@ body {
    ============================================ */
 
 .hacktivity-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
     position: relative;
-    padding: 2rem 0 3rem;
 }
 
 .hacktivity-timeline::before {
     content: '';
     position: absolute;
-    left: 50%;
-    top: 0;
+    left: 30px;
+    top: 40px;
     bottom: 0;
     width: 2px;
     background: linear-gradient(180deg, 
         rgba(16, 185, 129, 0.5) 0%, 
         rgba(16, 185, 129, 0.2) 50%, 
         transparent 100%);
-    transform: translateX(-50%);
 }
 
 .hacktivity-item {
+    display: flex;
+    gap: 2rem;
     position: relative;
-    margin-bottom: 2.5rem;
-    padding: 2rem;
 }
 
 .hacktivity-marker {
-    position: absolute;
-    left: 50%;
-    top: 2rem;
-    width: 50px;
-    height: 50px;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
     background: linear-gradient(135deg, #10b981, #059669);
     border-radius: 50%;
     display: flex;
@@ -1021,40 +1035,25 @@ body {
     justify-content: center;
     color: white;
     font-size: 1.5rem;
-    transform: translateX(-50%);
-    box-shadow: 0 0 0 4px white, 0 0 0 8px rgba(16, 185, 129, 0.2);
-    z-index: 10;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 1),
+        0 0 0 8px rgba(16, 185, 129, 0.2);
     animation: pulseMarker 2s ease-in-out infinite;
 }
 
 @keyframes pulseMarker {
-    0%, 100% {
-        box-shadow: 0 0 0 4px white, 0 0 0 8px rgba(16, 185, 129, 0.2);
-    }
-    50% {
-        box-shadow: 0 0 0 4px white, 0 0 0 12px rgba(16, 185, 129, 0.3);
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 .hacktivity-content {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, rgba(59, 130, 246, 0.03) 100%);
-    border: 1px solid rgba(16, 185, 129, 0.2);
-    border-radius: 0.75rem;
-    padding: 1.75rem;
-    margin-left: 8%;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.hacktivity-item:nth-child(even) .hacktivity-content {
-    margin-left: 0;
-    margin-right: 8%;
-}
-
-.hacktivity-content:hover {
-    border-color: rgba(16, 185, 129, 0.4);
-    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.1);
-    transform: translateY(-4px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    padding: 1.5rem !important;
 }
 
 .hacktivity-header {
@@ -1062,25 +1061,21 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .hacktivity-header h3 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: #1f2937;
     margin: 0;
-    line-height: 1.4;
 }
 
 .hacktivity-date {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
     color: #10b981;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
     font-size: 0.85rem;
     font-weight: 600;
     white-space: nowrap;
@@ -1090,42 +1085,78 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #059669;
+    color: #4b5563;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.hacktivity-severity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.severity-badge {
+    padding: 0.2rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
     font-weight: 600;
-    font-size: 0.95rem;
-    margin: 0.75rem 0;
+    text-transform: uppercase;
+}
+
+.severity-badge.critical {
+    background: rgba(239, 68, 68, 0.2);
+    color: #dc2626;
+}
+
+.severity-badge.high {
+    background: rgba(249, 115, 22, 0.2);
+    color: #ea580c;
+}
+
+.severity-badge.medium {
+    background: rgba(251, 191, 36, 0.2);
+    color: #f59e0b;
 }
 
 .hacktivity-description {
     color: #4b5563;
+    font-size: 0.95rem;
+    margin: 0;
     line-height: 1.6;
-    margin: 1rem 0;
+}
+
+.hacktivity-bounty {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 .hacktivity-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1rem;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .hacktivity-tag {
     display: inline-block;
-    padding: 0.5rem 1rem;
     background: rgba(16, 185, 129, 0.1);
     color: #10b981;
+    padding: 0.3rem 0.75rem;
     border-radius: 50px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 1px solid rgba(16, 185, 129, 0.2);
     transition: all 0.3s ease;
 }
 
 .hacktivity-tag:hover {
     background: rgba(16, 185, 129, 0.2);
-    border-color: rgba(16, 185, 129, 0.4);
+    transform: translateY(-2px);
 }
 
 .hacktivity-stats {
