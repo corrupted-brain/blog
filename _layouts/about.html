@@ -37,7 +37,7 @@ layout: default
                             <p>{{ "Cybersecurity Engineer" }}</p>
                         </div>
                     </div>
-                    <nav class="main-nav">
+                    <nav class="main-nav" style="flex-wrap: nowrap; white-space: nowrap;">
                         <a href="#about" class="nav-btn active">About</a>
                         <a href="#hacktivity" class="nav-btn">Hacktivity</a>
                         <a href="#experience" class="nav-btn">Experience</a>
@@ -232,33 +232,7 @@ layout: default
                         {% endfor %}
                     </div>
 
-                    <!-- Hacktivity Statistics -->
-                    <div class="card full-width hacktivity-stats">
-                        <div class="card-header">
-                            <i class="fas fa-chart-bar text-emerald"></i>
-                            <h3>Bug Bounty Statistics</h3>
-                        </div>
-                        <div class="card-content">
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <div class="stat-number">{{ page.hacktivity | size }}</div>
-                                    <div class="stat-label">Total Discoveries</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">$18,500</div>
-                                    <div class="stat-label">Bounties Earned</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">100%</div>
-                                    <div class="stat-label">Resolution Rate</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">3</div>
-                                    <div class="stat-label">Platforms</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </section>
 
                 <!-- EXPERIENCE SECTION -->
@@ -444,33 +418,7 @@ layout: default
                         </div>
                     </div>
 
-                    <!-- CVE Statistics -->
-                    <div class="card full-width cve-stats">
-                        <div class="card-header">
-                            <i class="fas fa-chart-bar text-emerald"></i>
-                            <h3>CVE Statistics</h3>
-                        </div>
-                        <div class="card-content">
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <div class="stat-number">5</div>
-                                    <div class="stat-label">Total CVEs</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">3</div>
-                                    <div class="stat-label">High Severity</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">1</div>
-                                    <div class="stat-label">Critical</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">1</div>
-                                    <div class="stat-label">Medium</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </section>
             </div>
         </section>
