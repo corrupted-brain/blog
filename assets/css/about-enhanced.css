@@ -6,7 +6,7 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
 }
 
 body {
@@ -15,6 +15,14 @@ body {
     color: #1f2937;
     line-height: 1.6;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+@supports not (padding: clamp(1rem, 5vw, 2rem)) {
+    html {
+        font-size: 16px;
+    }
 }
 
 /* Active nav styling through JavaScript */
@@ -141,7 +149,7 @@ html {
 }
 
 .logo-text h1 {
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 3vw, 1.3rem);
     font-weight: 700;
     color: #1f2937;
     margin: 0;
@@ -234,7 +242,7 @@ html {
 
 /* HERO SECTION */
 .hero-section {
-    padding: 4rem 0;
+    padding: clamp(2rem, 10vw, 4rem) 0;
     position: relative;
     z-index: 2;
 }
@@ -254,8 +262,8 @@ html {
 }
 
 .image-wrapper {
-    width: 280px;
-    height: 280px;
+    width: clamp(150px, 50vw, 280px);
+    height: clamp(150px, 50vw, 280px);
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid rgba(16, 185, 129, 0.3);
@@ -296,7 +304,7 @@ html {
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: clamp(1.75rem, 8vw, 3.5rem);
     font-weight: 800;
     line-height: 1.2;
     color: #1f2937;
@@ -311,7 +319,7 @@ html {
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
     color: #4b5563;
     line-height: 1.8;
     margin-bottom: 2rem;
@@ -319,13 +327,21 @@ html {
 
 .hero-buttons {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
     margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+    .hero-buttons {
+        flex-direction: row;
+    }
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     padding: 0.875rem 1.75rem;
     border-radius: 0.5rem;
@@ -334,7 +350,14 @@ html {
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .btn {
+        width: auto;
+    }
 }
 
 .btn-primary {
@@ -391,7 +414,7 @@ html {
 
 /* MAIN CONTENT */
 .main-content {
-    padding: 4rem 0;
+    padding: clamp(2rem, 10vw, 4rem) 0;
     background: transparent;
     position: relative;
     z-index: 2;
@@ -408,7 +431,7 @@ html {
 }
 
 .section-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
     font-weight: 800;
     background: linear-gradient(135deg, #1f2937, #10b981);
     -webkit-background-clip: text;
@@ -429,7 +452,7 @@ html {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(16, 185, 129, 0.15);
     border-radius: 1rem;
-    padding: 2rem;
+    padding: clamp(1rem, 5vw, 2rem);
     margin-bottom: 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -498,13 +521,14 @@ html {
 }
 
 .section-title h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
     font-weight: 800;
     background: linear-gradient(135deg, #1f2937, #10b981);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin: 0 0 0.5rem;
+    word-break: break-word;
 }
 
 .section-title p {
@@ -560,17 +584,19 @@ html {
 .icon-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: clamp(1rem, 5vw, 2rem);
     align-items: center;
     justify-content: center;
+    padding: 0;
 }
 
 .company-icon {
-    height: 50px;
+    height: clamp(40px, 12vw, 50px);
     width: auto;
     opacity: 0.7;
     transition: all 0.3s ease;
     filter: grayscale(50%);
+    max-width: 100%;
 }
 
 .company-icon:hover {
@@ -1462,19 +1488,19 @@ html {
     }
 
     .hero-title {
-        font-size: 2.8rem;
+        font-size: clamp(2rem, 7vw, 2.8rem);
     }
 
     .talks-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .cve-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .section-title h2 {
-        font-size: 2rem;
+        font-size: clamp(1.6rem, 6vw, 2rem);
     }
 
     .hacktivity-timeline::before {
@@ -1500,7 +1526,7 @@ html {
     }
 
     .certifications-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .cybersec-footer {
@@ -1522,8 +1548,21 @@ html {
         display: block;
     }
 
+    .nav-btn {
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        padding: 0.5rem 0.75rem;
+    }
+
     .hero-title {
-        font-size: 2.2rem;
+        font-size: clamp(1.5rem, 6vw, 2.2rem);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
     }
 
     .talks-grid {
@@ -1535,43 +1574,53 @@ html {
     }
 
     .certifications-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
     .section-title h2 {
-        font-size: 1.75rem;
+        font-size: clamp(1.4rem, 5vw, 1.75rem);
     }
 
     .experience-card {
         margin-left: 1.5rem;
+        padding-left: 1.5rem !important;
+        padding-right: 1rem !important;
     }
 
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     .hacktivity-timeline::before {
-        left: 20px;
+        left: 16px;
     }
 
     .hacktivity-marker {
-        left: 20px;
+        left: 16px;
         width: 40px;
         height: 40px;
         font-size: 1.1rem;
+        flex-shrink: 0;
     }
 
     .hacktivity-item {
-        padding: 1.5rem;
+        padding: 1rem;
+        gap: 1rem;
     }
 
     .hacktivity-content {
-        padding: 1.5rem;
-        padding-left: 80px;
+        padding: 1rem;
+        padding-left: clamp(70px, 15vw, 80px);
+    }
+
+    .hacktivity-header {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
     .hacktivity-header h3 {
-        font-size: 1.1rem;
+        font-size: clamp(0.95rem, 4vw, 1.1rem);
     }
 
     .hacktivity-tags {
@@ -1579,8 +1628,18 @@ html {
     }
 
     .hacktivity-tag {
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .card-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .card-header i {
+        font-size: 1.25rem;
     }
 
     .cybersec-footer {
@@ -1589,7 +1648,8 @@ html {
     }
 
     .footer-social {
-        gap: 1.25rem;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
 
     .cybersec-footer .social-link {
@@ -1599,7 +1659,7 @@ html {
     }
 
     .cybersec-footer p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .back-to-top {
@@ -1609,112 +1669,448 @@ html {
         height: 48px;
         font-size: 1.1rem;
     }
-}
-
-@media (max-width: 480px) {
-    .header-content {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .logo-text h1 {
-        font-size: 1.1rem;
-    }
-
-    .hero-title {
-        font-size: 1.8rem;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .image-wrapper {
-        width: 200px;
-        height: 200px;
-    }
 
     .content-grid {
         grid-template-columns: 1fr;
     }
 
-    .skills-grid {
-        grid-template-columns: 1fr;
+    .exp-header {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
-    .hacktivity-timeline::before {
-        left: 15px;
-    }
-
-    .hacktivity-marker {
-        left: 15px;
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
-    }
-
-    .hacktivity-item {
-        margin-bottom: 2rem;
-        padding: 1rem;
-    }
-
-    .hacktivity-content {
-        padding: 1rem;
-        padding-left: 70px;
-        margin-top: 1rem;
-    }
-
-    .hacktivity-header h3 {
-        font-size: 1rem;
-    }
-
-    .hacktivity-date {
+    .period-badge {
+        align-self: flex-start;
         font-size: 0.75rem;
         padding: 0.4rem 0.8rem;
     }
+}
 
-    .hacktivity-platform {
-        font-size: 0.85rem;
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 0.75rem 0;
     }
 
-    .hacktivity-description {
-        font-size: 0.9rem;
-        margin: 0.75rem 0;
+    .logo-section {
+        gap: 0.5rem;
+        flex: 1;
+        min-width: 0;
     }
 
-    .cybersec-footer {
-        padding: 2rem 0 1rem;
-        margin-top: 3rem;
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
     }
 
-    .footer-content {
+    .logo-text h1 {
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    }
+
+    .logo-text p {
+        font-size: 0.65rem;
+        letter-spacing: 0.02em;
+    }
+
+    .mobile-nav-toggle {
+        font-size: 1.25rem;
+        padding: 0.25rem;
+    }
+
+    .mobile-nav {
+        padding: 0.75rem;
+    }
+
+    .hero-section {
+        padding: 1.5rem 0;
+    }
+
+    .hero-content {
         gap: 1.5rem;
     }
 
-    .footer-social {
-        gap: 1rem;
+    .hero-title {
+        font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+        margin-bottom: 0.75rem;
     }
 
-    .cybersec-footer .social-link {
-        width: 42px;
-        height: 42px;
+    .hero-description {
+        font-size: clamp(0.85rem, 2.5vw, 1rem);
+        margin-bottom: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.75rem 1.25rem;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
         font-size: 1rem;
     }
 
-    .cybersec-footer p {
+    .image-wrapper {
+        width: clamp(140px, 40vw, 200px);
+        height: clamp(140px, 40vw, 200px);
+    }
+
+    .status-badge {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .content-section {
+        margin-bottom: 2.5rem;
+        scroll-margin-top: 80px;
+    }
+
+    .section-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.2rem, 5vw, 1.5rem);
+    }
+
+    .section-subtitle {
         font-size: 0.85rem;
+    }
+
+    .card {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0.75rem;
+    }
+
+    .card-header {
+        gap: 0.5rem;
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-header h3 {
+        font-size: clamp(1rem, 3vw, 1.3rem);
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .skill-badge {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.5rem;
+    }
+
+    .icon-container {
+        gap: 0.75rem;
+        padding: 1rem 0.75rem;
+    }
+
+    .company-icon {
+        height: clamp(35px, 10vw, 45px);
+    }
+
+    .company-text {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+        white-space: nowrap;
+    }
+
+    .experience-card {
+        margin-left: 1rem;
+        padding-left: 1rem !important;
+        padding-right: 0.75rem !important;
+    }
+
+    .experience-timeline-marker {
+        left: -10px;
+        top: 1.5rem;
+        width: 14px;
+        height: 14px;
+    }
+
+    .exp-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .exp-role {
+        font-size: clamp(1.1rem, 4vw, 1.3rem);
+        margin: 0 0 0.25rem;
+    }
+
+    .exp-company {
+        font-size: 0.9rem;
+    }
+
+    .period-badge {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.65rem;
+    }
+
+    .exp-description {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hacktivity-timeline {
+        gap: 1.5rem;
+    }
+
+    .hacktivity-timeline::before {
+        left: 13px;
+        top: 30px;
+    }
+
+    .hacktivity-marker {
+        left: 13px;
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    .hacktivity-item {
+        margin-bottom: 0;
+        padding: 0;
+        gap: 1rem;
+    }
+
+    .hacktivity-content {
+        padding: 0.85rem;
+        padding-left: clamp(60px, 12vw, 70px);
+        margin-top: 0;
+    }
+
+    .hacktivity-header {
+        flex-direction: column;
+        gap: 0.35rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hacktivity-header h3 {
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        margin: 0;
+    }
+
+    .hacktivity-date {
+        font-size: 0.7rem;
+        white-space: normal;
+    }
+
+    .hacktivity-platform {
+        font-size: 0.8rem;
+        margin: 0.25rem 0;
+    }
+
+    .hacktivity-severity {
+        font-size: 0.8rem;
+    }
+
+    .severity-badge {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.5rem;
+    }
+
+    .hacktivity-description {
+        font-size: 0.85rem;
+        margin: 0.5rem 0;
+    }
+
+    .hacktivity-bounty {
+        font-size: 0.8rem;
+    }
+
+    .hacktivity-tags {
+        gap: 0.35rem;
+        margin-top: 0.35rem;
+    }
+
+    .hacktivity-tag {
+        font-size: 0.6rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .talks-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .talk-card {
+        border-radius: 0.75rem;
+    }
+
+    .talk-header {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    .talk-badge {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.75rem;
+    }
+
+    .talk-content {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    .talk-title {
+        font-size: clamp(1rem, 3.5vw, 1.25rem);
+    }
+
+    .talk-event {
+        font-size: 0.85rem;
+    }
+
+    .talk-location,
+    .talk-date {
+        font-size: 0.8rem;
+    }
+
+    .talk-description {
+        font-size: 0.85rem;
+    }
+
+    .talk-footer {
+        padding: 0.75rem 1rem;
+    }
+
+    .talk-link {
+        font-size: 0.85rem;
+    }
+
+    .certifications-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 1rem;
+    }
+
+    .cert-card {
+        padding: 1rem;
+    }
+
+    .cert-logo-wrapper {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 1rem;
+    }
+
+    .cert-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cert-card h4 {
+        font-size: 0.9rem;
+        min-height: auto;
+        margin: 0 0 0.5rem;
+    }
+
+    .cert-issuer {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .cert-year-badge {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.85rem;
+    }
+
+    .cve-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cve-card {
+        padding: 1rem;
+    }
+
+    .cve-id {
+        font-size: 1.1rem;
+    }
+
+    .cve-product {
+        font-size: 1rem;
+    }
+
+    .cve-severity {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .cve-description {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .cve-link {
+        font-size: 0.8rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .stat-item {
+        padding: 1rem 0.75rem;
+    }
+
+    .stat-number {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .cybersec-footer {
+        padding: 2rem 0 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        gap: 1rem;
+    }
+
+    .footer-social {
+        gap: 0.75rem;
+    }
+
+    .cybersec-footer .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 0.95rem;
+    }
+
+    .cybersec-footer p {
+        font-size: 0.8rem;
     }
 
     .back-to-top {
         bottom: 1rem;
         right: 1rem;
-        width: 44px;
-        height: 44px;
-        font-size: 1rem;
+        width: 42px;
+        height: 42px;
+        font-size: 0.9rem;
     }
 }
