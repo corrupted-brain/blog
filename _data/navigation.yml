@@ -6,10 +6,7 @@
 - title: All posts
   url: /posts/
 
-  #title: CV
-  #url: /website/resume/
-
-  title: About
+- title: About
   url: /about/
 
 - title: Github
