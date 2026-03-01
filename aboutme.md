@@ -28,11 +28,11 @@ skills:
   - "Security Monitoring & Detection Engineering (SIEM/SOAR)"
 
 certifications:
-  - name: "CC"
+  - name: "Certified in Cybersecurity (CC)"
     org: "ISC²"
     year: "2023"
     logo: "https://images.credly.com/images/2030e43f-8003-4d4b-9630-847add403c87/image.png"
-  - name: "CEH"
+  - name: "Certified Ethical Hacker (CEH)"
     org: "EC-Council"
     year: "2022"
     logo: "https://securevalley-training.net/wp-content/uploads/2025/03/CEH_Badge.png"

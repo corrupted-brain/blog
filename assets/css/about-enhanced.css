@@ -136,27 +136,29 @@ html {
 }
 
 .logo-icon {
-    width: 45px;
-    height: 45px;
+    width: clamp(40px, 8vw, 45px);
+    height: clamp(40px, 8vw, 45px);
     background: linear-gradient(135deg, #10b981, #059669);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    flex-shrink: 0;
 }
 
 .logo-text h1 {
-    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-size: clamp(0.95rem, 3vw, 1.3rem);
     font-weight: 700;
     color: #1f2937;
     margin: 0;
+    line-height: 1.2;
 }
 
 .logo-text p {
-    font-size: 0.8rem;
+    font-size: clamp(0.65rem, 1.5vw, 0.8rem);
     color: #10b981;
     margin: 0;
     font-weight: 600;
@@ -250,8 +252,15 @@ html {
 .hero-content {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: 4rem;
+    gap: clamp(1.5rem, 8vw, 4rem);
     align-items: center;
+}
+
+@media (max-width: 896px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 }
 
 .profile-image {
@@ -262,8 +271,8 @@ html {
 }
 
 .image-wrapper {
-    width: clamp(150px, 50vw, 280px);
-    height: clamp(150px, 50vw, 280px);
+    width: clamp(120px, 45vw, 260px);
+    height: clamp(120px, 45vw, 260px);
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid rgba(16, 185, 129, 0.3);
@@ -279,17 +288,17 @@ html {
 
 .status-badge {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
+    bottom: clamp(12px, 5vw, 20px);
+    right: clamp(12px, 5vw, 20px);
+    width: clamp(45px, 12vw, 60px);
+    height: clamp(45px, 12vw, 60px);
     background: linear-gradient(135deg, #10b981, #059669);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
     box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
     animation: pulse 2s ease-in-out infinite;
 }
@@ -304,7 +313,7 @@ html {
 }
 
 .hero-title {
-    font-size: clamp(1.75rem, 8vw, 3.5rem);
+    font-size: clamp(1.5rem, 7vw, 3.5rem);
     font-weight: 800;
     line-height: 1.2;
     color: #1f2937;
@@ -319,9 +328,9 @@ html {
 }
 
 .hero-description {
-    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     color: #4b5563;
-    line-height: 1.8;
+    line-height: 1.7;
     margin-bottom: 2rem;
 }
 
@@ -343,14 +352,14 @@ html {
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    padding: 0.875rem 1.75rem;
+    padding: clamp(0.75rem, 2vw, 0.875rem) clamp(1.25rem, 3vw, 1.75rem);
     border-radius: 0.5rem;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
     width: 100%;
 }
 
@@ -390,8 +399,8 @@ html {
 }
 
 .social-link {
-    width: 45px;
-    height: 45px;
+    width: clamp(40px, 10vw, 45px);
+    height: clamp(40px, 10vw, 45px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -401,7 +410,7 @@ html {
     color: #10b981;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
 }
 
 .social-link:hover {
@@ -452,7 +461,7 @@ html {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(16, 185, 129, 0.15);
     border-radius: 1rem;
-    padding: clamp(1rem, 5vw, 2rem);
+    padding: clamp(0.875rem, 4.5vw, 2rem);
     margin-bottom: 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -521,7 +530,7 @@ html {
 }
 
 .section-title h2 {
-    font-size: clamp(1.6rem, 7vw, 2.5rem);
+    font-size: clamp(1.4rem, 6.5vw, 2.5rem);
     font-weight: 800;
     background: linear-gradient(135deg, #1f2937, #10b981);
     -webkit-background-clip: text;
@@ -529,6 +538,7 @@ html {
     background-clip: text;
     margin: 0 0 0.5rem;
     word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .section-title p {
@@ -557,16 +567,17 @@ html {
     background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(59, 130, 246, 0.08));
     border: 1px solid rgba(16, 185, 129, 0.25);
     color: #10b981;
-    padding: 0.3rem 0.6rem;
+    padding: 0.3rem 0.5rem;
     border-radius: 4px;
-    font-size: 0.65rem;
+    font-size: clamp(0.6rem, 1.5vw, 0.7rem);
     font-weight: 500;
     text-transform: capitalize;
     letter-spacing: 0.01em;
     transition: all 0.2s ease;
-    white-space: nowrap;
+    white-space: normal;
     position: relative;
-    padding-left: 1.1rem;
+    padding-left: 1rem;
+    word-break: break-inside: avoid;
 }
 
 .skill-badge::before {
@@ -595,19 +606,29 @@ html {
 .icon-container {
     display: flex;
     flex-wrap: wrap;
-    gap: clamp(1rem, 5vw, 2rem);
+    gap: clamp(0.75rem, 4vw, 2rem);
     align-items: center;
     justify-content: center;
     padding: 0;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 480px) {
+    .icon-container {
+        justify-content: flex-start;
+    }
 }
 
 .company-icon {
-    height: clamp(40px, 12vw, 50px);
+    height: clamp(35px, 10vw, 50px);
     width: auto;
     opacity: 0.7;
     transition: all 0.3s ease;
     filter: grayscale(50%);
     max-width: 100%;
+    flex-shrink: 0;
 }
 
 .company-icon:hover {
@@ -1493,25 +1514,34 @@ html {
    ============================================ */
 
 @media (max-width: 1024px) {
+    .container {
+        padding: 0 clamp(1rem, 3vw, 1.25rem);
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .image-wrapper {
+        width: clamp(140px, 45vw, 240px);
+        height: clamp(140px, 45vw, 240px);
     }
 
     .hero-title {
-        font-size: clamp(2rem, 7vw, 2.8rem);
+        font-size: clamp(1.8rem, 6.5vw, 2.8rem);
     }
 
     .talks-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     }
 
     .cve-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     }
 
     .section-title h2 {
-        font-size: clamp(1.6rem, 6vw, 2rem);
+        font-size: clamp(1.5rem, 5.5vw, 2rem);
     }
 
     .hacktivity-timeline::before {
@@ -1551,29 +1581,62 @@ html {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 clamp(0.75rem, 3.5vw, 1.125rem);
+    }
+
     .main-nav {
         display: none;
     }
 
     .mobile-nav-toggle {
         display: block;
+        padding: 0.4rem 0.6rem;
     }
 
     .nav-btn {
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        font-size: clamp(0.75rem, 2vw, 0.95rem);
         padding: 0.5rem 0.75rem;
     }
 
+    .hero-section {
+        padding: clamp(1.5rem, 5vw, 2.5rem) 0;
+    }
+
+    .hero-content {
+        gap: clamp(1.25rem, 5vw, 2rem);
+    }
+
     .hero-title {
-        font-size: clamp(1.5rem, 6vw, 2.2rem);
+        font-size: clamp(1.45rem, 5.5vw, 2.2rem);
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-description {
+        font-size: clamp(0.85rem, 2.3vw, 1rem);
+        margin-bottom: 1.5rem;
+    }
+
+    .image-wrapper {
+        width: clamp(130px, 40vw, 200px);
+        height: clamp(130px, 40vw, 200px);
     }
 
     .hero-buttons {
         flex-direction: column;
+        gap: 0.75rem;
     }
 
     .btn {
         width: 100%;
+        padding: clamp(0.7rem, 2vw, 0.8rem) clamp(1rem, 2.5vw, 1.5rem);
+        font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+    }
+
+    .social-link {
+        width: clamp(40px, 8vw, 42px);
+        height: clamp(40px, 8vw, 42px);
+        font-size: clamp(0.95rem, 2vw, 1.05rem);
     }
 
     .talks-grid {
@@ -1585,550 +1648,1047 @@ html {
     }
 
     .certifications-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
     }
 
     .section-title h2 {
-        font-size: clamp(1.4rem, 5vw, 1.75rem);
+        font-size: clamp(1.3rem, 4.5vw, 1.75rem);
+    }
+
+    .section-header {
+        margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
     }
 
     .experience-card {
-        margin-left: 1.5rem;
-        padding-left: 1.5rem !important;
-        padding-right: 1rem !important;
+        margin-left: 1.25rem;
+        padding-left: 1.25rem !important;
+        padding-right: 0.85rem !important;
+    }
+
+    .experience-timeline-marker {
+        left: -11px;
+        top: 1.75rem;
+        width: 16px;
+        height: 16px;
     }
 
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: clamp(0.75rem, 2vw, 1rem);
     }
 
     .hacktivity-timeline::before {
-        left: 16px;
+        left: 18px;
     }
 
     .hacktivity-marker {
-        left: 16px;
+        left: 18px;
         width: 40px;
         height: 40px;
-        font-size: 1.1rem;
+        font-size: 1rem;
         flex-shrink: 0;
     }
 
     .hacktivity-item {
-        padding: 1rem;
-        gap: 1rem;
+        padding: 0.75rem;
+        gap: 0.75rem;
     }
 
     .hacktivity-content {
-        padding: 1rem;
-        padding-left: clamp(70px, 15vw, 80px);
+        padding: clamp(0.85rem, 2vw, 1rem);
+        padding-left: clamp(75px, 14vw, 85px);
     }
 
     .hacktivity-header {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 
     .hacktivity-header h3 {
-        font-size: clamp(0.95rem, 4vw, 1.1rem);
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
     }
 
     .hacktivity-tags {
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 
     .hacktivity-tag {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         padding: 0.3rem 0.6rem;
     }
 
     .card-header {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.4rem;
         align-items: flex-start;
     }
 
     .card-header i {
-        font-size: 1.25rem;
+        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    }
+
+    .card-header h3 {
+        font-size: clamp(1rem, 3.5vw, 1.25rem);
+    }
+
+    .card {
+        padding: clamp(0.85rem, 3vw, 1.5rem);
+    }
+
+    .skill-badge {
+        font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+        padding: 0.25rem 0.45rem;
+    }
+
+    .icon-container {
+        gap: clamp(0.6rem, 3vw, 1rem) !important;
+        padding: clamp(0.75rem, 2vw, 1rem) !important;
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+
+    .company-icon {
+        height: clamp(35px, 9vw, 45px);
+        flex-shrink: 0;
     }
 
     .cybersec-footer {
-        padding: 2.5rem 0 1rem;
-        margin-top: 4rem;
+        padding: clamp(2rem, 4vw, 2.5rem) 0 clamp(0.75rem, 2vw, 1rem);
+        margin-top: clamp(3rem, 8vw, 4rem);
     }
 
     .footer-social {
-        gap: 1rem;
+        gap: clamp(0.75rem, 2vw, 1rem);
         flex-wrap: wrap;
     }
 
     .cybersec-footer .social-link {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
+        width: clamp(40px, 8vw, 42px);
+        height: clamp(40px, 8vw, 42px);
+        font-size: clamp(0.95rem, 2vw, 1.05rem);
     }
 
     .cybersec-footer p {
-        font-size: 0.85rem;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
     }
 
     .back-to-top {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 48px;
-        height: 48px;
-        font-size: 1.1rem;
+        bottom: clamp(1rem, 3vw, 1.5rem);
+        right: clamp(1rem, 3vw, 1.5rem);
+        width: clamp(45px, 10vw, 50px);
+        height: clamp(45px, 10vw, 50px);
+        font-size: clamp(1rem, 2vw, 1.1rem);
     }
 
     .content-grid {
         grid-template-columns: 1fr;
+        gap: clamp(1rem, 3vw, 1.5rem);
     }
 
     .exp-header {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 
     .period-badge {
         align-self: flex-start;
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
+        font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+        padding: 0.35rem 0.7rem;
+    }
+
+    .main-content {
+        padding: clamp(2rem, 5vw, 3rem) 0;
+    }
+
+    .content-section {
+        margin-bottom: clamp(2rem, 5vw, 3rem);
+        scroll-margin-top: 80px;
     }
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+
     .header-content {
         flex-direction: row;
-        gap: 0.5rem;
-        padding: 0.75rem 0;
+        gap: 0.4rem;
+        padding: 0.6rem 0;
     }
 
     .logo-section {
-        gap: 0.5rem;
+        gap: 0.4rem;
         flex: 1;
         min-width: 0;
     }
 
     .logo-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+        width: clamp(36px, 7vw, 40px);
+        height: clamp(36px, 7vw, 40px);
+        font-size: clamp(1.1rem, 2.2vw, 1.3rem);
     }
 
     .logo-text h1 {
-        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        font-size: clamp(0.85rem, 2.3vw, 1rem);
+        line-height: 1.15;
     }
 
     .logo-text p {
-        font-size: 0.65rem;
+        font-size: clamp(0.6rem, 1.3vw, 0.7rem);
         letter-spacing: 0.02em;
     }
 
     .mobile-nav-toggle {
-        font-size: 1.25rem;
-        padding: 0.25rem;
+        font-size: 1.2rem;
+        padding: 0.3rem;
     }
 
     .mobile-nav {
-        padding: 0.75rem;
+        padding: 0.6rem;
+        gap: 0.35rem;
+    }
+
+    .nav-btn {
+        font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+        padding: 0.4rem 0.6rem;
     }
 
     .hero-section {
-        padding: 1.5rem 0;
+        padding: clamp(1rem, 4vw, 1.5rem) 0;
     }
 
     .hero-content {
-        gap: 1.5rem;
+        gap: clamp(1rem, 4vw, 1.25rem);
+    }
+
+    .profile-image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-wrapper {
+        width: clamp(115px, 38vw, 140px);
+        height: clamp(115px, 38vw, 140px);
+        border: 3px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .status-badge {
+        width: clamp(40px, 9vw, 48px);
+        height: clamp(40px, 9vw, 48px);
+        font-size: clamp(1rem, 2.2vw, 1.3rem);
+        bottom: clamp(8px, 2vw, 12px);
+        right: clamp(8px, 2vw, 12px);
     }
 
     .hero-title {
-        font-size: clamp(1.4rem, 5.5vw, 1.8rem);
-        margin-bottom: 0.75rem;
+        font-size: clamp(1.35rem, 5vw, 1.75rem);
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
     }
 
     .hero-description {
-        font-size: clamp(0.85rem, 2.5vw, 1rem);
-        margin-bottom: 1rem;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        line-height: 1.55;
+        margin-bottom: 0.9rem;
     }
 
     .hero-buttons {
         flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
+        gap: 0.6rem;
+        margin-bottom: 1.2rem;
     }
 
     .btn {
         width: 100%;
-        padding: 0.75rem 1.25rem;
-        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        padding: clamp(0.65rem, 1.8vw, 0.75rem) clamp(0.95rem, 2vw, 1.25rem);
+        font-size: clamp(0.75rem, 1.6vw, 0.85rem);
+        border-radius: 0.4rem;
     }
 
     .social-link {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        width: clamp(38px, 7vw, 40px);
+        height: clamp(38px, 7vw, 40px);
+        font-size: clamp(0.9rem, 1.8vw, 1rem);
     }
 
-    .image-wrapper {
-        width: clamp(140px, 40vw, 200px);
-        height: clamp(140px, 40vw, 200px);
-    }
-
-    .status-badge {
-        width: 50px;
-        height: 50px;
-        font-size: 1.4rem;
-        bottom: 15px;
-        right: 15px;
+    .social-links {
+        gap: clamp(0.75rem, 2vw, 0.9rem);
     }
 
     .content-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: clamp(0.9rem, 2.5vw, 1.2rem);
     }
 
     .content-section {
-        margin-bottom: 2.5rem;
-        scroll-margin-top: 80px;
+        margin-bottom: clamp(1.75rem, 4vw, 2.25rem);
+        scroll-margin-top: 70px;
     }
 
     .section-header {
-        margin-bottom: 1.5rem;
+        margin-bottom: clamp(1rem, 3vw, 1.3rem);
     }
 
     .section-title {
-        font-size: clamp(1.2rem, 5vw, 1.5rem);
+        font-size: clamp(1.15rem, 4.5vw, 1.4rem);
+    }
+
+    .section-title h2 {
+        font-size: clamp(1.15rem, 4.5vw, 1.4rem);
+        line-height: 1.25;
     }
 
     .section-subtitle {
-        font-size: 0.85rem;
+        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
     }
 
     .card {
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-        border-radius: 0.75rem;
+        padding: clamp(0.75rem, 2.5vw, 0.95rem);
+        margin-bottom: clamp(1rem, 2.5vw, 1.25rem);
+        border-radius: 0.6rem;
     }
 
     .card-header {
-        gap: 0.5rem;
-        padding-bottom: 0.75rem;
-        margin-bottom: 1rem;
+        gap: 0.4rem;
+        padding-bottom: 0.6rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .card-header i {
+        font-size: clamp(1.05rem, 2vw, 1.2rem);
     }
 
     .card-header h3 {
-        font-size: clamp(1rem, 3vw, 1.3rem);
+        font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+        line-height: 1.2;
+    }
+
+    .card-content {
+        font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+        line-height: 1.5;
     }
 
     .skills-grid {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.4rem;
+        gap: 0.35rem;
     }
 
     .skill-badge {
-        font-size: 0.6rem;
-        padding: 0.25rem 0.5rem;
-        padding-left: 0.95rem;
+        font-size: clamp(0.55rem, 1.3vw, 0.62rem);
+        padding: clamp(0.2rem, 0.5vw, 0.25rem) clamp(0.35rem, 0.75vw, 0.45rem);
+        padding-left: clamp(0.8rem, 1.5vw, 0.95rem);
     }
 
     .skill-badge::before {
-        left: 0.3rem;
-        font-size: 0.45rem;
+        left: clamp(0.25rem, 0.5vw, 0.3rem);
+        font-size: clamp(0.38rem, 0.8vw, 0.45rem);
     }
 
     .icon-container {
-        gap: 0.75rem;
-        padding: 1rem 0.75rem;
+        gap: clamp(0.5rem, 2.5vw, 0.75rem) !important;
+        padding: clamp(0.75rem, 1.5vw, 0.85rem) !important;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .company-icon {
-        height: clamp(35px, 10vw, 45px);
+        height: clamp(32px, 8vw, 40px);
+        flex-shrink: 0;
     }
 
     .company-text {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.6rem;
-        white-space: nowrap;
+        font-size: clamp(0.72rem, 1.5vw, 0.8rem);
+        padding: clamp(0.35rem, 0.6vw, 0.4rem) clamp(0.55rem, 1vw, 0.65rem);
     }
 
     .experience-card {
-        margin-left: 1rem;
-        padding-left: 1rem !important;
-        padding-right: 0.75rem !important;
+        margin-left: 0.85rem;
+        padding-left: 0.85rem !important;
+        padding-right: 0.65rem !important;
+        border-left-width: 2px;
     }
 
     .experience-timeline-marker {
-        left: -10px;
-        top: 1.5rem;
-        width: 14px;
-        height: 14px;
+        left: -9px;
+        top: 1.4rem;
+        width: clamp(13px, 2.5vw, 15px);
+        height: clamp(13px, 2.5vw, 15px);
+        font-size: 0.65rem;
     }
 
     .exp-header {
         flex-direction: column;
-        gap: 0.5rem;
-        margin-bottom: 0.75rem;
+        gap: 0.35rem;
+        margin-bottom: 0.6rem;
     }
 
     .exp-role {
-        font-size: clamp(1.1rem, 4vw, 1.3rem);
-        margin: 0 0 0.25rem;
+        font-size: clamp(1.05rem, 3.2vw, 1.25rem);
+        margin: 0 0 0.2rem;
+        line-height: 1.2;
     }
 
     .exp-company {
-        font-size: 0.9rem;
+        font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     }
 
     .period-badge {
-        font-size: 0.7rem;
-        padding: 0.35rem 0.65rem;
+        font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+        padding: clamp(0.3rem, 0.5vw, 0.35rem) clamp(0.6rem, 1vw, 0.7rem);
     }
 
     .exp-description {
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
+        font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+        margin-bottom: 0.45rem;
     }
 
     .hacktivity-timeline {
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
 
     .hacktivity-timeline::before {
-        left: 13px;
-        top: 30px;
+        left: 11px;
+        top: 28px;
     }
 
     .hacktivity-marker {
-        left: 13px;
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
+        left: 11px;
+        width: 30px;
+        height: 30px;
+        font-size: clamp(0.8rem, 1.5vw, 0.9rem);
         flex-shrink: 0;
     }
 
     .hacktivity-item {
         margin-bottom: 0;
         padding: 0;
-        gap: 1rem;
+        gap: 0.85rem;
     }
 
     .hacktivity-content {
-        padding: 0.85rem;
-        padding-left: clamp(60px, 12vw, 70px);
+        padding: clamp(0.75rem, 1.8vw, 0.85rem);
+        padding-left: clamp(55px, 10vw, 65px);
         margin-top: 0;
+        border-radius: 0.6rem;
     }
 
     .hacktivity-header {
         flex-direction: column;
-        gap: 0.35rem;
-        margin-bottom: 0.5rem;
+        gap: 0.33rem;
+        margin-bottom: 0.45rem;
     }
 
     .hacktivity-header h3 {
-        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        font-size: clamp(0.85rem, 3vw, 1rem);
         margin: 0;
+        line-height: 1.2;
     }
 
     .hacktivity-date {
-        font-size: 0.7rem;
-        white-space: normal;
+        font-size: clamp(0.65rem, 1.3vw, 0.75rem);
     }
 
     .hacktivity-platform {
-        font-size: 0.8rem;
-        margin: 0.25rem 0;
+        font-size: clamp(0.78rem, 1.6vw, 0.88rem);
+        margin: clamp(0.2rem, 0.5vw, 0.25rem) 0;
     }
 
     .hacktivity-severity {
-        font-size: 0.8rem;
+        font-size: clamp(0.75rem, 1.5vw, 0.85rem);
     }
 
     .severity-badge {
-        font-size: 0.7rem;
-        padding: 0.15rem 0.5rem;
+        font-size: clamp(0.65rem, 1.3vw, 0.75rem);
+        padding: clamp(0.12rem, 0.25vw, 0.15rem) clamp(0.45rem, 0.8vw, 0.5rem);
     }
 
     .hacktivity-description {
-        font-size: 0.85rem;
-        margin: 0.5rem 0;
+        font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+        margin: clamp(0.4rem, 1vw, 0.5rem) 0;
+        line-height: 1.5;
     }
 
     .hacktivity-bounty {
-        font-size: 0.8rem;
+        font-size: clamp(0.75rem, 1.5vw, 0.85rem);
     }
 
     .hacktivity-tags {
-        gap: 0.35rem;
-        margin-top: 0.35rem;
+        gap: 0.3rem;
+        margin-top: 0.3rem;
     }
 
     .hacktivity-tag {
-        font-size: 0.6rem;
-        padding: 0.25rem 0.5rem;
+        font-size: clamp(0.55rem, 1.2vw, 0.65rem);
+        padding: clamp(0.2rem, 0.4vw, 0.25rem) clamp(0.45rem, 0.8vw, 0.5rem);
     }
 
     .talks-grid {
         grid-template-columns: 1fr;
+        gap: 1.2rem;
     }
 
     .talk-card {
-        border-radius: 0.75rem;
+        border-radius: 0.6rem;
+        overflow: hidden;
     }
 
     .talk-header {
-        padding: 1rem;
-        gap: 0.5rem;
+        padding: clamp(0.8rem, 1.8vw, 0.95rem);
+        gap: 0.4rem;
     }
 
     .talk-badge {
-        font-size: 0.65rem;
-        padding: 0.35rem 0.75rem;
+        font-size: clamp(0.6rem, 1.2vw, 0.7rem);
+        padding: clamp(0.3rem, 0.5vw, 0.35rem) clamp(0.65rem, 1vw, 0.75rem);
     }
 
     .talk-content {
-        padding: 1rem;
-        gap: 0.5rem;
+        padding: clamp(0.8rem, 1.8vw, 0.95rem);
+        gap: 0.4rem;
     }
 
     .talk-title {
-        font-size: clamp(1rem, 3.5vw, 1.25rem);
+        font-size: clamp(0.95rem, 3vw, 1.15rem);
+        line-height: 1.25;
     }
 
     .talk-event {
-        font-size: 0.85rem;
+        font-size: clamp(0.8rem, 1.6vw, 0.9rem);
     }
 
     .talk-location,
     .talk-date {
-        font-size: 0.8rem;
+        font-size: clamp(0.75rem, 1.5vw, 0.85rem);
     }
 
     .talk-description {
-        font-size: 0.85rem;
+        font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+        line-height: 1.5;
     }
 
     .talk-footer {
-        padding: 0.75rem 1rem;
+        padding: clamp(0.7rem, 1.5vw, 0.85rem);
     }
 
     .talk-link {
-        font-size: 0.85rem;
+        font-size: clamp(0.8rem, 1.6vw, 0.9rem);
     }
 
     .certifications-grid {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: clamp(0.75rem, 1.5vw, 0.9rem);
     }
 
     .cert-card {
-        padding: 1rem;
+        padding: clamp(0.8rem, 1.6vw, 0.95rem);
+        border-radius: 0.6rem;
     }
 
     .cert-logo-wrapper {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 1rem;
+        width: clamp(65px, 12vw, 75px);
+        height: clamp(65px, 12vw, 75px);
+        margin-bottom: clamp(0.8rem, 1.5vw, 0.95rem);
     }
 
     .cert-logo {
-        width: 60px;
-        height: 60px;
+        width: clamp(55px, 10vw, 65px);
+        height: clamp(55px, 10vw, 65px);
     }
 
     .cert-card h4 {
-        font-size: 0.9rem;
+        font-size: clamp(0.85rem, 2vw, 0.95rem);
         min-height: auto;
-        margin: 0 0 0.5rem;
+        margin: 0 0 0.4rem;
+        line-height: 1.2;
     }
 
     .cert-issuer {
-        font-size: 0.8rem;
-        margin-bottom: 0.75rem;
+        font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+        margin-bottom: 0.65rem;
     }
 
     .cert-year-badge {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.85rem;
+        font-size: clamp(0.65rem, 1.3vw, 0.75rem);
+        padding: clamp(0.3rem, 0.5vw, 0.4rem) clamp(0.75rem, 1.2vw, 0.85rem);
     }
 
     .cve-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .cve-card {
-        padding: 1rem;
+        padding: clamp(0.8rem, 1.6vw, 0.95rem);
+        border-radius: 0.6rem;
     }
 
     .cve-id {
-        font-size: 1.1rem;
+        font-size: clamp(1.05rem, 2.5vw, 1.15rem);
     }
 
     .cve-product {
-        font-size: 1rem;
+        font-size: clamp(0.95rem, 2vw, 1.05rem);
     }
 
     .cve-severity {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.8rem;
+        font-size: clamp(0.65rem, 1.3vw, 0.75rem);
+        padding: clamp(0.35rem, 0.6vw, 0.4rem) clamp(0.7rem, 1vw, 0.8rem);
     }
 
     .cve-description {
-        font-size: 0.85rem;
-        margin-bottom: 1rem;
+        font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+        margin-bottom: 0.9rem;
+        line-height: 1.5;
     }
 
     .cve-link {
-        font-size: 0.8rem;
-        padding: 0.6rem 1.2rem;
+        font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+        padding: clamp(0.5rem, 1vw, 0.6rem) clamp(1rem, 1.5vw, 1.2rem);
     }
 
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        gap: clamp(0.65rem, 1.5vw, 0.8rem);
     }
 
     .stat-item {
-        padding: 1rem 0.75rem;
+        padding: clamp(0.85rem, 1.8vw, 1rem) clamp(0.65rem, 1.5vw, 0.8rem);
     }
 
     .stat-number {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+        line-height: 1.2;
     }
 
     .stat-label {
-        font-size: 0.8rem;
+        font-size: clamp(0.75rem, 1.5vw, 0.85rem);
     }
 
     .cybersec-footer {
-        padding: 2rem 0 0.75rem;
-        margin-top: 2rem;
+        padding: clamp(1.5rem, 3vw, 1.85rem) 0 clamp(0.6rem, 1.2vw, 0.75rem);
+        margin-top: clamp(1.5rem, 4vw, 2rem);
     }
 
     .footer-content {
-        gap: 1rem;
+        gap: clamp(0.75rem, 2vw, 0.9rem);
     }
 
     .footer-social {
-        gap: 0.75rem;
+        gap: clamp(0.6rem, 1.5vw, 0.75rem);
     }
 
     .cybersec-footer .social-link {
-        width: 40px;
-        height: 40px;
-        font-size: 0.95rem;
+        width: clamp(38px, 7vw, 40px);
+        height: clamp(38px, 7vw, 40px);
+        font-size: clamp(0.9rem, 1.8vw, 0.95rem);
     }
 
     .cybersec-footer p {
-        font-size: 0.8rem;
+        font-size: clamp(0.75rem, 1.6vw, 0.85rem);
+        line-height: 1.5;
     }
 
     .back-to-top {
-        bottom: 1rem;
-        right: 1rem;
-        width: 42px;
-        height: 42px;
+        bottom: clamp(0.75rem, 2vw, 0.9rem);
+        right: clamp(0.75rem, 2vw, 0.9rem);
+        width: clamp(40px, 8vw, 45px);
+        height: clamp(40px, 8vw, 45px);
+        font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+    }
+}
+
+/* ============================================
+   ULTRA-SMALL SCREENS (320px - 380px)
+   ============================================ */
+@media (max-width: 380px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+
+    .header-content {
+        gap: 0.25rem;
+    }
+
+    .logo-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .logo-text h1 {
+        font-size: 0.85rem;
+        word-break: break-word;
+    }
+
+    .logo-text p {
+        font-size: 0.6rem;
+    }
+
+    .hero-section {
+        padding: 1rem 0;
+    }
+
+    .hero-title {
+        font-size: clamp(1.3rem, 5vw, 1.6rem);
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-description {
+        font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .image-wrapper {
+        width: clamp(110px, 40vw, 140px);
+        height: clamp(110px, 40vw, 140px);
+    }
+
+    .status-badge {
+        width: clamp(40px, 10vw, 50px);
+        height: clamp(40px, 10vw, 50px);
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        bottom: 8px;
+        right: 8px;
+    }
+
+    .hero-buttons {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .social-link {
+        width: 35px;
+        height: 35px;
         font-size: 0.9rem;
+    }
+
+    .content-section {
+        margin-bottom: 2rem;
+    }
+
+    .section-header {
+        margin-bottom: 1.25rem;
+    }
+
+    .section-title h2 {
+        font-size: clamp(1.2rem, 5vw, 1.5rem);
+    }
+
+    .section-title p {
+        font-size: 0.8rem;
+    }
+
+    .card {
+        padding: 0.75rem;
+        margin-bottom: 1.25rem;
+        border-radius: 0.6rem;
+    }
+
+    .card-header {
+        gap: 0.4rem;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.6rem;
+    }
+
+    .card-header i {
+        font-size: 1.1rem;
+    }
+
+    .card-header h3 {
+        font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+    }
+
+    .card-content {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .skill-badge {
+        font-size: 0.55rem;
+        padding: 0.2rem 0.4rem;
+        padding-left: 0.85rem;
+    }
+
+    .skill-badge::before {
+        left: 0.25rem;
+        font-size: 0.4rem;
+    }
+
+    .icon-container {
+        gap: 0.5rem !important;
+        padding: 0.75rem 0.5rem !important;
+    }
+
+    .company-icon {
+        height: clamp(30px, 8vw, 40px);
+    }
+
+    .company-text {
+        font-size: 0.75rem;
+    }
+
+    .experience-card {
+        margin-left: 0.75rem;
+        padding-left: 0.75rem !important;
+    }
+
+    .experience-timeline-marker {
+        left: -9px;
+        top: 1.25rem;
+        width: 12px;
+        height: 12px;
+        font-size: 0.6rem;
+    }
+
+    .exp-role {
+        font-size: clamp(1rem, 3.5vw, 1.2rem);
+        margin-bottom: 0.25rem;
+    }
+
+    .exp-company {
+        font-size: 0.85rem;
+    }
+
+    .period-badge {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .hacktivity-marker {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+        left: 10px;
+    }
+
+    .hacktivity-timeline::before {
+        left: 12px;
+    }
+
+    .hacktivity-content {
+        padding: 0.75rem;
+        padding-left: clamp(55px, 11vw, 65px);
+        margin-top: 0;
+    }
+
+    .hacktivity-header h3 {
+        font-size: clamp(0.85rem, 3vw, 1rem);
+    }
+
+    .hacktivity-description {
+        font-size: 0.8rem;
+    }
+
+    .talk-card {
+        border-radius: 0.6rem;
+    }
+
+    .talk-header {
+        padding: 0.85rem;
+        gap: 0.35rem;
+    }
+
+    .talk-badge {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.65rem;
+    }
+
+    .talk-content {
+        padding: 0.85rem;
+        gap: 0.4rem;
+    }
+
+    .talk-title {
+        font-size: clamp(0.95rem, 3.2vw, 1.15rem);
+    }
+
+    .cert-card {
+        padding: 0.85rem;
+    }
+
+    .certifications-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .cert-logo-wrapper {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.75rem;
+    }
+
+    .cve-card {
+        padding: 0.85rem;
+    }
+
+    .cybersec-footer {
+        padding: 1.75rem 0 0.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .footer-social {
+        gap: 0.5rem;
+    }
+
+    .cybersec-footer .social-link {
+        width: 35px;
+        height: 35px;
+        font-size: 0.85rem;
+    }
+
+    .cybersec-footer p {
+        font-size: 0.75rem;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .back-to-top {
+        bottom: 0.75rem;
+        right: 0.75rem;
+        width: 38px;
+        height: 38px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================
+   SMALL SCREENS (380px - 640px) - IMPROVED
+   ============================================ */
+@media (380px < width <= 640px) {
+    .container {
+        padding: 0 clamp(0.5rem, 3vw, 1rem);
+    }
+
+    .header-content {
+        gap: 0.75rem;
+    }
+
+    .logo-icon {
+        width: clamp(38px, 7vw, 42px);
+        height: clamp(38px, 7vw, 42px);
+    }
+
+    .logo-text h1 {
+        font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    }
+
+    .logo-text p {
+        font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    }
+
+    .hero-content {
+        gap: clamp(1rem, 5vw, 1.5rem);
+    }
+
+    .image-wrapper {
+        width: clamp(130px, 42vw, 160px);
+        height: clamp(130px, 42vw, 160px);
+    }
+
+    .icon-container {
+        gap: clamp(0.6rem, 3vw, 1rem) !important;
+    }
+
+    .skills-grid {
+        gap: clamp(0.4rem, 2vw, 0.6rem);
+    }
+
+    .card {
+        padding: clamp(0.85rem, 3.5vw, 1.25rem);
+    }
+
+    .content-section {
+        margin-bottom: clamp(2rem, 5vw, 3rem);
+    }
+}
+
+/* ============================================
+   ORIENTATION - LANDSCAPE MOBILE FIXES
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        padding: 1rem 0;
+    }
+
+    .hero-content {
+        gap: 1rem;
+    }
+
+    .image-wrapper {
+        width: clamp(100px, 25vw, 150px);
+        height: clamp(100px, 25vw, 150px);
+    }
+
+    .hero-title {
+        font-size: clamp(1.3rem, 5vw, 2rem);
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-description {
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-buttons {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .main-content {
+        padding: 1.5rem 0;
+    }
+
+    .content-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ============================================
+   PRINT STYLES - MOBILE OPTIMIZED
+   ============================================ */
+@media print {
+    .bg-elements,
+    .matrix-bg,
+    .cybersec-header,
+    .hero-buttons .btn-secondary,
+    .social-links,
+    .cybersec-footer,
+    .back-to-top {
+        display: none;
+    }
+
+    .cybersec-container {
+        background: white;
+        color: black;
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        background: white;
+        page-break-inside: avoid;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0;
     }
 }
