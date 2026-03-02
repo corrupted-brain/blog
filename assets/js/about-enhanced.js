@@ -1,7 +1,7 @@
 // Single page navigation with smooth scroll and active link highlighting
 document.addEventListener('DOMContentLoaded', function() {
     const navButtons = document.querySelectorAll('.nav-btn');
-    const sections = document.querySelectorAll('[id^="about"], [id^="hacktivity"], [id^="experience"], [id^="talks"], [id^="certifications"], [id^="cve"]');
+    const sections = document.querySelectorAll('[id^="about"], [id^="hacktivity"], [id^="hacktivities"], [id^="experience"], [id^="talks"], [id^="certifications"], [id^="cve"]');
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileNav = document.getElementById('mobile-nav');
     

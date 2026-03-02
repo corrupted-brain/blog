@@ -3,8 +3,9 @@ layout: about
 title: "Kailash Bohara"
 permalink: /about/
 name: "Kailash Bohara"
-role: "Cybersecurity Engineer"
-description: "Cybersecurity professional with 9 years of experience protecting modern applications and infrastructure across cloud, containers, DevOps pipelines, and enterprise environments. Expertise includes security architecture, penetration testing, vulnerability management, threat modeling, CI/CD security, container security monitoring, and incident response. Passionate about building resilient infrastructure, mentoring security communities through OWASP Kathmandu and Pentester Nepal"
+role: "Senior Cybersecurity Engineer"
+description: "Cybersecurity professional with 9+ years of experience securing modern applications and enterprise infrastructure across cloud platforms, containerized environments, and DevOps ecosystems. Expertise spans security architecture, cloud security, risk assessment, threat hunting, penetration testing, vulnerability management, and threat modeling. Strong experience in embedding security within CI/CD pipelines, container security monitoring, DevSecOps practices, and incident response to proactively detect and mitigate emerging threats. Passionate about building resilient, scalable, and secure infrastructure while actively mentoring and contributing to the cybersecurity community through OWASP Kathmandu and Pentester Nepal."
+
 profile_image: "/images/author/avatar.png"
 email: "kailash@test.com"
 linkedin: "https://www.linkedin.com/in/kailash0x01/"
@@ -99,7 +100,7 @@ talks:
     description: "Secure coding practices, OWASP Top 10 prevention, DevOps mistakes"
     link: "#"
 
-hacktivity:
+activities:
   - title: "Cross-Site Scripting (XSS) Vulnerability"
     platform: "HackerOne"
     date: "March 2024"
@@ -134,6 +135,21 @@ hacktivity:
     description: "Discovered SSTI vulnerability in email templating system leading to RCE."
     bounty: "$3,000"
     tags: ["SSTI", "Critical", "Bounty"]
+  
+  # generic activity examples
+  - title: "Presented at Secure DevOps Summit"
+    platform: "Secure DevOps Summit"
+    date: "June 2023"
+    location: "San Francisco, USA"
+    severity: "Talk"
+    description: "Delivered a talk on secure coding practices and pipeline security."
+    tags: ["Talk", "Conference"]
+  - title: "CVE-2023-12345 assigned for XSS in OpenCMS"
+    platform: "NVD"
+    date: "August 2023"
+    severity: "CVE"
+    description: "A reflected XSS issue in OpenCMS received a CVE assignment after responsible disclosure."
+    tags: ["CVE", "XSS"]
 ---
 
 # About Kailash Bohara

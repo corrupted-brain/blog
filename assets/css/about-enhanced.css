@@ -1073,12 +1073,28 @@ html {
         rgba(16, 185, 129, 0.5) 0%, 
         rgba(16, 185, 129, 0.2) 50%, 
         transparent 100%);
+    /* alternate dashed effect */
+    background-size: 2px 8px;
+    background-repeat: repeat-y;
 }
 
 .hacktivity-item {
     display: flex;
     gap: 2rem;
     position: relative;
+}
+
+/* additional info fields */
+.hacktivity-location {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+}
+
+.hacktivity-type {
+    color: #10b981;
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
 }
 
 .hacktivity-marker {
@@ -1113,6 +1129,8 @@ html {
     background: rgba(255, 255, 255, 0.9);
     margin: 0;
     padding: 1.5rem !important;
+    border-left: 4px solid #10b981;
+    padding-left: 1.25rem !important;
 }
 
 .hacktivity-header {

@@ -39,7 +39,7 @@ layout: default
                     </div>
                     <nav class="main-nav">
                         <a href="#about" class="nav-btn active">About</a>
-                        <a href="#hacktivity" class="nav-btn">Hacktivity</a>
+                        <a href="#hacktivities" class="nav-btn">Hacktivities</a>
                         <a href="#experience" class="nav-btn">Experience</a>
                         <a href="#talks" class="nav-btn">Talks</a>
                         <a href="#certifications" class="nav-btn">Certifications</a>
@@ -51,7 +51,7 @@ layout: default
                 </div>
                 <nav class="mobile-nav" id="mobile-nav">
                     <a href="#about" class="nav-btn">About</a>
-                    <a href="#hacktivity" class="nav-btn">Hacktivity</a>
+                    <a href="#hacktivities" class="nav-btn">Hacktivities</a>
                     <a href="#experience" class="nav-btn">Experience</a>
                     <a href="#talks" class="nav-btn">Talks</a>
                     <a href="#certifications" class="nav-btn">Certifications</a>
@@ -187,34 +187,49 @@ layout: default
                     </div>
                 </section>
 
-                <!-- HACKTIVITY SECTION -->
-                <section id="hacktivity" class="content-section">
+                <!-- HACKTIVITIES SECTION -->
+                <section id="hacktivities" class="content-section">
                     <div class="section-header">
-                        <h2 class="section-title">Hacktivity</h2>
-                        <p class="section-subtitle">Bug Bounty Discoveries & Responsible Disclosures</p>
+                        <h2 class="section-title">Hacktivities</h2>
+                        <p class="section-subtitle">I find it fascinating to research and develop new things and engage in cybersecurity activities. Here are some of my notable hacktivities, from bug bounties and CVEs to talks, publications, and trainings.</p>
                     </div>
 
                     <div class="hacktivity-timeline">
-                        {% for activity in page.hacktivity %}
+                        {% assign activities = page.activities | default: page.hacktivity %}
+                        {% for activity in activities %}
                         <div class="hacktivity-item">
                             <div class="hacktivity-marker">
-                                <i class="fas fa-bug"></i>
+                                {% if activity.icon %}
+                                    <i class="{{ activity.icon }}"></i>
+                                {% else %}
+                                    <i class="fas fa-bolt"></i>
+                                {% endif %}
                             </div>
                             <div class="hacktivity-content card">
                                 <div class="hacktivity-header">
                                     <h3>{{ activity.title }}</h3>
+                                    {% if activity.date %}
                                     <span class="hacktivity-date">
                                         <i class="fas fa-calendar"></i>
                                         {{ activity.date }}
                                     </span>
+                                    {% endif %}
                                 </div>
+                                {% if activity.location %}
+                                <p class="hacktivity-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    {{ activity.location }}
+                                </p>
+                                {% endif %}
+                                {% if activity.platform %}
                                 <p class="hacktivity-platform">
                                     <i class="fas fa-globe"></i>
-                                    <strong>{{ activity.platform }}</strong>
+                                    {{ activity.platform }}
                                 </p>
+                                {% endif %}
                                 {% if activity.severity %}
-                                <p class="hacktivity-severity">
-                                    <strong>Severity:</strong> <span class="severity-badge {{ activity.severity | downcase }}">{{ activity.severity }}</span>
+                                <p class="hacktivity-type">
+                                    <strong>Category:</strong> {{ activity.severity }}
                                 </p>
                                 {% endif %}
                                 <p class="hacktivity-description">{{ activity.description }}</p>
