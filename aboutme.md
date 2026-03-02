@@ -115,7 +115,7 @@ activities:
     bounty: "$2,500"
     tags: ["Authentication", "Critical", "Bounty"]
   - title: "SQL Injection in Search Functionality"
-    platform: "Intigriti"
+    platform: "Private"
     date: "January 2024"
     severity: "Critical"
     description: "Identified SQL injection vulnerability in search module leading to unauthorized database access."
@@ -137,18 +137,17 @@ activities:
     tags: ["SSTI", "Critical", "Bounty"]
   
   # generic activity examples
-  - title: "Presented at Secure DevOps Summit"
-    platform: "Secure DevOps Summit"
-    date: "June 2023"
-    location: "San Francisco, USA"
-    severity: "Talk"
-    description: "Delivered a talk on secure coding practices and pipeline security."
+  - title: "Security and Governance Challenges in AI"
+    platform: "Google DevFest 2025"
+    date: "Dec 2025"
+    location: "Lalitpur, Nepal"
+    severity: "Why security and governance matter more than ever as organizations start using generative AI. How to securely adopt AI in systems, build secure AI models, mitigate risks from unsafe AI use, and more.."
     tags: ["Talk", "Conference"]
-  - title: "CVE-2023-12345 assigned for XSS in OpenCMS"
+  - title: "CVE-2024-2301 in HP Printers "
     platform: "NVD"
-    date: "August 2023"
+    date: "May 2024"
     severity: "CVE"
-    description: "A reflected XSS issue in OpenCMS received a CVE assignment after responsible disclosure."
+    description: "Stored cross-site scripting (XSS) vulnerability in HP printer web interface.."
     tags: ["CVE", "XSS"]
 ---
 

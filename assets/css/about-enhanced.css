@@ -467,6 +467,16 @@ html {
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
+    /* start hidden for animation */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* visible state for cards and hacktivity items */
+.card.visible,
+.hacktivity-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card:hover {
@@ -1082,6 +1092,11 @@ html {
     display: flex;
     gap: 2rem;
     position: relative;
+    /* start off-screen for animation */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
 }
 
 /* additional info fields */
@@ -1131,6 +1146,7 @@ html {
     padding: 1.5rem !important;
     border-left: 4px solid #10b981;
     padding-left: 1.25rem !important;
+    /* nested card already has its own animation; remove duplicate state */
 }
 
 .hacktivity-header {
