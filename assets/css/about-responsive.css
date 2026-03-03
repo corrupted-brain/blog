@@ -79,7 +79,7 @@ main { padding-top: var(--nav-h); }
 /* Logos */
 .logos-grid { display:flex; flex-wrap:wrap; gap:20px; align-items:center; margin-top:12px; }
 .logo-item { display:flex; flex-direction:column; align-items:center; gap:6px; }
-.logo-item img { height:28px; max-width:80px; object-fit:contain; filter:grayscale(1) brightness(1.5); transition:filter .2s; }
+.logo-item img { height:28px; max-width:80px; object-fit:contain; filter:grayscale(1) brightness(1.5) drop-shadow(0 0 0 white); transition:filter .2s; }
 .logo-item img:hover { filter:none; }
 .logo-item span { font-size:0.65rem; color:var(--muted); font-family:'JetBrains Mono',monospace; }
 
