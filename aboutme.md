@@ -141,13 +141,14 @@ activities:
     platform: "Google DevFest 2025"
     date: "Dec 2025"
     location: "Lalitpur, Nepal"
-    severity: "Why security and governance matter more than ever as organizations start using generative AI. How to securely adopt AI in systems, build secure AI models, mitigate risks from unsafe AI use, and more.."
+    severity: ""
+    description: "Why security and governance matter more than ever as organizations start using generative AI. How to securely adopt AI in systems, build secure AI models, mitigate risks from unsafe AI use, and more."
     tags: ["Talk", "Conference"]
   - title: "CVE-2024-2301 in HP Printers "
     platform: "NVD"
     date: "May 2024"
     severity: "CVE"
-    description: "Stored cross-site scripting (XSS) vulnerability in HP printer web interface.."
+    description: "Stored cross-site scripting (XSS) vulnerability in HP printer web interface."
     tags: ["CVE", "XSS"]
 ---
 
