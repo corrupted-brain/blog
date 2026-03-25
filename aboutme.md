@@ -153,11 +153,35 @@ activities:
 
 
 cve:
-  - "CVE-2020-10596 - Opencart"
-  - "CVE-2020-18723 - Mdaemon Webmail Service"
-  - "CVE-2020-18724 - Mdaemon Webmail Service"
-  - "CVE-2021-46065 - Zoho ManageEngine ServiceDesk Plus"
-  - "CVE-2024-2301 - HP Printers"
+  - id: CVE-2020-10596
+    product: OpenCart
+    severity: Medium
+    description: Stored XSS vulnerability via crafted filename in image upload feature allowing authenticated attackers to execute malicious scripts.
+    link: https://nvd.nist.gov/vuln/detail/CVE-2020-10596
+
+  - id: CVE-2020-18723
+    product: MDaemon Webmail
+    severity: Medium
+    description: Stored cross-site scripting (XSS) vulnerability allowing attackers to inject malicious scripts in webmail components.
+    link: https://nvd.nist.gov/vuln/detail/CVE-2020-18723
+
+  - id: CVE-2020-18724
+    product: MDaemon Webmail
+    severity: Medium
+    description: Stored XSS vulnerability in contact name field of distribution list allowing execution of arbitrary scripts when viewed.
+    link: https://nvd.nist.gov/vuln/detail/CVE-2020-18724
+
+  - id: CVE-2021-46065
+    product: Zoho ManageEngine ServiceDesk Plus
+    severity: Medium
+    description: Stored XSS vulnerability in Secondary Email field allowing attackers to inject arbitrary JavaScript code.
+    link: https://nvd.nist.gov/vuln/detail/CVE-2021-46065
+
+  - id: CVE-2024-2301
+    product: HP Printers (LaserJet Pro)
+    severity: High
+    description: Cross-site scripting (XSS) vulnerability in printer web management interface that may allow execution of malicious scripts.
+    link: https://nvd.nist.gov/vuln/detail/CVE-2024-2301
 ---
 
 # About Kailash Bohara
