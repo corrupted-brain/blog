@@ -150,6 +150,14 @@ activities:
     severity: "CVE"
     description: "Stored cross-site scripting (XSS) vulnerability in HP printer web interface."
     tags: ["CVE", "XSS"]
+
+
+cve:
+  - "CVE-2020-10596 - Opencart"
+  - "CVE-2020-18723 - Mdaemon Webmail Service"
+  - "CVE-2020-18724 - Mdaemon Webmail Service"
+  - "CVE-2021-46065 - Zoho ManageEngine ServiceDesk Plus"
+  - "CVE-2024-2301 - HP Printers"
 ---
 
 # About Kailash Bohara
