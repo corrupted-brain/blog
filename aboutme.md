@@ -152,7 +152,7 @@ activities:
     tags: ["CVE", "XSS"]
 
 
-cve:
+cves:
   - id: CVE-2020-10596
     product: OpenCart
     severity: Medium
