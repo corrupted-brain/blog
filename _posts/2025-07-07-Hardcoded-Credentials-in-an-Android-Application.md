@@ -7,7 +7,7 @@ tags: [Hard Coded Secrets, MobSF, APKTools, API Security, Android Security, Andr
 
 ## Description
 
-During a security assessment of an Android application, hardcoded secrets — including the `clientID` and `clientSecret` — were discovered embedded directly in the application's source code. These credentials were trivially accessible to anyone who decompiles or inspects the APK. With these credentials, an attacker could authenticate against the application's backend APIs and retrieve sensitive data, including customers' Personally Identifiable Information (PII).
+During a security assessment of an Android application, hardcoded secrets, including the `clientID` and `clientSecret`, were discovered embedded directly in the application's source code. These credentials were trivially accessible to anyone who decompiles or inspects the APK. With these credentials, an attacker could authenticate against the application's backend APIs and retrieve sensitive data, including customers' Personally Identifiable Information (PII).
 
 ## Impact
 
