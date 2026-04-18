@@ -1,17 +1,15 @@
 ---
 layout: post
-title:  "Hardcoded Credentials in an Android Application Leading to Unauthorized API Access and PII Exposure"
-excerpt: When your API keys ship with the APK, every user is one decompile away from being an attacker..
+title: "Hardcoded Credentials in an Android Application Leading to Unauthorized API Access and PII Exposure"
+excerpt: "When your API keys ship with the APK, every user is one decompile away from being an attacker."
 tags: [Hard Coded Secrets, MobSF, APKTools, API Security, Android Security, Android Pentesting]
 ---
 
-**Description**
+## Description
 
-During the security assessments of an Android application, the Hardcoded secrets, including the `clientID` and `clientSecret`, were discovered in the application. These secrets were hardcoded directly in the application's code, making them easily accessible to anyone who decompiles or inspects the application package (APK). With these credentials, an attacker could authenticate against the application's backend APIs and retrieve sensitive data, including customers' Personally Identifiable Information (PII).
+During a security assessment of an Android application, hardcoded secrets — including the `clientID` and `clientSecret` — were discovered embedded directly in the application's source code. These credentials were trivially accessible to anyone who decompiles or inspects the APK. With these credentials, an attacker could authenticate against the application's backend APIs and retrieve sensitive data, including customers' Personally Identifiable Information (PII).
 
-### Impact
-
-It allows attackers to use the hardcoded `clientID` and `clientSecret` to authenticate themselves to backend APIs, leading to unauthorised access. 
+## Impact
 
 By leveraging the hardcoded credentials, an attacker can:
 
@@ -21,41 +19,36 @@ By leveraging the hardcoded credentials, an attacker can:
 
 A breach of this nature can result in regulatory fines, legal consequences, reputational damage, loss of customer trust, and potential fraud.
 
-**Vulnerable Endpoint**
+## Vulnerable Endpoints
 
 The credentials were found in the following decompiled classes:
 
-com/[redacted]/app/BuildConfig.java
-com/[redacted]/app/StidClientModule.java
+- `com/[redacted]/app/BuildConfig.java`
+- `com/[redacted]/app/StidClientModule.java`
 
-**Steps to Reproduce**
+## Steps to Reproduce
 
-1. Decompile the APK (e.g., using jadx or apktool). In this case, we used the MobSF tool.
-2. Open the BuildConfig.java file. Multiple sensitive keys, tokens, and credentials are hardcoded in plaintext.
+1. Decompile the APK (e.g., using `jadx` or `apktool`). In this case, we used MobSF.
 
-![image0.png](/images/posts/Android Hardcoded Secrets/hardcoded-secrets-0.png)
+2. Open the `BuildConfig.java` file. Multiple sensitive keys, tokens, and credentials are hardcoded in plaintext.
+   ![Hardcoded secrets in BuildConfig.java](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-0.png)
 
-3. As we can see, multiple sensitive keys, tokens and credentials are hardcoded in a file. Then we followed the API call documentation, as shown below.
+3. Following the API documentation, we identified the authentication flow for the backend services.
+   ![API documentation](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-1.png)
 
-![image.png](/images/posts/Android Hardcoded Secrets/hardcoded-secrets-1.png)
+4. Construct a Basic Authorization header from the extracted `clientID` and `clientSecret`.
+   ![Basic Auth token generation](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-2.png)
 
-4. Using the API documentation, construct a Basic Authorization header from the extracted clientID and clientSecret.
+5. Exchange the Basic Auth token for an `access_token` via the token endpoint.
+   ![Access token response](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-3.png)
 
-![image.png](/images/posts/Android Hardcoded Secrets/hardcoded-secrets-2.png)
+6. Using the access token, fetch the existing sites for this particular client.
+   ![Sites enumeration](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-4.png)
 
-5. Exchange the Basic Auth token for an access_token via the token endpoint.
+7. Make a GET request to `https://[redacted]/api/GetVirtualCardListV2/?siteId=[redacted]`. The response returned thousands of records containing PII (email addresses, phone numbers, and other personal data).
+   ![PII data exposure](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-5.png)
 
-![image.png](/images/posts/Android Hardcoded Secrets/hardcoded-secrets-3.png)
-
-6. Using the access token, we fetched the existing sites for this particular client. 
-
-![image.png](/images/posts/Android Hardcoded Secrets/hardcoded-secrets-4.png)
-
-7. Then we made a GET request to fetch the Virtual card to the URL  `https://servername/api/GetVirtualCardListV2/?siteId=XXXX`. As the request was successful, we received thousands of records in the response, which contain PII such as email addresses, phone numbers, and other information.  
-
-![image.png](/images/posts/Android Hardcoded Secrets/hardcoded-secrets-5.png)
-
-**Lesson Learned**
+## Lessons Learned
 
 - Never hardcode secrets in client-side code.
 - Implement proper OAuth 2.0 flows where tokens are issued server-side and scoped appropriately.
