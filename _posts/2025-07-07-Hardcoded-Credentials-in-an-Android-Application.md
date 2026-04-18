@@ -1,4 +1,9 @@
-# Hardcoded Credentials in an Android Application Leading to Unauthorized API Access and PII Exposure
+---
+layout: post
+title:  "Hardcoded Credentials in an Android Application Leading to Unauthorized API Access and PII Exposure"
+excerpt: When your API keys ship with the APK, every user is one decompile away from being an attacker..
+tags: [Hard Coded Secrets, MobSF, APKTools, API Security, Android Security, Android Pentesting]
+---
 
 **Description**
 
