@@ -31,22 +31,22 @@ The credentials were found in the following decompiled classes:
 1. Decompile the APK (e.g., using `jadx` or `apktool`). In this case, we used MobSF.
 
 2. Open the `BuildConfig.java` file. Multiple sensitive keys, tokens, and credentials are hardcoded in plaintext.
-   ![Hardcoded secrets in BuildConfig.java](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-0.png)
+   ![Hardcoded secrets in BuildConfig.java](/images/posts/Android%20Hardcoded%20Secrets/hardcoded-secrets-0.png)
 
 3. Following the API documentation, we identified the authentication flow for the backend services.
-   ![API documentation](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-1.png)
+   ![API documentation](/images/posts/Android%20Hardcoded%20Secrets/hardcoded-secrets-1.png)
 
 4. Construct a Basic Authorization header from the extracted `clientID` and `clientSecret`.
-   ![Basic Auth token generation](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-2.png)
+   ![Basic Auth token generation](/images/posts/Android%20Hardcoded%20Secrets/hardcoded-secrets-2.png)
 
 5. Exchange the Basic Auth token for an `access_token` via the token endpoint.
-   ![Access token response](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-3.png)
+   ![Access token response](/images/posts/Android%20Hardcoded%20Secrets/hardcoded-secrets-3.png)
 
 6. Using the access token, fetch the existing sites for this particular client.
-   ![Sites enumeration](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-4.png)
+   ![Sites enumeration](/images/posts/Android%20Hardcoded%20Secrets/hardcoded-secrets-4.png)
 
 7. Make a GET request to `https://[redacted]/api/GetVirtualCardListV2/?siteId=[redacted]`. The response returned thousands of records containing PII (email addresses, phone numbers, and other personal data).
-   ![PII data exposure](/images/posts/Android-Hardcoded-Secrets/hardcoded-secrets-5.png)
+   ![PII data exposure](/images/posts/Android%20Hardcoded%20Secrets/hardcoded-secrets-5.png)
 
 ## Lessons Learned
 
