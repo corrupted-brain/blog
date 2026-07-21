@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Container Security Hardening Guide and its Importance"
-excerpt: "Containers did not eliminate the attack surface they relocated and compressed it. A single misconfigured `Deployment`, an unsigned image pulled from a public registry, or a pod running as root can turn your orchestration layer into a lateral movement highway. From a security engineering standpoint, container security is the practice of shrinking trust boundaries, enforcing least privilege at every layer, and detecting deviation before it becomes breach."
+excerpt: "Container security is no longer optional in cloud-native environments. As applications become increasingly containerized, securing images, workloads, and runtime environments is essential to prevent attacks and maintain operational integrity."
 tags: [Hard Coded Secrets, MobSF, APKTools, API Security, Android Security, Android Pentesting]
 ---
 
