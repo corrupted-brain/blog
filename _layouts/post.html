@@ -55,27 +55,6 @@
 </div><!-- /.footer-wrap -->
 
 <!--{% include _scripts.html %}-->
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: 'neutral',
-    securityLevel: 'loose'
-  });
-
-  // Find fenced ```mermaid blocks rendered by Kramdown/Rouge
-  const blocks = document.querySelectorAll('pre > code.language-mermaid');
-
-  blocks.forEach((code) => {
-    const pre = code.parentElement;
-    const div = document.createElement('div');
-    div.className = 'mermaid';
-    div.textContent = code.textContent;
-    pre.replaceWith(div);
-  });
-
-  await mermaid.run({ querySelector: '.mermaid' });
-</script>
-</body>
+<script src="/assets/js/vendor/mermaid.min.js" defer></script>
+<script src="/assets/js/mermaid-init.js" defer></script></body>
 </html>
