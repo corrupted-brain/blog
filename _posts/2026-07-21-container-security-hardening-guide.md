@@ -7,19 +7,13 @@ tags: [Container Security, Kubernetes, DevSecOps, Cloud Security, Supply Chain S
 
 ## Why Container Security Matters
 
-### The Illusion of Isolation
-
 Containers share a kernel. Unlike virtual machines, they are not hard boundaries they are namespaced processes with optional control group limits and Linux security modules layered on top. When we treat containers like as "VMs," and think it inherit controls like VMs such as internal traffic is trusted, root inside the container is harmless this does not satisfies in Kubernetes. 
 
-### The Blast Radius Has Changed Shape
-
-In a monolithic datacenter architecture, compromise might mean one server. But in Kubernetes:
+In a monolithic application architecture, compromise might mean one server. But in Kubernetes:
 
 - **One privileged pod** can read host filesystems, access cloud metadata APIs, or pivot to the node IAM role.
 - **One poisoned image** in CI can deploy to every environment that trusts the pipeline.
 - **One missing NetworkPolicy** can leave the entire cluster open to internal reconnaissance between microservices.
-
-
 
 ### Compliance and Customer Trust
 
@@ -32,12 +26,9 @@ Regulators and auditors expect evidence that production workloads are built from
 - Kubernetes audit logs for who changed cluster resources and when
 - Scan report that align with CIS Benchmarks and Pod Security Standards
 
-
-
 ### Cost of Getting It Wrong
 
-
-| Missing Controls            | Typical Impact                               |
+|     Missing Controls        |            Typical Impact                    |
 | --------------------------- | -------------------------------------------- |
 | Root + privileged pod       | Node compromise, cluster takeover            |
 | `:latest` tag in production | Uncontrolled rollbacks, unknown CVE exposure |
@@ -76,7 +67,7 @@ flowchart TB
     subgraph Layer4["Layer 4: Runtime & Detection"]
         D1[Image Scanning]
         D2[Runtime Anomaly Detection]
-        D3[Falco/Sysdig Alerts]
+        D3[Falco Alerts]
         D4[Audit Logging]
     end
 
@@ -109,7 +100,7 @@ flowchart LR
 ```
 
 
-Internal cluster traffic is not automatically secure. Network Policies and service mesh mTLS enforce identity-aware communication.
+Internal cluster traffic is not automatically secure. We should implement Network Policies and service mesh mTLS for identity-aware communication.
 
 ```mermaid
 flowchart TB
@@ -156,17 +147,17 @@ A golden image is a pre-approved, minimal base image that every team should buil
 
 **Why security teams care:**
 
-- **Smaller attack surface** — A slim base image contains fewer packages, which means fewer known vulnerabilities to patch and fewer places for attackers to hide tools.
-- **Consistent hardening** — Non-root user, dropped capabilities, and security patches are applied once in the golden image, not reimplemented (or forgotten) by every development team.
-- **Faster, reliable scanning** — When all apps share a known base, vulnerability scans are repeatable. You scan the golden image and every app built on top of it inherits that baseline.
-- **Audit and compliance** — Auditors can review one approved image pipeline instead of hundreds of one-off Dockerfiles. You can show exactly what is allowed to run in production.
-- **Supply chain control** — Only blessed images from your private registry get deployed. Unknown or tampered public images never reach the cluster.
+- **Smaller attack surface** : A slim base image contains fewer packages, which means fewer known vulnerabilities to patch and fewer places for attackers to hide tools.
+- **Consistent hardening** : Non-root user, dropped capabilities, and security patches are applied once in the golden image, not reimplemented (or forgotten) by every development team.
+- **Faster, reliable scanning** : When all apps share a known base, vulnerability scans are repeatable. You scan the golden image and every app built on top of it inherits that baseline.
+- **Audit and compliance** : Auditors can review one approved image pipeline instead of hundreds of one-off Dockerfiles. You can show exactly what is allowed to run in production.
+- **Supply chain control** : Only blessed images from your private registry get deployed. Unknown or tampered public images never reach the cluster.
 
 
 
 ## Implementation Roadmap
 
-Prioritize controls by **risk reduction vs effort**. The phased approach below mirrors what most security engineering teams deploy successfully.
+Prioritize controls by risk reduction vs effort. The phased approach below mirrors what most security engineering teams deploy successfully.
 
 ```mermaid
 flowchart TB
@@ -212,7 +203,7 @@ flowchart TB
 
 
 
-### Phase 1 — Quick Wins (Weeks 1–4)
+### Phase 1 — Easy to implement (Weeks 1–4)
 
 - Enforce non-root, drop capabilities, read-only root FS where feasible
 - Eliminate `:latest`; pin image digests
@@ -240,7 +231,7 @@ flowchart TB
 
 
 
-### Phase 4 — Runtime & Zero Trust (Ongoing)
+### Phase 4 — Runtime & Zero Trust (Never ending process)
 
 - Encrypt service-to-service traffic for sensitive tiers
 - Runtime anomaly detection and automated response playbooks
