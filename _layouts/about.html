@@ -20,6 +20,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#hacktivities">CVEs</a></li>
       <li><a href="#talks">Talks</a></li>
     </ul>
@@ -39,6 +40,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#credentials" onclick="closeMenu()">Credentials</a>
+  <a href="#education" onclick="closeMenu()">Education</a>
   <a href="#hacktivities" onclick="closeMenu()">CVEs</a>
   <a href="#talks" onclick="closeMenu()">Talks</a>
   <a href="mailto:{{ page.email | default: 'kailash@kailashbohara.com.np' }}">Contact</a>
@@ -98,7 +100,7 @@
       <div class="section-header reveal">
         <span class="section-eyebrow">About</span>
         <h2 class="section-title">Who I am</h2>
-        <p class="section-desc">Professional profile, skills, and platforms I've helped secure.</p>
+        <p class="section-desc">Professional profile, skills, and organizations helped through responsible vulnerability disclosure.</p>
       </div>
       <div class="about-layout">
         <div class="about-left">
@@ -107,15 +109,14 @@
           </article>
           <div class="card reveal helped-secure-card">
             <h3 class="card-title">Helped Secure</h3>
-            <p class="card-sub">Identified and responsibly disclosed vulnerabilities across major platforms.</p>
+            <p class="card-sub">{{ page.helped_secure_subtitle | default: 'Identified and responsibly disclosed vulnerabilities across major platforms.' }}</p>
             <div class="logo-strip">
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" /><span>Google</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Meta" /><span>Meta</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" /><span>AWS</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg" alt="Adobe" /><span>Adobe</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell" /><span>Dell</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/ZOHO_logo_2023.svg" alt="Zoho" /><span>Zoho</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" /><span>Microsoft</span></div>
+              {% for company in page.helped_secure %}
+              <div class="logo-chip">
+                <img src="{{ company.logo | relative_url }}" alt="{{ company.name }}" loading="lazy" />
+                <span>{{ company.name }}</span>
+              </div>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -150,7 +151,7 @@
       <div class="section-header reveal">
         <span class="section-eyebrow">Credentials</span>
         <h2 class="section-title">Experience &amp; certifications</h2>
-        <p class="section-desc">A decade of offensive and defensive security work, backed by industry credentials.</p>
+        <p class="section-desc">A decade of offensive and defensive security work, backed by industry credentials and trainings.</p>
       </div>
       <div class="credentials-grid">
         <div class="card reveal">
@@ -163,7 +164,7 @@
             <div class="exp-item">
               <div class="exp-row">
                 {% if exp.logo %}
-                <img class="exp-logo" src="{{ exp.logo }}" alt="{{ exp.company }}" loading="lazy"
+                <img class="exp-logo{% if exp.logo_class %} {{ exp.logo_class }}{% endif %}" src="{{ exp.logo | relative_url }}" alt="{{ exp.company }}" loading="lazy"
                   onerror="this.style.display='none'" />
                 {% endif %}
                 <div class="exp-body">
@@ -172,7 +173,13 @@
                   </div>
                   <h4 class="exp-role">{{ exp.role }}</h4>
                   <p class="exp-org">{{ exp.company }}</p>
+                  {% if exp.highlights %}
+                  <ul class="exp-highlights">
+                    {% for item in exp.highlights %}<li>{{ item }}</li>{% endfor %}
+                  </ul>
+                  {% elsif exp.description %}
                   <p class="exp-desc">{{ exp.description }}</p>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -181,16 +188,16 @@
         </div>
         <div class="card reveal reveal-delay">
           <div class="card-head">
-            <h3 class="card-title">Certifications</h3>
+            <h3 class="card-title">Certifications &amp; trainings</h3>
             <a href="#credentials" class="card-link">View all</a>
           </div>
           <div class="cert-list">
             {% for cert in page.certifications %}
             <div class="cert-row">
-              <img class="cert-badge" src="{{ cert.logo }}" alt="{{ cert.name }}" loading="lazy" />
+              <img class="cert-badge" src="{{ cert.logo | relative_url }}" alt="{{ cert.name }}" loading="lazy" />
               <div>
                 <h4 class="cert-name">{{ cert.name }}</h4>
-                <p class="cert-meta">{{ cert.org }} · {{ cert.year }}</p>
+                <p class="cert-meta">{{ cert.org }}{% if cert.year %} · {{ cert.year }}{% endif %}</p>
               </div>
             </div>
             {% endfor %}
@@ -200,7 +207,36 @@
     </div>
   </section>
 
-  <section class="section" id="hacktivities">
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Education</span>
+        <h2 class="section-title">Academic background</h2>
+        <p class="section-desc">Formal training in computer science and information technology.</p>
+      </div>
+      <div class="education-grid reveal">
+        {% for edu in page.education %}
+        <article class="card edu-card">
+          <div class="edu-row">
+            {% if edu.logo %}
+            <img class="edu-logo" src="{{ edu.logo | relative_url }}" alt="{{ edu.institution }}" loading="lazy"
+              onerror="this.style.display='none'" />
+            {% endif %}
+            <div class="edu-body">
+              <div class="edu-meta">
+                <span class="edu-year">{{ edu.year }}</span>
+              </div>
+              <h3 class="edu-institution">{{ edu.institution }}</h3>
+              <p class="edu-degree">{{ edu.degree }}</p>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="hacktivities">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-eyebrow">Research</span>
@@ -228,7 +264,7 @@
     </div>
   </section>
 
-  <section class="section section-alt" id="talks">
+  <section class="section" id="talks">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-eyebrow">Talks</span>
@@ -241,7 +277,7 @@
           <div class="talk-card-top">
             {% if talk.logo %}
             <div class="talk-logo-wrap">
-              <img class="talk-logo" src="{{ talk.logo }}" alt="{{ talk.event }}" loading="lazy"
+              <img class="talk-logo{% if talk.logo_class %} {{ talk.logo_class }}{% endif %}" src="{{ talk.logo | relative_url }}" alt="{{ talk.event }}" loading="lazy"
                 onerror="this.parentElement.classList.add('talk-logo-fallback')" />
             </div>
             {% endif %}

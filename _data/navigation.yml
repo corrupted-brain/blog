@@ -1,13 +1,13 @@
 # Site navigation links
 
+- title: About
+  url: /about/
+
 - title: Home
   url: https://kailashbohara.com.np
 
 - title: All posts
   url: /posts/
-
-- title: About
-  url: /about/
 
 - title: Github
   url: https://github.com/corrupted-brain
