@@ -275,5 +275,3 @@ Container security is not a single tool. It is architecture, process, and cultur
 
 As a security engineer, my advice is direct: start with what attackers exploit first privileged pods, public images, missing network segmentation, and over-permissioned CI/CD and automate denial of bad configurations at admission time. Scanning and monitoring catch what policy misses.
 
-Build golden paths for developers so the secure choice is the easy choice. A hardened cluster that blocks every deployment without guidance will be bypassed; a hardened cluster with documented patterns, GitOps workflows, and sensible defaults will be defended.
-
