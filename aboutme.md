@@ -88,14 +88,17 @@ experience:
   - role: "Senior Cybersecurity Engineer"
     company: "Cedar Gate Technologies"
     period: "2023 - Present"
+    logo: "https://www.iqvia.com/-/media/iqvia/images/logo/iqvia-logo.png"
     description: "Enhanced DLP, SOC, MDR, and cloud security; supported compliance (SOC 2, HITRUST, ISO 27001); managed vulnerabilities and verified external pentest reports."
   - role: "Senior Penetration Tester"
     company: "Eminence Ways Pvt. Ltd."
     period: "2018 - 2023"
+    logo: "https://eminenceways.com/assets/images/logo.png"
     description: "Conducted VAPT of web/mobile/api/network systems, secure code review and training, social engineering assessments and security audits for various organisations."
   - role: "Chapter Leader"
     company: "OWASP Kathmandu"
     period: "2022 - Present"
+    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6a/OWASP_Logo.svg"
     description: "OWASP Kathmandu is a non-profit cybersecurity community dedicated to strengthening information security awareness and building a collaborative security ecosystem in Nepal. The chapter organizes regular cybersecurity meetups, Capture-the-Flag (CTF) events, and live hacking competitions to promote learning, knowledge sharing, and hands-on security skills"
 
 talks:
@@ -103,113 +106,71 @@ talks:
     event: "Google DevFest 2025"
     date: "December 2025"
     location: "Lalitpur, Nepal"
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
     description: "Why security and governance matter more than ever as organizations start using generative AI. How to securely adopt AI in systems, build secure AI models, mitigate risks from unsafe AI use, and more."
     link: "https://www.linkedin.com/posts/kailash0x01_aisecurity-cybersecurity-google-activity-7403767961934819328-BdaN?utm_source=share&utm_medium=member_desktop&rcm=ACoAACWwQM0BHtq-U5IJ9bEXLQDwd3sXUJCL1a4"
   - title: "Software Supply Chain Attacks and Preventions"
     event: "Pentester Nepal"
     date: "April 2023"
     location: "Kathmandu, Nepal"
+    logo: "https://github.com/Pentester-Nepal.png"
     description: "Conduct security scan of third-party dependencies using SCA tools, SBOM analysis, and automated dependency checks. Evaluate software supply-chain risks—including compromised packages, malicious updates, and insecure build pipelines—to prevent large-scale security risks and maintain secure software releases."
     link: "https://www.linkedin.com/posts/kailash0x01_infosec-activity-7091445883048755200-R7HN?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAACWwQM0BHtq-U5IJ9bEXLQDwd3sXUJCL1a4"
   - title: "Present and future of infosec in Nepal"
     event: "OWASP Kathmandu"
     date: "September 2022"
     location: "Eminence Ways, Kathmandu"
+    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6a/OWASP_Logo.svg"
     description: "Different domains of cybersecurity and how one can start cybersecurity. Introduction to security tools, frameworks, standards and rodmap"
     link: "https://github.com/OWASP/www-chapter-kathmandu/blob/main/assets/slides/Meetup-0x01/Kailash%20Bohara%20-%20Present%20and%20future%20of%20infosec%20in%20Nepal.pdf"
   - title: "Application Security: Tools and Techniques"
     event: "TU-ERC Campus"
     date: "November 2022"
     location: "Dharan, Nepal"
+    logo: "https://upload.wikimedia.org/wikipedia/en/2/23/Tribhuvan_University_logo.svg"
     description: "Advanced WebApp security testing techniques and emerging threats.Introduction to OWASP Top 10 risks"
     link: "#"
   - title: "Secure Development and Deployment"
     event: "Security Professionals Meetup"
     date: "January 2024"
     location: "Cedar Gate Nepal, Lalitpur, Nepal"
+    logo: "https://www.iqvia.com/-/media/iqvia/images/logo/iqvia-logo.png"
     description: "Secure coding practices, OWASP Top 10 prevention, DevOps mistakes"
     link: "#"
-
-activities:
-  - title: "Cross-Site Scripting (XSS) Vulnerability"
-    platform: "HackerOne"
-    date: "March 2024"
-    severity: "High"
-    description: "Discovered a stored XSS vulnerability in user profile sections allowing arbitrary script execution."
-    tags: ["XSS", "High Severity", "Resolved"]
-  - title: "Authentication Bypass in API Endpoint"
-    platform: "Bugcrowd"
-    date: "February 2024"
-    severity: "Critical"
-    description: "Found an authentication bypass allowing unauthorized access to sensitive API endpoints."
-    bounty: "$2,500"
-    tags: ["Authentication", "Critical", "Bounty"]
-  - title: "SQL Injection in Search Functionality"
-    platform: "Private"
-    date: "January 2024"
-    severity: "Critical"
-    description: "Identified SQL injection vulnerability in search module leading to unauthorized database access."
-    bounty: "$5,000"
-    tags: ["SQL Injection", "Critical", "Bounty"]
-  - title: "Insecure Direct Object Reference (IDOR)"
-    platform: "HackerOne"
-    date: "December 2023"
-    severity: "High"
-    description: "Found IDOR vulnerability allowing users to access other users' private documents."
-    bounty: "$1,500"
-    tags: ["IDOR", "High Severity", "Bounty"]
-  - title: "Server-Side Template Injection (SSTI)"
-    platform: "Bugcrowd"
-    date: "November 2023"
-    severity: "Critical"
-    description: "Discovered SSTI vulnerability in email templating system leading to RCE."
-    bounty: "$3,000"
-    tags: ["SSTI", "Critical", "Bounty"]
-  
-  # generic activity examples
-  - title: "Security and Governance Challenges in AI"
-    platform: "Google DevFest 2025"
-    date: "Dec 2025"
-    location: "Lalitpur, Nepal"
-    severity: ""
-    description: "Why security and governance matter more than ever as organizations start using generative AI. How to securely adopt AI in systems, build secure AI models, mitigate risks from unsafe AI use, and more."
-    tags: ["Talk", "Conference"]
-  - title: "CVE-2024-2301 in HP Printers "
-    platform: "NVD"
-    date: "May 2024"
-    severity: "CVE"
-    description: "Stored cross-site scripting (XSS) vulnerability in HP printer web interface."
-    tags: ["CVE", "XSS"]
-
 
 cves:
   - id: CVE-2020-10596
     product: OpenCart
     severity: Medium
+    date: "May 2020"
     description: Stored XSS vulnerability via crafted filename in image upload feature allowing authenticated attackers to execute malicious scripts.
     link: https://nvd.nist.gov/vuln/detail/CVE-2020-10596
 
   - id: CVE-2020-18723
     product: MDaemon Webmail
     severity: Medium
+    date: "July 2020"
     description: Stored cross-site scripting (XSS) vulnerability allowing attackers to inject malicious scripts in webmail components.
     link: https://nvd.nist.gov/vuln/detail/CVE-2020-18723
 
   - id: CVE-2020-18724
     product: MDaemon Webmail
     severity: Medium
+    date: "July 2020"
     description: Stored XSS vulnerability in contact name field of distribution list allowing execution of arbitrary scripts when viewed.
     link: https://nvd.nist.gov/vuln/detail/CVE-2020-18724
 
   - id: CVE-2021-46065
     product: Zoho ManageEngine ServiceDesk Plus
     severity: Medium
+    date: "January 2022"
     description: Stored XSS vulnerability in Secondary Email field allowing attackers to inject arbitrary JavaScript code.
     link: https://nvd.nist.gov/vuln/detail/CVE-2021-46065
 
   - id: CVE-2024-2301
     product: HP Printers (LaserJet Pro)
     severity: High
+    date: "May 2024"
     description: Cross-site scripting (XSS) vulnerability in printer web management interface that may allow execution of malicious scripts.
     link: https://nvd.nist.gov/vuln/detail/CVE-2024-2301
 ---

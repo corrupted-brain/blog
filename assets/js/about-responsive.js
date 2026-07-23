@@ -4,8 +4,6 @@
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   const themeToggle = document.getElementById('themeToggle');
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const activityCards = document.querySelectorAll('.activity-card');
 
   function closeMenu() {
     if (hamburger) hamburger.classList.remove('open');
@@ -56,20 +54,6 @@
   }
 
   initTheme();
-
-  filterButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-      filterButtons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      activityCards.forEach((card) => {
-        const type = card.dataset.type || 'other';
-        const show = filter === 'all' || type === filter;
-        card.classList.toggle('hidden', !show);
-      });
-    });
-  });
 
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

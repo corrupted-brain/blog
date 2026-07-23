@@ -20,9 +20,8 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#credentials">Credentials</a></li>
-      <li><a href="#hacktivities">Hacktivities</a></li>
+      <li><a href="#hacktivities">CVEs</a></li>
       <li><a href="#talks">Talks</a></li>
-      <li><a href="#research">Research</a></li>
     </ul>
     <div class="nav-actions">
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
@@ -40,9 +39,8 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#credentials" onclick="closeMenu()">Credentials</a>
-  <a href="#hacktivities" onclick="closeMenu()">Hacktivities</a>
+  <a href="#hacktivities" onclick="closeMenu()">CVEs</a>
   <a href="#talks" onclick="closeMenu()">Talks</a>
-  <a href="#research" onclick="closeMenu()">Research</a>
   <a href="mailto:{{ page.email | default: 'kailash@kailashbohara.com.np' }}">Contact</a>
 </div>
 
@@ -103,9 +101,24 @@
         <p class="section-desc">Professional profile, skills, and platforms I've helped secure.</p>
       </div>
       <div class="about-layout">
-        <article class="card prose-card reveal">
-          {{ content }}
-        </article>
+        <div class="about-left">
+          <article class="card prose-card reveal">
+            {{ content }}
+          </article>
+          <div class="card reveal helped-secure-card">
+            <h3 class="card-title">Helped Secure</h3>
+            <p class="card-sub">Identified and responsibly disclosed vulnerabilities across major platforms.</p>
+            <div class="logo-strip">
+              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" /><span>Google</span></div>
+              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Meta" /><span>Meta</span></div>
+              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" /><span>AWS</span></div>
+              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg" alt="Adobe" /><span>Adobe</span></div>
+              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell" /><span>Dell</span></div>
+              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/ZOHO_logo_2023.svg" alt="Zoho" /><span>Zoho</span></div>
+              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" /><span>Microsoft</span></div>
+            </div>
+          </div>
+        </div>
         <div class="about-side">
           {% if page.skill_groups %}
           <div class="card reveal">
@@ -127,19 +140,6 @@
             </ul>
           </div>
           {% endif %}
-          <div class="card reveal">
-            <h3 class="card-title">Helped Secure</h3>
-            <p class="card-sub">Identified and responsibly disclosed vulnerabilities across major platforms.</p>
-            <div class="logo-strip">
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" /><span>Google</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Meta" /><span>Meta</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" /><span>AWS</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg" alt="Adobe" /><span>Adobe</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell" /><span>Dell</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/ZOHO_logo_2023.svg" alt="Zoho" /><span>Zoho</span></div>
-              <div class="logo-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" /><span>Microsoft</span></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -161,12 +161,20 @@
           <div class="exp-list">
             {% for exp in page.experience %}
             <div class="exp-item">
-              <div class="exp-meta">
-                <span class="exp-period">{{ exp.period }}</span>
+              <div class="exp-row">
+                {% if exp.logo %}
+                <img class="exp-logo" src="{{ exp.logo }}" alt="{{ exp.company }}" loading="lazy"
+                  onerror="this.style.display='none'" />
+                {% endif %}
+                <div class="exp-body">
+                  <div class="exp-meta">
+                    <span class="exp-period">{{ exp.period }}</span>
+                  </div>
+                  <h4 class="exp-role">{{ exp.role }}</h4>
+                  <p class="exp-org">{{ exp.company }}</p>
+                  <p class="exp-desc">{{ exp.description }}</p>
+                </div>
               </div>
-              <h4 class="exp-role">{{ exp.role }}</h4>
-              <p class="exp-org">{{ exp.company }}</p>
-              <p class="exp-desc">{{ exp.description }}</p>
             </div>
             {% endfor %}
           </div>
@@ -195,37 +203,24 @@
   <section class="section" id="hacktivities">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-eyebrow">Hacktivities</span>
-        <h2 class="section-title">Bounties, CVEs &amp; research</h2>
-        <p class="section-desc">Bug bounty findings, disclosed vulnerabilities, and conference contributions.</p>
+        <span class="section-eyebrow">Research</span>
+        <h2 class="section-title">CVE disclosures</h2>
+        <p class="section-desc">Security vulnerabilities responsibly disclosed and published on NVD.</p>
       </div>
-      <div class="filter-bar reveal" role="tablist" aria-label="Filter hacktivities">
-        <button class="filter-btn active" data-filter="all" type="button">All</button>
-        <button class="filter-btn" data-filter="bounty" type="button">Bounties</button>
-        <button class="filter-btn" data-filter="cve" type="button">CVEs</button>
-        <button class="filter-btn" data-filter="talk" type="button">Talks</button>
-      </div>
-      <div class="cards-grid reveal">
-        {% assign activities = page.activities | default: page.hacktivity %}
-        {% for activity in activities %}
-        {% assign filter_type = 'other' %}
-        {% if activity.bounty %}{% assign filter_type = 'bounty' %}{% endif %}
-        {% if activity.severity == 'CVE' %}{% assign filter_type = 'cve' %}{% endif %}
-        {% for tag in activity.tags %}{% if tag == 'Talk' or tag == 'Conference' %}{% assign filter_type = 'talk' %}{% endif %}{% endfor %}
-        <article class="activity-card" data-type="{{ filter_type }}">
-          <div class="activity-head">
-            <h3 class="activity-title">{{ activity.title }}</h3>
-            {% if activity.severity %}
-            <span class="badge {% if activity.severity == 'Critical' %}badge-critical{% elsif activity.severity == 'High' %}badge-high{% elsif activity.severity == 'CVE' %}badge-cve{% else %}badge-info{% endif %}">{{ activity.severity }}</span>
+      <div class="cve-grid reveal">
+        {% for cve in page.cves %}
+        <article class="cve-card">
+          <div class="cve-header">
+            <code class="cve-id">{{ cve.id }}</code>
+            {% if cve.severity %}
+            <span class="badge {% if cve.severity == 'Critical' %}badge-critical{% elsif cve.severity == 'High' %}badge-high{% else %}badge-info{% endif %}">{{ cve.severity }}</span>
             {% endif %}
           </div>
-          <p class="activity-meta">{{ activity.date }}{% if activity.platform %} · {{ activity.platform }}{% endif %}</p>
-          <p class="activity-desc">{{ activity.description }}</p>
-          {% if activity.bounty %}<p class="activity-bounty">Bounty: {{ activity.bounty }}</p>{% endif %}
-          {% if activity.tags %}
-          <div class="activity-tags">
-            {% for tag in activity.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
-          </div>
+          <h3 class="cve-product">{{ cve.product }}</h3>
+          {% if cve.date %}<p class="cve-date">{{ cve.date }}</p>{% endif %}
+          <p class="cve-desc">{{ cve.description }}</p>
+          {% if cve.link %}
+          <a href="{{ cve.link }}" class="cve-link" target="_blank" rel="noopener">View on NVD →</a>
           {% endif %}
         </article>
         {% endfor %}
@@ -243,7 +238,15 @@
       <div class="talks-grid reveal">
         {% for talk in page.talks %}
         <article class="talk-card">
-          <div class="talk-badge">Speaker</div>
+          <div class="talk-card-top">
+            {% if talk.logo %}
+            <div class="talk-logo-wrap">
+              <img class="talk-logo" src="{{ talk.logo }}" alt="{{ talk.event }}" loading="lazy"
+                onerror="this.parentElement.classList.add('talk-logo-fallback')" />
+            </div>
+            {% endif %}
+            <div class="talk-badge">Speaker</div>
+          </div>
           <h3 class="talk-title">{{ talk.title }}</h3>
           <div class="talk-meta">
             {% if talk.event %}<span>{{ talk.event }}</span>{% endif %}
@@ -253,33 +256,6 @@
           <p class="talk-desc">{{ talk.description }}</p>
           {% if talk.link and talk.link != '#' %}
           <a href="{{ talk.link }}" class="talk-link" target="_blank" rel="noopener">View details →</a>
-          {% endif %}
-        </article>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="research">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-eyebrow">Research</span>
-        <h2 class="section-title">CVE disclosures</h2>
-        <p class="section-desc">Security vulnerabilities responsibly disclosed and published on NVD.</p>
-      </div>
-      <div class="cve-grid reveal">
-        {% for cve in page.cves %}
-        <article class="cve-card">
-          <div class="cve-header">
-            <code class="cve-id">{{ cve.id }}</code>
-            {% if cve.severity %}
-            <span class="badge {% if cve.severity == 'Critical' %}badge-critical{% elsif cve.severity == 'High' %}badge-high{% else %}badge-info{% endif %}">{{ cve.severity }}</span>
-            {% endif %}
-          </div>
-          <h3 class="cve-product">{{ cve.product }}</h3>
-          <p class="cve-desc">{{ cve.description }}</p>
-          {% if cve.link %}
-          <a href="{{ cve.link }}" class="cve-link" target="_blank" rel="noopener">View on NVD →</a>
           {% endif %}
         </article>
         {% endfor %}

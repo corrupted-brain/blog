@@ -498,6 +498,16 @@ main {
   align-items: start;
 }
 
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.helped-secure-card .logo-strip {
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+}
+
 .prose-card {
   color: var(--text-muted);
   font-size: 0.975rem;
@@ -590,6 +600,25 @@ main {
 }
 
 .exp-item:last-child { padding-bottom: 0; border-bottom: none; }
+
+.exp-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.exp-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg-alt);
+  padding: 6px;
+  border: 1px solid var(--border);
+}
+
+.exp-body { flex: 1; min-width: 0; }
 
 .exp-period {
   font-family: 'IBM Plex Mono', monospace;
@@ -769,6 +798,37 @@ main {
   transition: border-color 0.2s, transform 0.2s;
 }
 
+.talk-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.talk-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  padding: 8px;
+}
+
+.talk-logo-wrap.talk-logo-fallback {
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-alt));
+}
+
+.talk-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .talk-card:hover {
   border-color: color-mix(in srgb, var(--accent-warm) 40%, var(--border));
   transform: translateY(-2px);
@@ -776,7 +836,7 @@ main {
 
 .talk-badge {
   display: inline-block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0;
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
   font-size: 0.68rem;
@@ -856,6 +916,13 @@ main {
 .cve-product {
   font-size: 0.95rem;
   font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.cve-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -943,6 +1010,11 @@ main {
   .about-layout,
   .credentials-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-left,
+  .about-side {
+    width: 100%;
   }
 
   .hero-visual {
