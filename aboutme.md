@@ -7,11 +7,41 @@ role: "Senior Cybersecurity Engineer"
 description: "Cybersecurity professional with 9+ years of experience securing modern applications and enterprise infrastructure across cloud platforms, containerized environments, and DevOps ecosystems. Expertise spans security architecture, cloud security, risk assessment, threat hunting, penetration testing, vulnerability management, and threat modeling. Strong experience in embedding security within CI/CD pipelines, container security monitoring, DevSecOps practices, and incident response to proactively detect and mitigate emerging threats. Passionate about building resilient, scalable, and secure infrastructure while actively mentoring and contributing to the cybersecurity community through OWASP Kathmandu and Pentester Nepal."
 
 profile_image: "/images/author/avatar.png"
-email: "kailash@test.com"
+email: "kailash@kailashbohara.com.np"
 linkedin: "https://www.linkedin.com/in/kailash0x01/"
 github: "https://github.com/corrupted-brain"
-twitter: "https://twitter.com/corrputed_brain"
+twitter: "https://twitter.com/corrupted_brain"
 portfolio_url: "https://kailashbohara.com.np"
+
+stats:
+  - value: "9+"
+    label: "Years Experience"
+  - value: "6"
+    label: "Certifications"
+  - value: "5"
+    label: "CVE Disclosures"
+  - value: "2"
+    label: "Communities Led"
+
+skill_groups:
+  - name: "Offensive Security"
+    skills:
+      - "Penetration Testing (Web, API, Network, Mobile)"
+      - "Vulnerability Assessment & Management"
+      - "Secure Code Review"
+      - "Threat Hunting"
+  - name: "Cloud & DevSecOps"
+    skills:
+      - "Cloud Security (AWS, GCP, Azure)"
+      - "DevSecOps & CI/CD Security"
+      - "Container & Kubernetes Security"
+      - "Security Monitoring (SIEM/SOAR)"
+  - name: "Architecture & Governance"
+    skills:
+      - "Security Architecture & Zero Trust"
+      - "Identity & Access Management"
+      - "Risk Assessment & Threat Modeling"
+      - "Compliance (ISO 27001, SOC 2, HITRUST, HIPAA)"
 
 skills:
   - "Security Architecture & Zero Trust Design"
