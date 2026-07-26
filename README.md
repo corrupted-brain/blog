@@ -1,1 +1,1 @@
-# Perosonal blog of Kailash Bohara 
+# Personal blog of Kailash Bohara 
