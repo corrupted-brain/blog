@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ page.title | default: 'Kailash Bohara' }} — Cybersecurity Engineer</title>
-  <meta name="description" content="{{ page.description | strip_html | truncate: 160 }}" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ '/assets/css/about-responsive.css' | relative_url }}">
+{% include _about-head.html %}
 </head>
 <body>
 
@@ -16,8 +9,9 @@
 
 <header class="site-header" id="top">
   <nav class="nav">
-    <a href="/" class="nav-brand">Kailash<span class="nav-brand-accent">.</span></a>
+    <a href="{{ '/' | relative_url }}" class="nav-brand">Kailash<span class="nav-brand-accent">.</span></a>
     <ul class="nav-links">
+      <li><a href="{{ '/' | relative_url }}">Blog</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#credentials">Credentials</a></li>
       <li><a href="#education">Education</a></li>
@@ -38,6 +32,7 @@
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
+  <a href="{{ '/' | relative_url }}" onclick="closeMenu()">Blog</a>
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#credentials" onclick="closeMenu()">Credentials</a>
   <a href="#education" onclick="closeMenu()">Education</a>
@@ -164,8 +159,15 @@
             <div class="exp-item">
               <div class="exp-row">
                 {% if exp.logo %}
-                <img class="exp-logo{% if exp.logo_class %} {{ exp.logo_class }}{% endif %}" src="{{ exp.logo | relative_url }}" alt="{{ exp.company }}" loading="lazy"
-                  onerror="this.style.display='none'" />
+                  {% if exp.url %}
+                  <a href="{{ exp.url }}" class="exp-logo-link" target="_blank" rel="noopener" aria-label="{{ exp.company }} website">
+                    <img class="exp-logo{% if exp.logo_class %} {{ exp.logo_class }}{% endif %}" src="{{ exp.logo | relative_url }}" alt="{{ exp.company }}" loading="lazy"
+                      onerror="this.style.display='none'" />
+                  </a>
+                  {% else %}
+                  <img class="exp-logo{% if exp.logo_class %} {{ exp.logo_class }}{% endif %}" src="{{ exp.logo | relative_url }}" alt="{{ exp.company }}" loading="lazy"
+                    onerror="this.style.display='none'" />
+                  {% endif %}
                 {% endif %}
                 <div class="exp-body">
                   <div class="exp-meta">

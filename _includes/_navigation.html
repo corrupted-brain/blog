@@ -1,17 +1,16 @@
 <div class="navigation-wrapper">
 	<div class="site-name">
-		<a href="{{ site.url }}/">{{ site.title }}</a>
+		<a href="{{ '/' | relative_url }}">{{ site.title }}</a>
 	</div><!-- /.site-name -->
 	<div class="top-navigation">
-		<nav role="navigation" id="site-nav" class="nav">
+		<nav role="navigation" id="site-nav" class="nav" aria-label="Main navigation">
 		    <ul>
 		        {% for link in site.data.navigation %}
 				    {% if link.url contains 'http' %}
-				        {% assign domain = '' %}
-				        {% else %}
-				        {% assign domain = site.url %}
+				        <li><a href="{{ link.url }}" rel="noreferrer">{{ link.title }}</a></li>
+				    {% else %}
+				        <li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
 				    {% endif %}
-				    <li><a href="{{ domain }}{{ link.url }}" {% if link.url contains 'http' %} rel="noreferrer"{% endif %}>{{ link.title }}</a></li>
 				{% endfor %}
 		    </ul>
 		</nav>

@@ -1,49 +1,17 @@
 <meta charset="utf-8">
-<title>{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}</title>
-{% if page.excerpt %}<meta name="description" content="{{ page.excerpt | strip_html }}">{% endif %}
-<meta name="keywords" content="{{ page.tags | join: ', ' }}">
-{% if page.author %}
-  {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.owner %}
-{% endif %}
-
-{% include _open-graph.html %}
-
-{% if site.owner.google.verify %}<!-- Webmaster Tools verfication -->
-<!--<meta name="google-site-verification" content="{{ site.owner.google.verify }}">-->
-<meta name="google-site-verification" content="whSVVZFKmePd_qQsoMiwdrj3NxSmTGw_jsc-70L6TdA" />{% endif %}
-{% if site.owner.bing-verify %}<meta name="msvalidate.01" content="{{ site.owner.bing-verify }}">{% endif %}
-
-{% capture canonical %}{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}{% endcapture %}
-<link rel="canonical" href="{{ canonical }}">
-<link href="{{ site.url }}/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
-
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}</title>
+{% include _document-meta.html %}
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<meta http-equiv="cleartype" content="on">
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
 <!-- HTML5 Shiv and Media Query Support -->
 <!--[if lt IE 9]>
-	<script src="{{ site.url }}/assets/js/vendor/html5shiv.min.js" defer></script>
-	<script src="{{ site.url }}/assets/js/vendor/respond.min.js" defer></script>
+	<script src="{{ '/assets/js/vendor/html5shiv.min.js' | relative_url }}" defer></script>
+	<script src="{{ '/assets/js/vendor/respond.min.js' | relative_url }}" defer></script>
 <![endif]-->
 
 <!-- Modernizr -->
-<script src="/assets/js/vendor/modernizr-2.7.1.custom.min.js" defer></script>
+<script src="{{ '/assets/js/vendor/modernizr-2.7.1.custom.min.js' | relative_url }}" defer></script>
 
 <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
-
-<!-- Icons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="manifest" href="{{ site.url }}/images/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{{ site.url }}/images/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">

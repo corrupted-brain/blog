@@ -9,8 +9,8 @@
 
 <body class="page">
 
+{% include _skip-link.html %}
 {% include _browser-upgrade.html %}
-
 {% include _navigation.html %}
 
 <div id="main" role="main">
@@ -27,8 +27,8 @@
       {% endif %}
     </div><!-- /.article-wrap -->
     {% if site.owner.disqus-shortname and page.comments == true %}
-      <section id="disqus_thread"></section><!-- /#disqus_thread
-    {% endif %} -->
+      <section id="disqus_thread"></section>
+    {% endif %}
   </article>
 </div><!-- /#index -->
 
@@ -38,7 +38,7 @@
   </footer>
 </div><!-- /.footer-wrap -->
 
-{% include _scripts.html %}          
+{% include _scripts.html %}
 
 </body>
 </html>

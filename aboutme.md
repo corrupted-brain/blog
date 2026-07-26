@@ -1,10 +1,13 @@
 ---
 layout: about
 title: "Kailash Bohara"
+seo_title: "Kailash Bohara — Senior Cybersecurity Engineer & Ethical Hacker in Nepal"
+seo_description: "Kailash Bohara is a Senior Cybersecurity Engineer and ethical hacker in Nepal with 9+ years in penetration testing, security architecture, cloud security, data security, and CVE research. OWASP Kathmandu chapter leader."
 permalink: /about/
 name: "Kailash Bohara"
 role: "Senior Cybersecurity Engineer"
 description: "Cybersecurity professional with 9+ years of experience securing modern applications and enterprise infrastructure across cloud platforms, containerized environments, and DevOps ecosystems. Expertise spans security architecture, cloud security, risk assessment, threat hunting, penetration testing, vulnerability management, and threat modeling. Strong experience in embedding security within CI/CD pipelines, container security monitoring, DevSecOps practices, and incident response to proactively detect and mitigate emerging threats. Passionate about building resilient, scalable, and secure infrastructure while actively mentoring and contributing to the cybersecurity community through OWASP Kathmandu and Pentester Nepal."
+tags: [ethical hacker Nepal, cybersecurity engineer, penetration testing, security architect, data security, cloud security, OWASP Kathmandu, CVE researcher]
 
 profile_image: "/images/author/avatar.png"
 email: "kailash@kailashbohara.com.np"
@@ -135,6 +138,7 @@ experience:
     period: "2023 - Present"
     logo: "/images/about/experience/iqvia.svg"
     logo_class: "logo-light-on-dark"
+    url: "https://www.iqvia.com"
     highlights:
       - "Manage internal and external audits, vulnerability assessments, network/application penetration testing, and secure code review."
       - "Analyze threat alerts from SIEM/EDR, Privilege Access Management (PAM), and Data Loss Prevention (DLP) tools."
@@ -149,6 +153,7 @@ experience:
     company: "Eminence Ways Pvt. Ltd."
     period: "2018 - 2023"
     logo: "/images/about/experience/eminence-ways.png"
+    url: "https://eminenceways.com"
     highlights:
       - "Perform Information Systems Audit and Vulnerability Assessment of network and application systems."
       - "Conduct SAST, DAST, and SCA scans aligned with OWASP Top 10 and SANS Top 25 standards."
@@ -159,6 +164,7 @@ experience:
     company: "OWASP Kathmandu"
     period: "2022 - Present"
     logo: "/images/about/experience/owasp.png"
+    url: "https://owasp.org/www-chapter-kathmandu/"
     description: "OWASP Kathmandu is a non-profit cybersecurity community dedicated to strengthening information security awareness and building a collaborative security ecosystem in Nepal. The chapter organizes regular cybersecurity meetups, Capture-the-Flag (CTF) events, and live hacking competitions to promote learning, knowledge sharing, and hands-on security skills"
 
 education:
@@ -172,6 +178,13 @@ education:
     logo: "/images/about/education/lincoln-university-college.webp"
 
 talks:
+  - title: "Breaking and Securing the .NET Application"
+    event: "Microsoft Build 2026"
+    date: "June 2026"
+    location: "San Francisco, USA"
+    logo: "/images/about/talks/microsoft.svg"
+    description: "Session covering common .NET application security weaknesses, secure ASP.NET development practices, and practical hardening techniques to defend against modern attack patterns."
+    link: "https://build.microsoft.com/"
   - title: "Security and Governance Challenges in AI"
     event: "Google DevFest 2025"
     date: "December 2025"

@@ -13,11 +13,13 @@ var changeClass = function (r,className1,className2) {
 };  
 //  Creating our button in JS for smaller screens
 var menuElements = document.getElementById('site-nav');
-menuElements.insertAdjacentHTML('afterBegin','<button type="button" role="button" id="menutoggle" class="navtoogle navicon-lines-button x" aria-hidden="true"><span class="navicon-lines"></span>menu</button>');
+menuElements.insertAdjacentHTML('afterBegin','<button type="button" id="menutoggle" class="navtoogle navicon-lines-button x" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="site-nav"><span class="navicon-lines" aria-hidden="true"></span><span class="visually-hidden">Menu</span></button>');
 
 //  Toggle the class on click to show / hide the menu
 document.getElementById('menutoggle').onclick = function() {
   changeClass(this, 'navtoogle active', 'navtoogle');
+  var expanded = this.getAttribute('aria-expanded') === 'true';
+  this.setAttribute('aria-expanded', expanded ? 'false' : 'true');
 };
 // http://tympanus.net/codrops/2013/05/08/responsive-retina-ready-menu/comment-page-2/#comment-438918
 document.onclick = function(e) {
@@ -34,6 +36,15 @@ document.onclick = function(e) {
 // FitVids options
 $(function() {
 	$("article").fitVids();
+});
+
+// Lazy-load images in post content
+$(function() {
+	$("article img").each(function() {
+		if (!this.hasAttribute("loading")) {
+			this.setAttribute("loading", "lazy");
+		}
+	});
 });
 
 // Table of Contents toggle

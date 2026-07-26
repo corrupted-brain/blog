@@ -1,0 +1,30 @@
+# Kailash Bohara — Senior Cybersecurity Engineer & Ethical Hacker (Nepal)
+
+> Cybersecurity engineer, penetration tester, and security architect based in Nepal with 9+ years of experience in cloud security, data security, DevSecOps, and CVE research.
+
+## Primary profile
+- [About Kailash Bohara](https://kailashbohara.com.np/about/): Experience, certifications, education, skills, and contact
+
+## Presentations & workshops
+- [Conference talks & workshops](https://kailashbohara.com.np/about/#talks): Microsoft Build 2026, Google DevFest 2025, OWASP Kathmandu, Pentester Nepal
+
+## CVE disclosures
+- [CVE research & hacktivities](https://kailashbohara.com.np/about/#hacktivities): CVE-2020-10596, CVE-2020-18723, CVE-2020-18724, CVE-2021-46065, CVE-2024-2301
+
+## Top security research posts
+- [Container Security Hardening Guide](https://kailashbohara.com.np/blog/2026/07/21/container-security-hardening-guide/): DevSecOps, Kubernetes, CIS benchmarks
+- [Hardcoded Credentials in Android Apps](https://kailashbohara.com.np/blog/2025/07/07/Hardcoded-Credentials-in-an-Android-Application/): Mobile pentesting, API security
+- [Website Source Code Analysis to AWS Account Takeover](https://kailashbohara.com.np/blog/2024/05/06/website-source-code-analysis-to-aws-account-takeover/): Cloud security, AWS
+- [AWS Route 53 Vulnerabilities](https://kailashbohara.com.np/blog/2023/04/10/Comprehensive-Blog-on-Exploitation-and-Prevention-of-AWS-Route53-Vulnerabilities/): DNS security, cloud exploitation
+- [GraphQL IDOR in Facebook Streamer Dashboard](https://kailashbohara.com.np/blog/2020/11/18/GraphQL-IDOR-in-Facebook-streamer-dashboard/): Bug bounty, API security
+- [Blind XSS on Google Internal System](https://kailashbohara.com.np/blog/2021/05/13/Google-blind-XSS/): XSS research
+- [CVE-2020-10596 in OpenCart](https://kailashbohara.com.np/blog/2020/05/29/CVE-2020-10596/): Stored XSS disclosure
+
+## Blog & archive
+- [Blog home](https://kailashbohara.com.np/): Recent security research posts
+- [All posts](https://kailashbohara.com.np/posts/): Full archive
+
+## External profiles
+- LinkedIn: https://www.linkedin.com/in/kailash0x01/
+- GitHub: https://github.com/corrupted-brain
+- OWASP Kathmandu: https://owasp.org/www-chapter-kathmandu/

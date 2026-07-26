@@ -1,27 +1,46 @@
+{% if page.seo_title %}
+  {% capture og_title %}{{ page.seo_title }}{% endcapture %}
+{% elsif page.title %}
+  {% capture og_title %}{{ page.title }}{% endcapture %}
+{% else %}
+  {% capture og_title %}{{ site.title }}{% endcapture %}
+{% endif %}
+
+{% if meta_description %}
+  {% assign og_description = meta_description %}
+{% elsif page.seo_description %}
+  {% assign og_description = page.seo_description | strip_html | strip %}
+{% elsif page.excerpt %}
+  {% assign og_description = page.excerpt | strip_html | strip %}
+{% elsif page.description %}
+  {% assign og_description = page.description | strip_html | strip %}
+{% else %}
+  {% assign og_description = site.owner.bio %}
+{% endif %}
+
+{% capture og_url %}{{ page.url | absolute_url }}{% endcapture %}
+
+{% if page.image %}
+  {% capture og_image %}{{ '/images/posts/' | append: page.image | absolute_url }}{% endcapture %}
+{% elsif page.profile_image %}
+  {% capture og_image %}{{ page.profile_image | absolute_url }}{% endcapture %}
+{% else %}
+  {% capture og_image %}{{ '/images/author/avatar.png' | absolute_url }}{% endcapture %}
+{% endif %}
+
 <!-- Twitter Cards -->
-<meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-{% if page.excerpt %}<meta name="twitter:description" content="{{ page.excerpt | strip_html }}">{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | xml_escape }}">
+<meta name="twitter:description" content="{{ og_description | xml_escape }}">
+<meta name="twitter:image" content="{{ og_image }}">
 {% if site.owner.twitter %}<meta name="twitter:site" content="@{{ site.owner.twitter }}">{% endif %}
 {% if author.twitter %}<meta name="twitter:creator" content="@{{ author.twitter }}">{% endif %}
 
-{% if page.image %}
-<meta name="twitter:card" content="Kailash Bohara - Cybersecurity Researcher">
-<meta name="twitter:image" content="{{ site.url }}/images/posts/{{ page.image }}">
-{% else %}
-<meta name="twitter:card" content="Kailash Bohara - Cybersecurity Researcher">
-<meta name="twitter:image" content="{{ site.url }}/images/author/avatar.png">
-{% endif %}
-
 <!-- Open Graph -->
-<meta property="og:title" content="Kailash Bohara">
-<meta property="og:site_name" content="Kailash Bohara - Security Researcher">
-<meta property="og:url" content="https://kailashbohara.com.np/">
-<meta property="og:description" content="Penetration testing, Threat Hunting, Security research, Ethical hacking, cloud security ">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://kailashbohara.com.np/images/author/avatar.png">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ og_title | xml_escape }}">
+<meta property="og:description" content="{{ og_description | xml_escape }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:site_name" content="{{ site.title | xml_escape }}">
+<meta property="og:image" content="{{ og_image }}">
 <meta property="og:locale" content="{{ site.locale }}">
-<meta property="og:type" content="article">
-<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-{% if page.excerpt %}<meta property="og:description" content="{{ page.excerpt | strip_html }}">{% endif %}
-<meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}">
-<meta property="og:site_name" content="{{ site.title }}">

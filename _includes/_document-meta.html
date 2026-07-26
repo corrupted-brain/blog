@@ -1,0 +1,45 @@
+{% if page.seo_description %}
+  {% assign meta_description = page.seo_description | strip_html | strip %}
+{% elsif page.excerpt and page.excerpt != '' %}
+  {% assign meta_description = page.excerpt | strip_html | strip %}
+{% elsif page.description %}
+  {% assign meta_description = page.description | strip_html | strip %}
+{% else %}
+  {% assign meta_description = site.owner.bio %}
+{% endif %}
+
+<meta name="description" content="{{ meta_description | xml_escape }}">
+{% if page.tags and page.tags.size > 0 %}
+<meta name="keywords" content="{{ page.tags | join: ', ' | xml_escape }}">
+{% endif %}
+
+{% if page.author %}
+  {% assign author = site.data.authors[page.author] %}
+{% else %}
+  {% assign author = site.owner %}
+{% endif %}
+
+{% include _open-graph.html %}
+
+{% if site.owner.google.verify %}
+<meta name="google-site-verification" content="{{ site.owner.google.verify }}" />
+{% endif %}
+{% if site.owner.bing-verify %}
+<meta name="msvalidate.01" content="{{ site.owner.bing-verify }}">
+{% endif %}
+
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link href="{{ '/feed.xml' | absolute_url }}" type="application/atom+xml" rel="alternate" title="{{ site.title | xml_escape }} Feed">
+
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="cleartype" content="on">
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="{{ '/images/ms-icon-144x144.png' | absolute_url }}">
+<meta name="theme-color" content="#ffffff">

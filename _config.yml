@@ -1,14 +1,15 @@
 # Site wide configuration
 
-title:            Kailash
+title:            Kailash Bohara
 locale:           en_US
-url:              https://corrupted-brain.github.io/blog
+url:              https://kailashbohara.com.np
+baseurl:          ""
 
 # Jekyll configuration
 
 permalink: /blog/:year/:month/:day/:title/
-markdown:    kramdown
-highlighter: pygments
+markdown: kramdown
+highlighter: rouge
 sass:
   sass_dir: _sass
   style: compressed
@@ -17,37 +18,32 @@ gems:
 
 comments: false
 
-highlighter: rouge
 kramdown:
+  input: GFM
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
   enable_coderay: false
   syntax_highlighter: rouge
-
-# Site owner
-owner:
-  name: Kailash
-  avatar: author/avatar.png
-  bio: "Information Security Practitioner"
-  google:
-    analytics: 
-    verify: whSVVZFKmePd_qQsoMiwdrj3NxSmTGw_jsc-70L6TdA
-    ad-client: 
-    ad-slot: 
-  bing-verify: 
-  twitter: corrupted_brain
-  github: corrupted-brain
-  linkedin: kailash0x01
-  
-markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
   syntax_highlighter_opts:
     block:
       line_numbers: false
 
+# Site owner
+owner:
+  name: Kailash Bohara
+  avatar: author/avatar.png
+  bio: "Senior Cybersecurity Engineer and ethical hacker in Nepal with 9+ years in penetration testing, security architecture, cloud security, and data security. OWASP Kathmandu chapter leader and CVE researcher."
+  google:
+    analytics:
+    verify: whSVVZFKmePd_qQsoMiwdrj3NxSmTGw_jsc-70L6TdA
+    ad-client:
+    ad-slot:
+  bing-verify:
+  twitter: corrupted_brain
+  github: corrupted-brain
+  linkedin: kailash0x01
+
 include: [".htaccess"]
-exclude: ["cache", "lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
+exclude: ["cache", "lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
