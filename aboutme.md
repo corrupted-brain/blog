@@ -2,12 +2,12 @@
 layout: about
 title: "Kailash Bohara"
 seo_title: "Kailash Bohara — Senior Cybersecurity Engineer & Ethical Hacker in Nepal"
-seo_description: "Kailash Bohara is a Senior Cybersecurity Engineer and ethical hacker in Nepal with 9+ years in penetration testing, security architecture, cloud security, data security, and CVE research. OWASP Kathmandu chapter leader."
+seo_description: "Kailash Bohara is a Senior Cybersecurity Engineer and ethical hacker in Nepal with 9+ years in penetration testing, security architecture, cloud security, data security, and zero turst implementation."
 permalink: /about/
 name: "Kailash Bohara"
 role: "Senior Cybersecurity Engineer"
 description: "Cybersecurity professional with 9+ years of experience securing modern applications and enterprise infrastructure across cloud platforms, containerized environments, and DevOps ecosystems. Expertise spans security architecture, cloud security, risk assessment, threat hunting, penetration testing, vulnerability management, and threat modeling. Strong experience in embedding security within CI/CD pipelines, container security monitoring, DevSecOps practices, and incident response to proactively detect and mitigate emerging threats. Passionate about building resilient, scalable, and secure infrastructure while actively mentoring and contributing to the cybersecurity community through OWASP Kathmandu and Pentester Nepal."
-tags: [ethical hacker Nepal, cybersecurity engineer, penetration testing, security architect, data security, cloud security, OWASP Kathmandu, CVE researcher]
+tags: [ethical hacker Nepal, cybersecurity engineer, penetration testing, security architect, data security, cloud security, OWASP Kathmandu, zero trust implementation]
 
 profile_image: "/images/author/avatar.png"
 email: "kailash@kailashbohara.com.np"
@@ -261,6 +261,6 @@ cves:
 
 # About Kailash Bohara
 
-Cybersecurity Engineer with 9+ years of experience designing and implementing secure systems across applications, networks, cloud, and containerized environments. My expertise includes security architecture, Zero Trust design, penetration testing (web, mobile, API, and network), application security, vulnerability management, and DevSecOps pipeline security.
+Cybersecurity Engineer with 9+ years of experience designing and implementing secure systems across applications, networks, cloud, and containerized environments. My expertise includes security architecture, Zero Trust design, penetration testing (web, mobile, API, and network), application security, vulnerability management, cloud security and DevSecOps pipeline security.
 
-Hands-on experience enhancing enterprise security through improvements in SOC, MDR, DLP, cloud security, and threat detection, as well as automating security processes to streamline operations and improve resilience. My work supports organizations in achieving and maintaining compliance with standards such as SOC 2, HITRUST, and ISO 27001 by strengthening audit readiness, risk management, and operational security practices.
+Hands-on experience strengthening enterprise security through security operations, detection and response (SIEM/EDR), DLP, cloud security, and threat detection, as well as automating and integrating security into operational workflows. My work helps organizations achieve and maintain compliance with SOC 2, HITRUST, and ISO 27001 by improving audit readiness, risk management, and operational security controls.
