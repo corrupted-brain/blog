@@ -214,7 +214,7 @@
       <div class="section-header reveal">
         <span class="section-eyebrow">Education</span>
         <h2 class="section-title">Academic background</h2>
-        <p class="section-desc">Formal training in computer science and information technology.</p>
+        <p class="section-desc">{{ page.education_subtitle | default: 'Formal education history.' }}</p>
       </div>
       <div class="education-grid reveal">
         {% for edu in page.education %}

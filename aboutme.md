@@ -19,7 +19,7 @@ portfolio_url: "https://kailashbohara.com.np"
 stats:
   - value: "9+"
     label: "Years Experience"
-  - value: "10"
+  - value: "11"
     label: "Certifications"
   - value: "5"
     label: "CVE Disclosures"
@@ -97,6 +97,10 @@ certifications:
   - name: "AWS Certified Cloud Practitioner"
     org: "Amazon Web Services"
     logo: "/images/about/certifications/aws-cloud-practitioner.svg"
+  - name: "Fellowship: Epoch Zero — AI Safety Nepal Fellowship"
+    org: "AI Safety Nepal"
+    year: "Sep 2026"
+    logo: "/images/about/certifications/ai-safety-nepal.png"
 
 helped_secure_subtitle: "Helped secure Google, Facebook, Microsoft, AWS, Adobe, Adafruit, Alibaba, Toyota, Cloudinary, Dutch Government, OpenCart, MDaemon Webmail, Dell, United Nations, ManageEngine, GoDaddy, HP, and others by responsibly reporting security vulnerabilities in their systems."
 
@@ -171,11 +175,13 @@ experience:
     url: "https://owasp.org/www-chapter-kathmandu/"
     description: "OWASP Kathmandu is a non-profit cybersecurity community dedicated to strengthening information security awareness and building a collaborative security ecosystem in Nepal. The chapter organizes regular cybersecurity meetups, Capture-the-Flag (CTF) events, and live hacking competitions to promote learning, knowledge sharing, and hands-on security skills"
 
+education_subtitle: "Formal education history."
+
 education:
   - institution: "Tribhuvan University"
     degree: "Bachelor's in Computer Science & Information Technology (BSc. CSIT)"
     year: "2020"
-    logo: "/images/about/education/tribhuvan-university.svg"
+    logo: "/images/about/education/tribhuvan-university.png"
   - institution: "Lincoln University College"
     degree: "Master's in Computer Science (MCS)"
     year: "2025"
@@ -214,15 +220,14 @@ talks:
     event: "TU-ERC Campus"
     date: "November 2022"
     location: "Dharan, Nepal"
-    logo: "/images/about/talks/tribhuvan-university.svg"
+    logo: "/images/about/education/tribhuvan-university.png"
     description: "Advanced WebApp security testing techniques and emerging threats.Introduction to OWASP Top 10 risks"
     link: "#"
   - title: "Secure Development and Deployment"
     event: "Security Professionals Meetup"
     date: "January 2024"
     location: "Cedar Gate Nepal, Lalitpur, Nepal"
-    logo: "/images/about/talks/iqvia.svg"
-    logo_class: "logo-light-on-dark"
+    logo: "/images/about/talks/cedar-gate.png"
     description: "Secure coding practices, OWASP Top 10 prevention, DevOps mistakes"
     link: "#"
 
