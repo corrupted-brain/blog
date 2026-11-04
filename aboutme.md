@@ -230,6 +230,13 @@ talks:
     logo: "/images/about/talks/cedar-gate.svg"
     description: "Secure coding practices, OWASP Top 10 prevention, DevOps mistakes"
     link: "#"
+  - title: "Build an Impactful Career in AppSec and threat hunting"
+    event: "Trinity Technology — Live Webinar"
+    date: "August 23, 2026"
+    location: "Online · 8:00–9:00 PM NPT"
+    logo: "/images/about/talks/trinity-technology.png"
+    description: "Guest session on how engineers defend networks, hunt threats, and grow into security engineering roles—alongside career paths in ethical hacking, bug bounty, and live Q&A for students and early-career practitioners."
+    link: "https://trinitytech.com.np/events/2026-08-cybersecurity-career-webinar"
 
 cves:
   - id: CVE-2020-10596
