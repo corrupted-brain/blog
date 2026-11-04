@@ -19,7 +19,7 @@ portfolio_url: "https://kailashbohara.com.np"
 stats:
   - value: "9+"
     label: "Years Experience"
-  - value: "9"
+  - value: "10"
     label: "Certifications"
   - value: "5"
     label: "CVE Disclosures"
@@ -62,6 +62,10 @@ skills:
   - "Security Monitoring & Detection Engineering (SIEM/SOAR)"
 
 certifications:
+  - name: "Certified Penetration Testing Professional (CPENT v2)"
+    org: "EC-Council"
+    year: "2026"
+    logo: "/images/about/certifications/cpent.png"
   - name: "Certified Ethical Hacker (CEH)"
     org: "EC-Council"
     year: "2022"
