@@ -724,9 +724,9 @@ main {
   object-fit: contain;
   flex-shrink: 0;
   border-radius: var(--radius-sm);
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  padding: 6px;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
+  padding: 4px;
 }
 
 .edu-year {
@@ -898,9 +898,9 @@ main {
   height: 56px;
   flex-shrink: 0;
   border-radius: var(--radius-sm);
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  padding: 8px;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
+  padding: 6px;
 }
 
 .talk-logo-wrap.talk-logo-fallback {

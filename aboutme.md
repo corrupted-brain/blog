@@ -185,7 +185,7 @@ education:
   - institution: "Lincoln University College"
     degree: "Master's in Computer Science (MCS)"
     year: "2025"
-    logo: "/images/about/education/lincoln-university-college.webp"
+    logo: "/images/about/education/lincoln-university-college.png"
 
 talks:
   - title: "Breaking and Securing the .NET Applications"
@@ -227,7 +227,7 @@ talks:
     event: "Security Professionals Meetup"
     date: "January 2024"
     location: "Cedar Gate Nepal, Lalitpur, Nepal"
-    logo: "/images/about/talks/cedar-gate.png"
+    logo: "/images/about/talks/cedar-gate.svg"
     description: "Secure coding practices, OWASP Top 10 prevention, DevOps mistakes"
     link: "#"
 
