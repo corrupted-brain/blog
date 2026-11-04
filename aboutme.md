@@ -182,10 +182,10 @@ education:
     logo: "/images/about/education/lincoln-university-college.webp"
 
 talks:
-  - title: "Breaking and Securing the .NET Application"
+  - title: "Breaking and Securing the .NET Applications"
     event: "Microsoft Build 2026"
     date: "June 2026"
-    location: "San Francisco, USA"
+    location: "Lalitpur, Nepal"
     logo: "/images/about/talks/microsoft.svg"
     description: "Session covering common .NET application security weaknesses, secure ASP.NET development practices, and practical hardening techniques to defend against modern attack patterns."
     link: "https://build.microsoft.com/"
